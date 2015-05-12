@@ -1,0 +1,155 @@
+﻿
+" use modern vim
+set nocompatible
+
+" netrw
+let g:netrw_banner       = 0
+let g:netrw_keepdir      = 0
+let g:netrw_liststyle    = 3
+let g:netrw_sort_options = 'i'
+
+" autostart netrw if vim starts without arguments
+autocmd VimEnter * if !argc() | Explore | endif
+
+" dont use backup files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" allow unsaved buffers
+set hidden
+
+" plugin manager
+call plug#begin('~/.vim/plugged')
+Plug 'sickill/vim-monokai'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fireplace'
+Plug 'kien/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-easytags'
+Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe'
+Plug 'thaerkh/vim-indentguides'
+Plug 'vim-scripts/paredit.vim'
+
+"Plug 'dleonard0/pony-vim-syntax'
+"Plug 'terryma/vim-multiple-cursors'
+"Plug 'tpope/vim-fugitive.git'
+"Plug 'severin-lemaignan/vim-minimap'
+call plug#end()
+filetype plugin indent on
+
+" color theme
+syntax enable
+colorscheme monokai
+
+" indentation guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
+" show line numbers
+set number
+set relativenumber
+
+" 80 character line length highlight
+set colorcolumn=80
+
+" highlight current line
+set cursorline
+
+" set tab width and use spaces for tabs
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+" make files use regular tabs
+autocmd FileType make set tabstop=4 shiftwidth=8 softtabstop=0 noexpandtab
+
+" enable spell check
+"autocmd FileType rst set spell
+
+" gvim settings
+if has('gui_running')
+
+    " no toolbar
+    set guioptions-=T
+
+    " maximize window
+    "set lines=999 columns=999
+
+    " set font
+    if has('gui_win32')
+        set guifont=Consolas:h11
+    else
+        set guifont=Droid\ Sans\ Mono\ 11
+    endif
+
+endif
+
+" reload vimrc on change
+augroup reload_vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
+" airline configuration
+set laststatus=2
+"let g:airline#extensions#tabline#enabled = 1
+
+" display tabs and trailing spaces
+set list
+set listchars=tab:»·,trail:·,nbsp:·
+
+" search options
+set incsearch
+set hlsearch
+
+" backspace in insert mode
+set backspace=indent,eol,start
+
+" no sound
+set visualbell
+
+" set encoding
+set encoding=utf-8
+set fileencoding=utf-8
+setglobal fileencoding=utf-8
+
+" remap Esc
+"imap <S-Space> <Esc>
+"nmap <S-Space> <Esc>
+
+" show commands
+set showcmd
+
+" file format
+set fileformats=unix,dos
+
+" gitgutter configuration
+let g:gitgutter_realtime = 1
+
+" function keys map
+noremap <F5> :NERDTreeToggle<CR>
+noremap <F6> :TagbarToggle<CR>
+noremap <F7> :MBEToggle<CR>
+
+" center cursor vertically
+nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+
+" enable mouse
+set mouse=a
+
+" ale configuration
+let g:ale_linters = {'python': ['flake8']}
+
+" YouCompleteMe configuration
+let g:ycm_auto_trigger = 0
+let g:ycm_show_diagnostics_ui = 0
+
+" completion options
+set completeopt=menuone

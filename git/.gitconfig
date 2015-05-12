@@ -1,0 +1,22 @@
+[user]
+    name = bozo.kopic
+    email = bozo.kopic@gmail.com
+    signingkey = 596B1248EF64E1308C7D2AD019CA03B76B479DCF
+[http]
+    sslVerify = false
+[branch]
+    autosetuprebase = always
+[core]
+    autocrlf = false
+    editor = vim
+[alias]
+    tree = log --graph --all --pretty='format:"%C(auto)%h [%ad] %an%d: %s"' --date=short
+[diff]
+    tool = meld
+    guitool = meld
+[push]
+    default = simple
+[difftool "meld"]
+    path = /usr/bin/meld
+[commit]
+    gpgsign = true

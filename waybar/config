@@ -1,0 +1,24 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "gtk-layer-shell": false,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["tray", "network", "battery", "pulseaudio", "clock"],
+    "network": {
+        "on-click": "connman-gtk",
+        "tooltip": false
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%Y-%m-%d %H:%M}",
+        "tooltip": false
+    }
+}
