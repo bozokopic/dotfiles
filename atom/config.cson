@@ -36,6 +36,11 @@
       jedi_definition:
         follow_builtin_imports: true
         follow_imports: true
+      jedi_hover:
+        enabled: false
+      jedi_references:
+        enabled: false
+      jedi_signature_help: {}
       mccabe:
         enabled: false
       pyflakes:
@@ -43,7 +48,7 @@
   linter: {}
   "linter-flake8": {}
   "linter-ui-default":
-    panelHeight: 192
+    panelHeight: 206
   "lisp-paredit":
     enabled: false
     strict: false

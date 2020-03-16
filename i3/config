@@ -1,13 +1,13 @@
 
 set $mod Mod4
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $wsa "a"
-set $wss "s"
-set $wsd "d"
-set $wsf "f"
+set $ws1 "1:1"
+set $ws2 "2:2"
+set $ws3 "3:3"
+set $ws4 "4:4"
+set $wsa "5:a"
+set $wss "6:s"
+set $wsd "7:d"
+set $wsf "8:f"
 
 floating_modifier $mod
 font pango:Droid Sans 11
@@ -101,6 +101,8 @@ mode "resize" {
 bar {
     status_command py3status
     tray_output primary
+    strip_workspace_numbers yes
+    workspace_min_width 40
     font pango:Font Awesome 5 Free, Font Awesome 5 Brands, Droid Sans Mono 12
 }
 
