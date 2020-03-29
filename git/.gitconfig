@@ -11,6 +11,7 @@
     editor = vim
 [alias]
     tree = log --graph --all --pretty='format:"%C(auto)%h [%ad] %an%d: %s"' --date=short
+    tree-single = log --graph --pretty='format:"%C(auto)%h [%ad] %an%d: %s"' --date=short
 [diff]
     tool = meld
     guitool = meld

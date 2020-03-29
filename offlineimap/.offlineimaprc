@@ -12,7 +12,7 @@ localfolders = ~/mail/ket
 
 [Repository KetRemote]
 type = IMAP
-cert_fingerprint = 49:F5:30:34:C0:ED:45:07:CA:92:4F:15:74:2E:2C:2F:E5:22:37:B5, 8d88881a257e795271a564eb8bcf1ae923272aab
+cert_fingerprint = 7f0804b4d0a6c83e46a3a00ec98f8343d7308566
 remotehost = outlook.office365.com
 remoteuser = bozo.kopic@koncar-ket.hr
 remotepasseval = get_password('office.com/bozo.kopic')
