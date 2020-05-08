@@ -1,0 +1,9 @@
+// SublimeLinter Settings - User
+{
+    "styles": [
+        {
+            "mark_style": "squiggly_underline"
+        }
+    ],
+    "statusbar.counters_template": " ({} warn; {} err)",
+}

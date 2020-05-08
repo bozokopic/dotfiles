@@ -114,14 +114,19 @@ bar {
 # picom
 exec --no-startup-id picom
 
+# gajim
+exec --no-startup-id gajim
+
+# zeal
+exec --no-startup-id zeal
+
 # background
 exec_always --no-startup-id feh --bg-scale ~/.dotfiles/pictures/bg1.jpg \
                                            ~/.dotfiles/pictures/bg2.jpg
 
 # terminal
-exec --no-startup-id alacritty --class scratchpad_term -e tmux new-session -A -s default
-for_window [instance="scratchpad_term"] move scratchpad
-bindsym F12 [instance="scratchpad_term"] scratchpad show, \
-                                         resize set 100 ppt 100 ppt, \
-                                         resize shrink height 30 px, \
-                                         move position center
+for_window [instance="scratchpad_term"] \
+    move scratchpad, \
+    border none, \
+    exec --no-startup-id ~/.config/i3/terminal.sh
+bindsym F12 exec --no-startup-id ~/.config/i3/terminal.sh

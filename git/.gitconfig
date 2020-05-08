@@ -10,14 +10,16 @@
     autocrlf = false
     editor = vim
 [alias]
-    tree = log --graph --all --pretty='format:"%C(auto)%h [%ad] %an%d: %s"' --date=short
-    tree-single = log --graph --pretty='format:"%C(auto)%h [%ad] %an%d: %s"' --date=short
+    tree = log --graph --pretty='format:"%C(auto)%h [%ad] %an%d: %s"' --date=short
 [diff]
     tool = meld
     guitool = meld
+    submodule = log
 [push]
     default = simple
 [difftool "meld"]
     path = /usr/bin/meld
 [commit]
     gpgsign = true
+[status]
+    submodulesummary = 1

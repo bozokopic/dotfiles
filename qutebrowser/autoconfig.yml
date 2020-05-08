@@ -8,9 +8,13 @@ config_version: 2
 settings:
   fonts.tabs:
     global: 12pt Droid Sans
+  qt.highdpi:
+    global: true
   tabs.padding:
     global:
       bottom: 2
       left: 5
       right: 5
       top: 2
+  zoom.default:
+    global: 125%

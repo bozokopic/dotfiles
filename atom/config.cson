@@ -19,6 +19,7 @@
     ]
   editor:
     fontFamily: "Source Code Pro"
+    fontSize: 15
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true

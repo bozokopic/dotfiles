@@ -50,6 +50,19 @@ ln -sf $DOTFILES/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.yml
 mkdir -p ~/.config/ranger
 ln -sf $DOTFILES/ranger/rc.conf ~/.config/ranger/rc.conf
 
+# sublime
+mkdir -p ~/.config/sublime-text-3/Packages/User
+ln -sf "$DOTFILES/subl3/Package Control.sublime-settings" \
+       ~/.config/sublime-text-3/Packages/User/"Package Control.sublime-settings"
+for i in Adaptive.sublime-theme \
+         Preferences.sublime-settings \
+         Python.sublime-settings \
+         PythonImproves.sublime-settings \
+         SublimeLinter.sublime-settings
+do
+    ln -sf $DOTFILES/subl3/$i ~/.config/sublime-text-3/Packages/User/$i
+done
+
 # tmux
 ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 
