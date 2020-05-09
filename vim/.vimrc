@@ -35,6 +35,7 @@ Plug 'w0rp/ale'
 Plug 'Valloric/YouCompleteMe'
 Plug 'thaerkh/vim-indentguides'
 Plug 'vim-scripts/paredit.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 "Plug 'dleonard0/pony-vim-syntax'
 "Plug 'terryma/vim-multiple-cursors'
