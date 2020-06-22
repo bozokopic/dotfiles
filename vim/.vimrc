@@ -9,7 +9,7 @@ let g:netrw_liststyle    = 3
 let g:netrw_sort_options = 'i'
 
 " autostart netrw if vim starts without arguments
-autocmd VimEnter * if !argc() | Explore | endif
+"autocmd VimEnter * if !argc() | Explore | endif
 
 " dont use backup files
 set nobackup
@@ -36,6 +36,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'thaerkh/vim-indentguides'
 Plug 'vim-scripts/paredit.vim'
 Plug 'christoomey/vim-tmux-navigator'
+
 
 "Plug 'dleonard0/pony-vim-syntax'
 "Plug 'terryma/vim-multiple-cursors'
@@ -74,23 +75,9 @@ autocmd FileType make set tabstop=4 shiftwidth=8 softtabstop=0 noexpandtab
 " enable spell check
 "autocmd FileType rst set spell
 
-" gvim settings
-if has('gui_running')
-
-    " no toolbar
-    set guioptions-=T
-
-    " maximize window
-    "set lines=999 columns=999
-
-    " set font
-    if has('gui_win32')
-        set guifont=Consolas:h11
-    else
-        set guifont=Droid\ Sans\ Mono\ 11
-    endif
-
-endif
+" gui settings
+set linespace=4
+set guifont=Droid\ Sans\ Mono:h12
 
 " reload vimrc on change
 augroup reload_vimrc
@@ -154,3 +141,6 @@ let g:ycm_show_diagnostics_ui = 0
 
 " completion options
 set completeopt=menuone
+
+" disable conceal
+autocmd FileType json set conceallevel=0

@@ -17,26 +17,20 @@ workspace $ws1 output eDP-1
 workspace $ws2 output eDP-1
 workspace $ws3 output eDP-1
 workspace $ws4 output eDP-1
-workspace $wsa output DP-4 DP-5
-workspace $wss output DP-4 DP-5
-workspace $wsd output DP-4 DP-5
-workspace $wsf output DP-4 DP-5
+workspace $wsa output DP-6
+workspace $wss output DP-6
+workspace $wsd output DP-6
+workspace $wsf output DP-6
 
 output eDP-1 {
     position 0 0
     background ~/.dotfiles/pictures/bg1.jpg fill
 }
 
-output DP-4 {
+output DP-6 {
     position 1920 0
     background ~/.dotfiles/pictures/bg2.jpg fill
 }
-
-output DP-5 {
-    position 1920 0
-    background ~/.dotfiles/pictures/bg2.jpg fill
-}
-
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+space exec --no-startup-id wofi --show drun --allow-images
@@ -124,8 +118,9 @@ bar {
 exec xrdb -load ~/.config/sway/.Xresources
 
 
-exec --no-startup-id alacritty --class scratchpad_term -e tmux new-session -A -s default
-for_window [app_id="scratchpad_term"] move scratchpad
-bindsym F12 [app_id="scratchpad_term"] scratchpad show, \
-                                       resize set 100 ppt 100 ppt, \
-                                       move position center
+# terminal
+for_window [app_id="scratchpad_term"] \
+    move scratchpad, \
+    border none, \
+    exec --no-startup-id ~/.config/terminal.sh
+bindsym F12 exec --no-startup-id ~/.config/terminal.sh

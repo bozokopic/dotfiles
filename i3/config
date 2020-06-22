@@ -128,5 +128,5 @@ exec_always --no-startup-id feh --bg-scale ~/.dotfiles/pictures/bg1.jpg \
 for_window [instance="scratchpad_term"] \
     move scratchpad, \
     border none, \
-    exec --no-startup-id ~/.config/i3/terminal.sh
-bindsym F12 exec --no-startup-id ~/.config/i3/terminal.sh
+    exec --no-startup-id ~/.config/terminal.sh
+bindsym F12 exec --no-startup-id ~/.config/terminal.sh
