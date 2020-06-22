@@ -122,5 +122,5 @@ exec xrdb -load ~/.config/sway/.Xresources
 for_window [app_id="scratchpad_term"] \
     move scratchpad, \
     border none, \
-    exec --no-startup-id ~/.config/terminal.sh
-bindsym F12 exec --no-startup-id ~/.config/terminal.sh
+    exec --no-startup-id ~/.dotfiles/terminal.sh
+bindsym F12 exec --no-startup-id ~/.dotfiles/terminal.sh
