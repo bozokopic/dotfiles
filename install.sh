@@ -33,6 +33,9 @@ ln -sf -T $DOTFILES/qtile ~/.config/qtile
 # i3
 ln -sf -T $DOTFILES/i3 ~/.config/i3
 
+# sxhkd
+ln -sf -T $DOTFILES/sxhkd ~/.config/sxhkd
+
 # sway
 ln -sf -T $DOTFILES/sway ~/.config/sway
 

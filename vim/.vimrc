@@ -36,7 +36,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'thaerkh/vim-indentguides'
 Plug 'vim-scripts/paredit.vim'
 Plug 'christoomey/vim-tmux-navigator'
-
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "Plug 'dleonard0/pony-vim-syntax'
 "Plug 'terryma/vim-multiple-cursors'
@@ -125,6 +126,8 @@ let g:gitgutter_realtime = 1
 noremap <F5> :NERDTreeToggle<CR>
 noremap <F6> :TagbarToggle<CR>
 noremap <F7> :MBEToggle<CR>
+noremap <F8> :tabp<CR>
+noremap <F9> :tabn<CR>
 
 " center cursor vertically
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>

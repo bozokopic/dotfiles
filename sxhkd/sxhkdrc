@@ -1,0 +1,62 @@
+F12
+    python ~/.dotfiles/terminal.py
+
+mod4 + Return
+    alacritty
+mod4 + space
+    rofi -show drun
+mod4 + backslash
+    i3-msg "split h"
+mod4 + minus
+    i3-msg "split v"
+mod4 + Tab
+    i3-msg "layout toggle split"
+mod4 + p
+    i3-msg "focus parent"
+mod4 + r
+    i3-msg "mode resize"
+
+mod4 + shift + r
+    i3-msg "restart"
+mod4 + shift + e
+    i3-msg "exit"
+mod4 + shift + q
+    i3-msg "kill"
+mod4 + shift + space
+    i3-msg "floating toggle"
+mod4 + shift + Return
+    i3-msg "fullscreen toggle"
+
+mod4 + h
+    i3-msg "focus left"
+mod4 + Left
+    i3-msg "focus left"
+mod4 + j
+    i3-msg "focus down"
+mod4 + Down
+    i3-msg "focus down"
+mod4 + k
+    i3-msg "focus up"
+mod4 + Up
+    i3-msg "focus up"
+mod4 + l
+    i3-msg "focus right"
+mod4 + Right
+    i3-msg "focus right"
+
+mod4 + shift + h
+    i3-msg "move left"
+mod4 + shift + Left
+    i3-msg "move left"
+mod4 + shift + j
+    i3-msg "move down"
+mod4 + shift + Down
+    i3-msg "move down"
+mod4 + shift + k
+    i3-msg "move up"
+mod4 + shift + Up
+    i3-msg "move up"
+mod4 + shift + l
+    i3-msg "move right"
+mod4 + shift + Right
+    i3-msg "move right"

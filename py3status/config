@@ -1,53 +1,10 @@
 
-
-order += "static_string chromium"
-order += "static_string falkon"
-order += "static_string dolphin"
-order += "static_string atom"
-order += "static_string claws-mail"
-order += "static_string keepassxc"
-order += "static_string clementine"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery 0"
 order += "volume master"
 order += "tztime local"
 
-
-static_string chromium {
-    format = ""
-    on_click 1 = "exec --no-startup-id chromium"
-}
-
-static_string falkon {
-    format = ""
-    on_click 1 = "exec --no-startup-id falkon"
-}
-
-static_string dolphin {
-    format = ""
-    on_click 1 = "exec --no-startup-id dolphin"
-}
-
-static_string atom {
-    format = ""
-    on_click 1 = "exec --no-startup-id atom"
-}
-
-static_string claws-mail {
-    format = ""
-    on_click 1 = "exec --no-startup-id claws-mail"
-}
-
-static_string keepassxc {
-    format = ""
-    on_click 1 = "exec --no-startup-id keepassxc"
-}
-
-static_string clementine {
-    format = ""
-    on_click 1 = "exec --no-startup-id clementine"
-}
 
 wireless _first_ {
     format_up = " (%quality at %essid, %bitrate) %ip"
