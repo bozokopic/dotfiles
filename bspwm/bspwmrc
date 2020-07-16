@@ -1,0 +1,20 @@
+#!/bin/bash
+
+sxhkd -c ~/.config/sxhkd/sxhkdrc.bspwm &
+~/.config/polybar/launch.sh &
+
+bspc monitor primary -d 1 2 3 4 term
+bspc monitor ^2 -d a s d f
+
+bspc config border_width         4
+bspc config window_gap           5
+
+bspc config focus_follows_pointer true
+bspc config pointer_follows_monitor true
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a *:tmux_term desktop=term
+

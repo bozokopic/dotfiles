@@ -22,16 +22,18 @@ ln -sf ~/.profile ~/.bash_profile
 # git
 ln -sf $DOTFILES/git/.gitconfig ~/.gitconfig
 
-# offlineimap
+# mbsync (isync)
 mkdir -p ~/mail/ket
-ln -sf $DOTFILES/offlineimap/.offlineimaprc ~/.offlineimaprc
-ln -sf $DOTFILES/offlineimap/.offlineimap.py ~/.offlineimap.py
+ln -sf $DOTFILES/mbsync/.mbsyncrc ~/.mbsyncrc
 
 # qtile
 ln -sf -T $DOTFILES/qtile ~/.config/qtile
 
 # i3
 ln -sf -T $DOTFILES/i3 ~/.config/i3
+
+# bspwm
+ln -sf -T $DOTFILES/bspwm ~/.config/bspwm
 
 # sxhkd
 ln -sf -T $DOTFILES/sxhkd ~/.config/sxhkd
@@ -44,6 +46,12 @@ ln -sf -T $DOTFILES/waybar ~/.config/waybar
 
 # py3status
 ln -sf -T $DOTFILES/py3status ~/.config/py3status
+
+# polybar
+ln -sf -T $DOTFILES/polybar ~/.config/polybar
+
+# polybar
+ln -sf -T $DOTFILES/yabar ~/.config/yabar
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser

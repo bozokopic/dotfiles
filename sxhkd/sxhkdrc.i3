@@ -1,5 +1,5 @@
 F12
-    python ~/.dotfiles/terminal.py
+    python ~/.config/sxhkd/terminal_i3.py
 
 mod4 + Return
     alacritty
@@ -27,36 +27,20 @@ mod4 + shift + space
 mod4 + shift + Return
     i3-msg "fullscreen toggle"
 
-mod4 + h
+mod4 + {h, Left}
     i3-msg "focus left"
-mod4 + Left
-    i3-msg "focus left"
-mod4 + j
+mod4 + {j, Down}
     i3-msg "focus down"
-mod4 + Down
-    i3-msg "focus down"
-mod4 + k
+mod4 + {k, Up}
     i3-msg "focus up"
-mod4 + Up
-    i3-msg "focus up"
-mod4 + l
-    i3-msg "focus right"
-mod4 + Right
+mod4 + {l, Right}
     i3-msg "focus right"
 
-mod4 + shift + h
+mod4 + shift + {h, Left}
     i3-msg "move left"
-mod4 + shift + Left
-    i3-msg "move left"
-mod4 + shift + j
+mod4 + shift + {j, Down}
     i3-msg "move down"
-mod4 + shift + Down
-    i3-msg "move down"
-mod4 + shift + k
+mod4 + shift + {k, Up}
     i3-msg "move up"
-mod4 + shift + Up
-    i3-msg "move up"
-mod4 + shift + l
-    i3-msg "move right"
-mod4 + shift + Right
+mod4 + shift + {l, Right}
     i3-msg "move right"

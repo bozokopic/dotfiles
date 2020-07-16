@@ -1,0 +1,22 @@
+IMAPAccount ket
+Host outlook.office365.com
+User bozo.kopic@koncar-ket.hr
+PassCmd "pass office.com/bozo.kopic"
+SSLType STARTTLS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+AuthMech PLAIN
+
+IMAPStore ket-remote
+Account ket
+
+MaildirStore ket-local
+SubFolders Verbatim
+Path ~/mail/ket
+Inbox ~/mail/ket/INBOX
+
+Channel ket
+Master :ket-remote:
+Slave :ket-local:
+Patterns *
+Create Both
+SyncState *

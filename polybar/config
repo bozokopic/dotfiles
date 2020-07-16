@@ -1,0 +1,94 @@
+[bar/base]
+monitor-strict = false
+monitor-exact = true
+override-redirect = false
+bottom = false
+height = 30
+padding = 2
+background = #000000
+foreground = #ffffff
+font-0 = "RobotoMono Nerd Font:size=12"
+font-1 = "Roboto Nerd Font:size=12"
+module-margin = 1
+separator = |
+separator-foreground = #919191
+modules-left = bspwm title
+modules-center =
+modules-right = wlan0 eth0 pulseaudio battery date
+
+[bar/bar1]
+inherit = bar/base
+monitor =
+tray-position = right
+
+[bar/bar2]
+inherit = bar/base
+monitor = DP1-2
+tray-position = none
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+format = <label-state>
+label-dimmed-focused-background = ${bar/base.background}
+label-focused = [ %name% ]
+label-focused-foreground = ${bar/base.foreground}
+label-focused-background = #3f3f3f
+label-occupied = %name%
+label-urgent = %name%
+label-urgent-foreground = ${bar/base.foreground}
+label-urgent-background = #bd2c40
+label-empty = %name%
+label-empty-foreground = #555555
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = ${bar/base.separator-foreground}
+
+[module/title]
+type = internal/xwindow
+label = %{T2}%title%
+
+[module/wlan0]
+type = internal/network
+interface = wlan0
+label-connected = 直 %essid% %local_ip%
+label-connected-foreground = ${bar/base.foreground}
+label-disconnected = 睊
+label-disconnected-foreground = #66ffffff
+click-right = connman-gtk &
+
+[module/eth0]
+type = internal/network
+interface = eth0
+label-connected = ﯱ %local_ip%
+label-connected-foreground = ${bar/base.foreground}
+label-disconnected = 
+label-disconnected-foreground = #66ffffff
+click-left = connman-gtk &
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3%%
+label-muted = 婢 muted
+label-muted-foreground = #666
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+click-right = pavucontrol &
+
+[module/battery]
+type = internal/battery
+label-charging =  %percentage:3%
+label-discharging =  %percentage:3%
+label-full =  %percentage:3%
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/date]
+type = internal/date
+date =  %Y-%m-%d %H:%M
