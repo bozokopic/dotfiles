@@ -30,17 +30,14 @@ Plug 'kien/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-easytags'
 Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe'
 Plug 'thaerkh/vim-indentguides'
 Plug 'vim-scripts/paredit.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mg979/vim-visual-multi'
 
-"Plug 'dleonard0/pony-vim-syntax'
-"Plug 'terryma/vim-multiple-cursors'
 "Plug 'tpope/vim-fugitive.git'
 "Plug 'severin-lemaignan/vim-minimap'
 call plug#end()
@@ -136,11 +133,13 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 set mouse=a
 
 " ale configuration
-let g:ale_linters = {'python': ['flake8']}
+let g:ale_linters = {
+\   'python': ['flake8']
+\}
 
 " YouCompleteMe configuration
-let g:ycm_auto_trigger = 0
-let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_auto_trigger = 0
+"let g:ycm_show_diagnostics_ui = 0
 
 " completion options
 set completeopt=menuone

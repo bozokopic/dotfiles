@@ -5,13 +5,14 @@ PassCmd "pass office.com/bozo.kopic"
 SSLType STARTTLS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 AuthMech PLAIN
+PipelineDepth 1
 
 IMAPStore ket-remote
 Account ket
 
 MaildirStore ket-local
 SubFolders Verbatim
-Path ~/mail/ket
+Path ~/mail/ket/
 Inbox ~/mail/ket/INBOX
 
 Channel ket

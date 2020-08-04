@@ -1,0 +1,27 @@
+set mbox_type=Maildir
+set folder=~/mail/ket
+set spoolfile=+INBOX
+set sidebar_visible=yes
+set sidebar_width=25
+set sort=threads
+set sort_aux=reverse-date-received
+set pager_index_lines=10
+
+mailboxes +INBOX \
+          +INBOX/archive \
+          +INBOX/hat-core \
+          +INBOX/hat-core/active \
+          +INBOX/hat-core/pending \
+          +INBOX/hat-eds \
+          +INBOX/hat-eds/active \
+          +INBOX/hat-eds/pending \
+          +INBOX/hat-eds-ba \
+          +INBOX/hat-eds-ba/active \
+          +INBOX/hat-eds-ba/pending \
+          +Sent\ Items
+
+bind index j next-entry
+bind index k previous-entry
+
+macro index J '<sidebar-next><sidebar-open>'
+macro index K '<sidebar-prev><sidebar-open>'

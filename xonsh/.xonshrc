@@ -1,3 +1,0 @@
-$XONSH_COLOR_STYLE = 'monokai'
-$PROMPT = "[{BOLD_GREEN}{user}@{hostname} {BOLD_CYAN}{cwd}{branch_color}{curr_branch: {}}{NO_COLOR}]{BOLD_CYAN}{prompt_end} {NO_COLOR}"
-$SUPPRESS_BRANCH_TIMEOUT_MESSAGE = True

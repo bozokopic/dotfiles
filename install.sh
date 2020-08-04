@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
-DOTFILES=~/.dotfiles
+DOTFILES=$(realpath $(dirname ${BASH_SOURCE[0]}))
 
 # alacritty
 ln -sf -T $DOTFILES/alacritty ~/.config/alacritty
@@ -19,6 +19,12 @@ ln -sf $DOTFILES/bash/.profile ~/.profile
 ln -sf $DOTFILES/bash/.bashrc ~/.bashrc
 ln -sf ~/.profile ~/.bash_profile
 
+# bspwm
+ln -sf -T $DOTFILES/bspwm ~/.config/bspwm
+
+# fish
+ln -sf -T $DOTFILES/fish ~/.config/fish
+
 # git
 ln -sf $DOTFILES/git/.gitconfig ~/.gitconfig
 
@@ -26,32 +32,14 @@ ln -sf $DOTFILES/git/.gitconfig ~/.gitconfig
 mkdir -p ~/mail/ket
 ln -sf $DOTFILES/mbsync/.mbsyncrc ~/.mbsyncrc
 
-# qtile
-ln -sf -T $DOTFILES/qtile ~/.config/qtile
+# neomutt
+ln -sf -T $DOTFILES/neomutt ~/.config/neomutt
 
-# i3
-ln -sf -T $DOTFILES/i3 ~/.config/i3
-
-# bspwm
-ln -sf -T $DOTFILES/bspwm ~/.config/bspwm
-
-# sxhkd
-ln -sf -T $DOTFILES/sxhkd ~/.config/sxhkd
-
-# sway
-ln -sf -T $DOTFILES/sway ~/.config/sway
-
-# waybar
-ln -sf -T $DOTFILES/waybar ~/.config/waybar
-
-# py3status
-ln -sf -T $DOTFILES/py3status ~/.config/py3status
+# pictures
+ln -sf -T $DOTFILES/pictures ~/.pictures
 
 # polybar
 ln -sf -T $DOTFILES/polybar ~/.config/polybar
-
-# polybar
-ln -sf -T $DOTFILES/yabar ~/.config/yabar
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser
@@ -74,6 +62,9 @@ do
     ln -sf $DOTFILES/subl3/$i ~/.config/sublime-text-3/Packages/User/$i
 done
 
+# sxhkd
+ln -sf -T $DOTFILES/sxhkd ~/.config/sxhkd
+
 # tmux
 ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 
@@ -84,12 +75,6 @@ ln -sf $DOTFILES/vim/.vimrc ~/.vimrc
 ln -sf $DOTFILES/vim/plug.vim ~/.vim/autoload/plug.vim
 ln -sf ~/.vimrc ~/.vim/init.vim
 ln -sf ~/.vim ~/.config/nvim
-
-# xonsh
-ln -sf $DOTFILES/xonsh/.xonshrc ~/.xonshrc
-
-# fish
-ln -sf -T $DOTFILES/fish ~/.config/fish
 
 # xorg
 ln -sf $DOTFILES/xorg/.xsession ~/.xsession
