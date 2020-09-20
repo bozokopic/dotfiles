@@ -6,15 +6,31 @@
 
 config_version: 2
 settings:
-  fonts.tabs:
-    global: 12pt Droid Sans
+  fonts.default_family:
+    global: Roboto Mono
+  fonts.default_size:
+    global: 12pt
+  fonts.messages.info:
+    global: default_size default_family
+  fonts.statusbar:
+    global: default_size default_family
+  fonts.tabs.selected:
+    global: default_size Inter
+  fonts.tabs.unselected:
+    global: default_size inter
   qt.highdpi:
     global: true
-  tabs.padding:
+  tabs.indicator.padding:
     global:
       bottom: 2
+      left: 0
+      right: 4
+      top: 2
+  tabs.padding:
+    global:
+      bottom: 10
       left: 5
       right: 5
-      top: 2
+      top: 5
   zoom.default:
     global: 125%

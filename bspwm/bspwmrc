@@ -4,7 +4,17 @@ sxhkd -c ~/.config/sxhkd/sxhkdrc.bspwm &
 ~/.config/polybar/launch.sh &
 
 bspc monitor primary -d 1 2 3 4 term
-bspc monitor ^2 -d a s d f
+
+python <<EOF
+import subprocess
+import sys
+p = subprocess.run(['xrandr', '--listactivemonitors'],
+                   capture_output=True, check=True)
+count = int(p.stdout.decode('utf-8').split('\n')[0].split(':')[1])
+if count < 2:
+    sys.exit(1)
+EOF
+[ $? -eq 0 ] && bspc monitor primary#next -d a s d f
 
 bspc config border_width         4
 bspc config window_gap           5

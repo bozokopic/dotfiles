@@ -8,7 +8,7 @@ padding = 2
 background = #000000
 foreground = #ffffff
 font-0 = "RobotoMono Nerd Font:size=12"
-font-1 = "Roboto Nerd Font:size=12"
+font-1 = "Inter Medium:size=12"
 module-margin = 1
 separator = |
 separator-foreground = #919191
@@ -24,6 +24,7 @@ tray-position = right
 [bar/bar2]
 inherit = bar/base
 monitor = DP1-2
+monitor-fallback = DP3
 tray-position = none
 
 [module/bspwm]
@@ -47,6 +48,7 @@ label-separator-foreground = ${bar/base.separator-foreground}
 [module/title]
 type = internal/xwindow
 label = %{T2}%title%
+label-maxlen = 100
 
 [module/wlan0]
 type = internal/network

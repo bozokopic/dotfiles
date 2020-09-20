@@ -21,22 +21,23 @@ set hidden
 
 " plugin manager
 call plug#begin('~/.vim/plugged')
+Plug 'airblade/vim-gitgutter'
+Plug 'mg979/vim-visual-multi'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'w0rp/ale'
 Plug 'sickill/vim-monokai'
-Plug 'bling/vim-airline'
+Plug 'thaerkh/vim-indentguides'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'bling/vim-airline'
 Plug 'tpope/vim-fireplace'
-Plug 'kien/ctrlp.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-misc'
-Plug 'w0rp/ale'
-Plug 'thaerkh/vim-indentguides'
 Plug 'vim-scripts/paredit.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'mg979/vim-visual-multi'
 
 "Plug 'tpope/vim-fugitive.git'
 "Plug 'severin-lemaignan/vim-minimap'
@@ -76,6 +77,10 @@ autocmd FileType make set tabstop=4 shiftwidth=8 softtabstop=0 noexpandtab
 " gui settings
 set linespace=4
 set guifont=Droid\ Sans\ Mono:h12
+if exists('g:GuiLoaded')
+    GuiTabline 0
+endif
+autocmd UIEnter * GuiTabline 0
 
 " reload vimrc on change
 augroup reload_vimrc
@@ -85,7 +90,7 @@ augroup END
 
 " airline configuration
 set laststatus=2
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " display tabs and trailing spaces
 set list
@@ -135,7 +140,7 @@ set mouse=a
 " ale configuration
 let g:ale_linters = {
 \   'python': ['flake8']
-\}
+\ }
 
 " YouCompleteMe configuration
 "let g:ycm_auto_trigger = 0
@@ -146,3 +151,8 @@ set completeopt=menuone
 
 " disable conceal
 autocmd FileType json set conceallevel=0
+
+" ctrlP
+"let g:ctrlp_prompt_mappings = {
+"\   'ToggleType(1)':        ['<c-p>', '<c-f>', '<c-up>'],
+"\ }
