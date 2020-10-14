@@ -1,30 +1,19 @@
-#!/bin/bash
+#!/bin/sh
 
-sxhkd -c ~/.config/sxhkd/sxhkdrc.bspwm &
+sxhkd -c ~/.config/bspwm/sxhkdrc &
 ~/.config/polybar/launch.sh &
 
 bspc monitor primary -d 1 2 3 4 term
+[ $(xrandr --listactivemonitors | wc -l) -gt 2 ] && \
+    bspc monitor primary#next -d a s d f
 
-python <<EOF
-import subprocess
-import sys
-p = subprocess.run(['xrandr', '--listactivemonitors'],
-                   capture_output=True, check=True)
-count = int(p.stdout.decode('utf-8').split('\n')[0].split(':')[1])
-if count < 2:
-    sys.exit(1)
-EOF
-[ $? -eq 0 ] && bspc monitor primary#next -d a s d f
-
-bspc config border_width         4
-bspc config window_gap           5
-
-bspc config focus_follows_pointer true
-bspc config pointer_follows_monitor true
-
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config border_width             4
+bspc config window_gap               0
+bspc config focus_follows_pointer    true
+bspc config pointer_follows_monitor  true
+bspc config split_ratio              0.52
+bspc config borderless_monocle       true
+bspc config gapless_monocle          true
 
 bspc rule -a *:tmux_term desktop=term
 

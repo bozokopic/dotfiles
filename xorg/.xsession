@@ -1,14 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 xrandr
-xrdb -merge ~/.Xresources
 xset -b
 autorandr --change
-[[ -n $(xrandr | grep "connected 3840x2160") ]] && xrandr --dpi 120
-[[ -n $(xrandr | grep "connected 3840x2160") ]] && echo "Xft.dpi: 120" | xrdb -override
+~/.dotfiles/xorg/load_resources.sh
+~/.dotfiles/xorg/set_wallpaper.sh
 
-feh --bg-scale ~/.pictures/bg1.jpg \
-               ~/.pictures/bg2.jpg
-
-picom &
-#gajim &
+picom -I 1 -O 1 -D 0 &
