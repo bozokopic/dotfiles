@@ -10,3 +10,5 @@ export VISUAL=nvim
 #export QT_AUTO_SCREEN_SCALE_FACTOR=1
 #export QT_ENABLE_HIGHDPI_SCALING=1
 #export QT_WAYLAND_FORCE_DPI=120
+
+source /home/bozo/.config/broot/launcher/bash/br

@@ -7,3 +7,5 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+
+source /home/bozo/.config/broot/launcher/bash/br
