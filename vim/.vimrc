@@ -30,6 +30,7 @@ Plug 'thaerkh/vim-indentguides'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mileszs/ack.vim'
 
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fireplace'
@@ -76,11 +77,11 @@ autocmd FileType make set tabstop=4 shiftwidth=8 softtabstop=0 noexpandtab
 
 " gui settings
 set linespace=4
-set guifont=Droid\ Sans\ Mono:h12
-if exists('g:GuiLoaded')
-    GuiTabline 0
-endif
-autocmd UIEnter * GuiTabline 0
+set guifont=Droid\ Sans\ Mono-20
+"if exists('g:GuiLoaded')
+    "GuiTabline 0
+"endif
+"autocmd UIEnter * GuiTabline 0
 
 " reload vimrc on change
 augroup reload_vimrc
@@ -91,6 +92,7 @@ augroup END
 " airline configuration
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 
 " display tabs and trailing spaces
 set list
@@ -141,6 +143,10 @@ set mouse=a
 let g:ale_linters = {
 \   'python': ['flake8']
 \ }
+let g:ale_completion_enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " YouCompleteMe configuration
 "let g:ycm_auto_trigger = 0
@@ -148,6 +154,10 @@ let g:ale_linters = {
 
 " completion options
 set completeopt=menuone
+set omnifunc=ale#completion#OmniFunc
+
+" use ack.vim with ag
+let g:ackprg = 'ag --vimgrep'
 
 " disable conceal
 autocmd FileType json set conceallevel=0

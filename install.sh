@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -e
-ln -sf -T $(realpath $(dirname ${BASH_SOURCE[0]})) ~/.dotfiles
+
+ln -sf -T $(cd $(dirname "$0"); pwd) ~/.dotfiles
 
 # alacritty
 ln -sf -T ~/.dotfiles/alacritty ~/.config/alacritty
@@ -13,16 +14,8 @@ ln -sf ~/.dotfiles/atom/init.coffee ~/.atom/init.coffee
 ln -sf ~/.dotfiles/atom/keymap.cson ~/.atom/keymap.cson
 ln -sf ~/.dotfiles/atom/styles.less ~/.atom/styles.less
 
-# bash
-ln -sf ~/.dotfiles/bash/.profile ~/.profile
-ln -sf ~/.dotfiles/bash/.bashrc ~/.bashrc
-ln -sf ~/.profile ~/.bash_profile
-
 # bspwm
 ln -sf -T ~/.dotfiles/bspwm ~/.config/bspwm
-
-# fish
-ln -sf -T ~/.dotfiles/fish ~/.config/fish
 
 # git
 ln -sf ~/.dotfiles/git/.gitconfig ~/.gitconfig
@@ -51,6 +44,20 @@ ln -sf ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.y
 mkdir -p ~/.config/ranger
 ln -sf ~/.dotfiles/ranger/rc.conf ~/.config/ranger/rc.conf
 
+# shell
+ln -sf ~/.dotfiles/shell/.profile ~/.profile
+
+# shell - bash
+ln -sf ~/.dotfiles/shell/bash/.bashrc ~/.bashrc
+ln -sf ~/.profile ~/.bash_profile
+
+# shell - fish
+ln -sf -T ~/.dotfiles/shell/fish ~/.config/fish
+
+# shell - zsh
+ln -sf ~/.dotfiles/shell/zsh/.zshrc ~/.zshrc
+ln -sf ~/.profile ~/.zprofile
+
 # sublime
 mkdir -p ~/.config/sublime-text-3/Packages/User
 ln -sf "~/.dotfiles/subl3/Package Control.sublime-settings" \
@@ -66,9 +73,6 @@ done
 
 # sway
 ln -sf -T ~/.dotfiles/sway ~/.config/sway
-
-# sxhkd
-ln -sf -T ~/.dotfiles/sxhkd ~/.config/sxhkd
 
 # tmux
 ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
