@@ -2,89 +2,104 @@
 
 set -e
 
-ln -sf -T $(cd $(dirname "$0"); pwd) ~/.dotfiles
+symlink () {
+    ln -sfT "$1" "$2"
+}
+
+mkdir -p ~/bin
+symlink $(cd $(dirname "$0"); pwd) ~/.dotfiles
 
 # alacritty
-ln -sf -T ~/.dotfiles/alacritty ~/.config/alacritty
+symlink ~/.dotfiles/alacritty ~/.config/alacritty
 
 # atom
 mkdir -p ~/.atom
-ln -sf ~/.dotfiles/atom/config.cson ~/.atom/config.cson
-ln -sf ~/.dotfiles/atom/init.coffee ~/.atom/init.coffee
-ln -sf ~/.dotfiles/atom/keymap.cson ~/.atom/keymap.cson
-ln -sf ~/.dotfiles/atom/styles.less ~/.atom/styles.less
+symlink ~/.dotfiles/atom/config.cson ~/.atom/config.cson
+symlink ~/.dotfiles/atom/init.coffee ~/.atom/init.coffee
+symlink ~/.dotfiles/atom/keymap.cson ~/.atom/keymap.cson
+symlink ~/.dotfiles/atom/styles.less ~/.atom/styles.less
 
 # bspwm
-ln -sf -T ~/.dotfiles/bspwm ~/.config/bspwm
+symlink ~/.dotfiles/bspwm ~/.config/bspwm
 
 # git
-ln -sf ~/.dotfiles/git/.gitconfig ~/.gitconfig
+symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
 
 # i3
-ln -sf -T ~/.dotfiles/i3 ~/.config/i3
+symlink ~/.dotfiles/i3 ~/.config/i3
+
+# lein
+symlink ~/.dotfiles/lein/lein ~/bin/lein
 
 # mbsync (isync)
 mkdir -p ~/mail/ket
-ln -sf ~/.dotfiles/mbsync/.mbsyncrc ~/.mbsyncrc
+symlink ~/.dotfiles/mbsync/.mbsyncrc ~/.mbsyncrc
 
 # neomutt
-ln -sf -T ~/.dotfiles/neomutt ~/.config/neomutt
+symlink ~/.dotfiles/neomutt ~/.config/neomutt
 
 # pictures
-ln -sf -T ~/.dotfiles/pictures ~/.pictures
+symlink ~/.dotfiles/pictures ~/.pictures
 
 # polybar
-ln -sf -T ~/.dotfiles/polybar ~/.config/polybar
+symlink ~/.dotfiles/polybar ~/.config/polybar
+
+# python
+~/.dotfiles/python/install.sh
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser
-ln -sf ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.yml
+symlink ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.yml
 
 # ranger
 mkdir -p ~/.config/ranger
-ln -sf ~/.dotfiles/ranger/rc.conf ~/.config/ranger/rc.conf
+symlink ~/.dotfiles/ranger/rc.conf ~/.config/ranger/rc.conf
 
 # shell
-ln -sf ~/.dotfiles/shell/.profile ~/.profile
+symlink ~/.dotfiles/shell/.profile ~/.profile
 
 # shell - bash
-ln -sf ~/.dotfiles/shell/bash/.bashrc ~/.bashrc
-ln -sf ~/.profile ~/.bash_profile
+symlink ~/.dotfiles/shell/bash/.bashrc ~/.bashrc
+symlink ~/.profile ~/.bash_profile
 
 # shell - fish
-ln -sf -T ~/.dotfiles/shell/fish ~/.config/fish
+symlink ~/.dotfiles/shell/fish ~/.config/fish
 
 # shell - zsh
-ln -sf ~/.dotfiles/shell/zsh/.zshrc ~/.zshrc
-ln -sf ~/.profile ~/.zprofile
+symlink ~/.dotfiles/shell/zsh/.zshrc ~/.zshrc
+symlink ~/.profile ~/.zprofile
 
 # sublime
 mkdir -p ~/.config/sublime-text-3/Packages/User
-ln -sf "~/.dotfiles/subl3/Package Control.sublime-settings" \
-       ~/.config/sublime-text-3/Packages/User/"Package Control.sublime-settings"
 for i in Adaptive.sublime-theme \
+         "Package Control.sublime-settings" \
          Preferences.sublime-settings \
          Python.sublime-settings \
          PythonImproves.sublime-settings \
          SublimeLinter.sublime-settings
 do
-    ln -sf ~/.dotfiles/subl3/$i ~/.config/sublime-text-3/Packages/User/$i
+    symlink ~/.dotfiles/subl3/"$i" ~/.config/sublime-text-3/Packages/User/"$i"
 done
 
 # sway
-ln -sf -T ~/.dotfiles/sway ~/.config/sway
+symlink ~/.dotfiles/sway ~/.config/sway
 
 # tmux
-ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+symlink ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
 # vim / nvim
 mkdir -p ~/.vim/autoload
 mkdir -p ~/.config
-ln -sf ~/.dotfiles/vim/.vimrc ~/.vimrc
-ln -sf ~/.dotfiles/vim/plug.vim ~/.vim/autoload/plug.vim
-ln -sf ~/.vimrc ~/.vim/init.vim
-ln -sf ~/.vim ~/.config/nvim
+symlink ~/.dotfiles/vim/.vimrc ~/.vimrc
+symlink ~/.dotfiles/vim/plug.vim ~/.vim/autoload/plug.vim
+symlink ~/.vimrc ~/.vim/init.vim
+symlink ~/.vim ~/.config/nvim
 
 # xorg
-ln -sf ~/.dotfiles/xorg/.xsession ~/.xsession
-ln -sf ~/.dotfiles/xorg/.Xresources ~/.Xresources
+symlink ~/.dotfiles/xorg/.xsession ~/.xsession
+symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
+symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
+symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper
+
+# yay
+symlink ~/.dotfiles/yay/update ~/bin/update
