@@ -1,2 +1,3 @@
-sublime-music
+doit
 pip
+sublime-music

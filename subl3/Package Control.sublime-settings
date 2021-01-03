@@ -19,6 +19,7 @@
 		"SublimeLinter-contrib-sass-lint",
 		"SublimeLinter-eslint",
 		"SublimeLinter-flake8",
+		"Zeal",
 		"Zig Language"
 	]
 }

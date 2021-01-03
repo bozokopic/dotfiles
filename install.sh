@@ -3,7 +3,7 @@
 set -e
 
 symlink () {
-    ln -sfT "$1" "$2"
+    ln -sfT "$@"
 }
 
 mkdir -p ~/bin
