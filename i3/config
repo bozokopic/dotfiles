@@ -78,6 +78,6 @@ bar {
     tray_output primary
 }
 
-exec ~/.config/i3/load_resources.sh
-exec ~/.config/i3/set_wallpaper.sh
+exec ~/bin/loadxresources
+exec ~/bin/setwallpaper
 

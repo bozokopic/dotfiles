@@ -1,5 +1,9 @@
 F12
     ~/.config/bspwm/terminal.sh
+Print
+    spectacle
+XF86MonBrightness{Up,Down}
+    xbacklight -{inc,dec} 5
 
 mod4 + Return
     alacritty

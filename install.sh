@@ -31,10 +31,6 @@ symlink ~/.dotfiles/i3 ~/.config/i3
 # lein
 symlink ~/.dotfiles/lein/lein ~/bin/lein
 
-# mbsync (isync)
-mkdir -p ~/mail/ket
-symlink ~/.dotfiles/mbsync/.mbsyncrc ~/.mbsyncrc
-
 # neomutt
 symlink ~/.dotfiles/neomutt ~/.config/neomutt
 
