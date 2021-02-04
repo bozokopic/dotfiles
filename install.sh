@@ -8,6 +8,8 @@ symlink () {
 
 mkdir -p ~/bin
 symlink $(cd $(dirname "$0"); pwd -P) ~/.dotfiles
+
+# yay
 ~/.dotfiles/yay/install.sh
 
 # alacritty

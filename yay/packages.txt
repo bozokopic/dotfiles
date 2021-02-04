@@ -44,6 +44,7 @@ nerd-fonts-complete
 npm
 ntfs-3g
 okular
+opendoas
 openssh
 parted
 pavucontrol

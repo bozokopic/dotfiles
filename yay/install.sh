@@ -12,3 +12,4 @@ yay -S --needed --noconfirm \
     $(cat ~/.dotfiles/yay/packages.txt | \
       xargs -I{} sh -c \
         "(pacman -Q {} &> /dev/null) || echo {}")
+yay --save --sudo doas
