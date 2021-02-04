@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -e
-
-yay -Syu
-yay -Q > ~/.dotfiles/yay/packages.txt

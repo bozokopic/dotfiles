@@ -7,7 +7,8 @@ symlink () {
 }
 
 mkdir -p ~/bin
-symlink $(cd $(dirname "$0"); pwd) ~/.dotfiles
+symlink $(cd $(dirname "$0"); pwd -P) ~/.dotfiles
+~/.dotfiles/yay/install.sh
 
 # alacritty
 symlink ~/.dotfiles/alacritty ~/.config/alacritty
@@ -96,6 +97,3 @@ symlink ~/.dotfiles/xorg/.xsession ~/.xsession
 symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
 symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
 symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper
-
-# yay
-symlink ~/.dotfiles/yay/update ~/bin/update
