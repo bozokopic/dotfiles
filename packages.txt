@@ -1,6 +1,7 @@
 alacritty
 arandr
 audacity
+autorandr
 bspwm
 calibre
 chromium
@@ -63,13 +64,17 @@ ranger
 rofi
 seahorse
 socat
+spectacle
 sqlite
 sublime-text-dev
 sudo
 sxhkd
 tmux
 ttf-ms-fonts
+wmname
 xdo
+xorg-server
+xorg-xbacklight
 xorg-xrandr
 yay
 zeal
