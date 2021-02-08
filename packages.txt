@@ -54,6 +54,7 @@ polybar-git
 pulseaudio
 python
 python-pip
+python38
 qemu
 qemu-arch-extra
 qutebrowser
@@ -69,6 +70,7 @@ sxhkd
 tmux
 ttf-ms-fonts
 xdo
+xorg-xrandr
 yay
 zeal
 zig

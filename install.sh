@@ -6,11 +6,17 @@ symlink () {
     ln -sfT "$@"
 }
 
+install_packages() {
+    yay -S --needed --noconfirm \
+        $(cat $1 | \
+          xargs -I{} sh -c \
+            "(pacman -Q {} &> /dev/null) || echo {}")
+}
+
 mkdir -p ~/bin
 symlink $(cd $(dirname "$0"); pwd -P) ~/.dotfiles
-
-# yay
-~/.dotfiles/yay/install.sh
+yay --save --sudo doas
+install_packages ~/.dotfiles/packages.txt
 
 # alacritty
 symlink ~/.dotfiles/alacritty ~/.config/alacritty
