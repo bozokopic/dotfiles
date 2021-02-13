@@ -9,16 +9,6 @@ mod4 + Return
     alacritty
 mod4 + space
     rofi -show drun
-#mod4 + backslash
-#    i3-msg "split h"
-#mod4 + minus
-#    i3-msg "split v"
-#mod4 + Tab
-#    i3-msg "layout toggle split"
-#mod4 + p
-#    i3-msg "focus parent"
-#mod4 + r
-#    i3-msg "mode resize"
 
 
 mod4 + {1, 2, 3, 4, a, s, d, f}
@@ -51,8 +41,11 @@ mod4 + {l, Right}
 mod4 + shift + {h, Left}
     bspc node -s west
 mod4 + shift + {j, Down}
-    bspc node -s west
+    bspc node -s south
 mod4 + shift + {k, Up}
-    bspc node -s west
+    bspc node -s north
 mod4 + shift + {l, Right}
-    bspc node -s west
+    bspc node -s east
+
+mod4 + slash
+    bspc node @parent -R 90
