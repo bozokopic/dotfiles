@@ -8,7 +8,7 @@
     autosetuprebase = always
 [core]
     autocrlf = false
-    editor = vim
+    editor = nvim
 [alias]
     tree = log --graph --pretty='format:"%C(auto)%h [%ad] %an%d: %s"' --date=short
 [diff]

@@ -77,7 +77,3 @@ bar {
     strip_workspace_numbers yes
     tray_output primary
 }
-
-exec ~/bin/loadxresources
-exec ~/bin/setwallpaper
-
