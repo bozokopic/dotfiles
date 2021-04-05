@@ -31,6 +31,9 @@ symlink ~/.dotfiles/atom/styles.less ~/.atom/styles.less
 # bspwm
 symlink ~/.dotfiles/bspwm ~/.config/bspwm
 
+# dunst
+symlink ~/.dotfiles/dunst ~/.config/dunst
+
 # git
 symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
 
@@ -101,7 +104,7 @@ symlink ~/.vimrc ~/.vim/init.vim
 symlink ~/.vim ~/.config/nvim
 
 # xorg
-symlink ~/.dotfiles/xorg/.xsession ~/.xsession
+symlink ~/.dotfiles/xorg/.xinitrc ~/.xinitrc
 symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
 symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
 symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper
