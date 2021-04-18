@@ -47,6 +47,8 @@ ntfs-3g
 okular
 opendoas
 openssh
+pam-gnupg
+pam_ssh
 parted
 pavucontrol
 picom

@@ -21,13 +21,6 @@ install_packages ~/.dotfiles/packages.txt
 # alacritty
 symlink ~/.dotfiles/alacritty ~/.config/alacritty
 
-# atom
-mkdir -p ~/.atom
-symlink ~/.dotfiles/atom/config.cson ~/.atom/config.cson
-symlink ~/.dotfiles/atom/init.coffee ~/.atom/init.coffee
-symlink ~/.dotfiles/atom/keymap.cson ~/.atom/keymap.cson
-symlink ~/.dotfiles/atom/styles.less ~/.atom/styles.less
-
 # bspwm
 symlink ~/.dotfiles/bspwm ~/.config/bspwm
 
