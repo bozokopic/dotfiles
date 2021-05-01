@@ -24,6 +24,10 @@ symlink ~/.dotfiles/alacritty ~/.config/alacritty
 # bspwm
 symlink ~/.dotfiles/bspwm ~/.config/bspwm
 
+# cudatext
+mkdir -p ~/.config/cudatext/settings
+symlink ~/.dotfiles/cudatext/user.json ~/.config/cudatext/settings/user.json
+
 # dunst
 symlink ~/.dotfiles/dunst ~/.config/dunst
 

@@ -1,5 +1,5 @@
 set sidebar_visible=yes
-set sidebar_width=25
+set sidebar_width=30
 set sort=threads
 set sort_aux=reverse-date-received
 set pager_index_lines=10
@@ -7,7 +7,20 @@ set pager_index_lines=10
 bind index j next-entry
 bind index k previous-entry
 
-macro index J '<sidebar-next><sidebar-open>'
-macro index K '<sidebar-prev><sidebar-open>'
+bind index J sidebar-next
+bind index K sidebar-prev
+bind index O sidebar-open
+
+
+bind pager /   search
+bind pager j   next-line
+bind pager k   previous-line
+bind pager g   noop
+bind pager gg  top
+bind pager G   bottom
+bind pager \Cd half-down
+bind pager \Cu half-up
+
+source ~/.dotfiles/neomutt/mutt-colors-solarized-dark-256.muttrc
 
 source ~/.private/neomutt/neomuttrc
