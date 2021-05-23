@@ -74,8 +74,8 @@ symlink ~/.dotfiles/shell/fish ~/.config/fish
 symlink ~/.dotfiles/shell/zsh/.zshrc ~/.zshrc
 symlink ~/.profile ~/.zprofile
 
-# sublime
-mkdir -p ~/.config/sublime-text-3/Packages/User
+# sublimetext
+mkdir -p ~/.config/sublime-text/Packages/User
 for i in Adaptive.sublime-theme \
          "Package Control.sublime-settings" \
          Preferences.sublime-settings \
@@ -83,7 +83,7 @@ for i in Adaptive.sublime-theme \
          PythonImproves.sublime-settings \
          SublimeLinter.sublime-settings
 do
-    symlink ~/.dotfiles/subl3/"$i" ~/.config/sublime-text-3/Packages/User/"$i"
+    symlink ~/.dotfiles/sublimetext/"$i" ~/.config/sublime-text/Packages/User/"$i"
 done
 
 # sway

@@ -48,7 +48,7 @@ label-separator-foreground = ${bar/base.separator-foreground}
 [module/title]
 type = internal/xwindow
 label = %{T2}%title%
-label-maxlen = 100
+label-maxlen = 75
 
 [module/wlan0]
 type = internal/network

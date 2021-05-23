@@ -20,6 +20,6 @@
 		"SublimeLinter-eslint",
 		"SublimeLinter-flake8",
 		"Zeal",
-		"Zig Language"
-	]
+		"Zig Language",
+	],
 }
