@@ -1,5 +1,5 @@
 set $primary eDP-1
-set $secondary DP-5
+set $secondary DP-6
 output $primary pos 0 0 res 1920x1080 bg ~/.pictures/bg1.jpg stretch
 output $secondary pos 1920 0 res 3840x2160 bg ~/.pictures/bg2.jpg stretch
 
@@ -25,7 +25,7 @@ set $mod Mod4
 font pango:Inter Medium 12
 floating_modifier $mod
 default_border pixel 4
-#xwayland disable
+xwayland disable
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+space exec wofi --show drun --allow-images --allow-markup --gtk-dark
