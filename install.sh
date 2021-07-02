@@ -77,10 +77,11 @@ symlink ~/.profile ~/.zprofile
 # sublimetext
 mkdir -p ~/.config/sublime-text/Packages/User
 for i in Adaptive.sublime-theme \
+         LSP.sublime-settings \
          "Package Control.sublime-settings" \
          Preferences.sublime-settings \
          Python.sublime-settings \
-         PythonImproves.sublime-settings \
+         PythonImproved.sublime-settings \
          SublimeLinter.sublime-settings
 do
     symlink ~/.dotfiles/sublimetext/"$i" ~/.config/sublime-text/Packages/User/"$i"

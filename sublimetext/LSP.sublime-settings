@@ -1,0 +1,9 @@
+{
+	"clients": {
+		"pyls": {
+            "command": ["pyls"],
+			"selector": "source.python",
+			"enabled": true,
+		},
+	},
+}
