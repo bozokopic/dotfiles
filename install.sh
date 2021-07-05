@@ -13,7 +13,38 @@ install_packages() {
             "(pacman -Q {} &> /dev/null) || echo {}")
 }
 
+install_python() {
+    LONG=$1
+    SHORT=${LONG//\./}
+
+    PYTHON_BIN=$(command -v "python$LONG")
+    if [ ! -z $PYTHON_BIN ]; then
+
+        PYTHON_DIR=~/opt/python$SHORT
+        PIP_BIN=$PYTHON_DIR/bin/pip$LONG
+        REQUIREMENTS=~/.dotfiles/python/requirements.pip$SHORT.txt
+        LOCAL_PYTHON_BIN=~/bin/python$LONG
+        LOCAL_PIP_BIN=~/bin/pip$LONG
+        LOCAL_DOIT_BIN=~/bin/doit$LONG
+
+        [ ! -d $PYTHON_DIR ] && \
+            $PYTHON_BIN -m venv --system-site-packages $PYTHON_DIR
+
+        $PIP_BIN -q install -U -r $REQUIREMENTS
+
+        echo "#!/bin/sh" > $LOCAL_PYTHON_BIN
+        echo "exec $(cd $PYTHON_DIR; pwd)/bin/python$LONG \"\$@\"" >> $LOCAL_PYTHON_BIN
+        chmod +x $LOCAL_PYTHON_BIN
+
+        symlink $PIP_BIN $LOCAL_PIP_BIN
+        symlink $PYTHON_DIR/bin/doit $LOCAL_DOIT_BIN
+
+    fi
+}
+
 mkdir -p ~/bin
+mkdir -p ~/opt
+mkdir -p ~/repos
 symlink $(cd $(dirname "$0"); pwd -P) ~/.dotfiles
 yay --save --sudo doas
 install_packages ~/.dotfiles/packages.txt
@@ -37,6 +68,14 @@ symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
 # i3
 symlink ~/.dotfiles/i3 ~/.config/i3
 
+# janet
+if [ ! -d ~/repos/janet ]; then
+    (cd ~/repos; git clone https://github.com/janet-lang/janet.git)
+fi
+if [ ! -d ~/opt/janet ]; then
+    (cd ~/repos/janet; make install PREFIX=$(cd ~/opt; pwd -P)/janet)
+fi
+
 # lein
 symlink ~/.dotfiles/lein/lein ~/bin/lein
 
@@ -50,7 +89,10 @@ symlink ~/.dotfiles/pictures ~/.pictures
 symlink ~/.dotfiles/polybar ~/.config/polybar
 
 # python
-~/.dotfiles/python/install.sh
+install_python 3.8
+install_python 3.9
+symlink ~/bin/python3.9 ~/bin/python3
+symlink ~/bin/python3 ~/bin/python
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser
