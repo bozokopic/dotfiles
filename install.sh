@@ -147,4 +147,5 @@ symlink ~/.vim ~/.config/nvim
 symlink ~/.dotfiles/xorg/.xinitrc ~/.xinitrc
 symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
 symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
+symlink ~/.dotfiles/xorg/lock ~/bin/lock
 symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper

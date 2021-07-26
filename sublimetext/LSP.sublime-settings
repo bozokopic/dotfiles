@@ -3,7 +3,7 @@
 		"pyls": {
             "command": ["pyls"],
 			"selector": "source.python",
-			"enabled": true,
+			"enabled": false,
 		},
 	},
 }
