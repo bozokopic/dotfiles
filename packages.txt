@@ -4,6 +4,7 @@ audacity
 autorandr
 bspwm
 calibre
+cdrtools
 chromium
 clang
 claws-mail

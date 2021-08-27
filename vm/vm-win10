@@ -1,0 +1,94 @@
+#!/bin/sh
+
+set -e
+
+
+WIN10_ZIP_URL="https://aka.ms/windev_VM_virtualbox"
+
+ROOT_PATH=$(cd; pwd)/vm/win10
+WIN10_ZIP_PATH=$ROOT_PATH/win10.zip
+WIN10_IMG_PATH=$ROOT_PATH/win10.qcow2
+TMP_PATH=$ROOT_PATH/tmp
+INIT_ISO_PATH=$ROOT_PATH/init.iso
+
+
+SAVE=
+while getopts s flag; do
+    case $flag in
+        s)  SAVE=1;;
+        ?)  ;;
+    esac
+done
+
+
+mkdir -p $ROOT_PATH
+
+if [ ! -f $WIN10_ZIP_PATH ]; then
+    wget --show-progress -q -c -O $WIN10_ZIP_PATH $WIN10_ZIP_URL
+fi
+
+if [ ! -f $WIN10_IMG_PATH ]; then
+    rm -rf $TMP_PATH
+    mkdir -p $TMP_PATH
+    unzip -d $TMP_PATH $WIN10_ZIP_PATH
+    tar -x -f $TMP_PATH/*.ova -C $TMP_PATH
+    qemu-img convert -p -c -f vmdk -O qcow2 $TMP_PATH/*.vmdk $WIN10_IMG_PATH
+    rm -rf $TMP_PATH
+fi
+
+if [ ! -f $INIT_ISO_PATH ]; then
+    rm -rf $TMP_PATH
+    mkdir -p $TMP_PATH
+    cat > $TMP_PATH/init.bat << EOF
+powershell -executionpolicy bypass d:\\_init.ps1
+EOF
+    cat > $TMP_PATH/_init.ps1 << EOF
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+Set-MpPreference -DisableRealtimeMonitoring \$true
+Set-Service -Name wuauserv -StartupType Disabled
+
+\$wc = New-Object System.Net.WebClient
+\$wc.DownloadFile("https://www.python.org/ftp/python/3.8.9/python-3.8.9-amd64.exe",
+                  "c:\\\\Users\\\\User\\\\Downloads\\\\python-3.8.9-amd64.exe")
+\$wc.DownloadFile("https://repo.msys2.org/distrib/x86_64/msys2-x86_64-20210228.exe",
+                  "c:\\\\Users\\\\User\\\\Downloads\\\\msys2-x86_64-20210228.exe")
+\$wc.DownloadFile("https://nodejs.org/dist/v14.16.1/node-v14.16.1-x64.msi",
+                  "c:\\\\Users\\\\User\\\\Downloads\\\\node-v14.16.1-x64.msi")
+\$wc.DownloadFile("https://yarnpkg.com/latest.msi",
+                  "c:\\\\Users\\\\User\\\\Downloads\\\\yarn.msi")
+
+\$env:Path = "C:\\Python38;C:\\Python38\\Scripts;C:\\msys64\\mingw64\\bin;C:\\msys64\\usr\\bin;" + \$env:Path
+\$env:Path += ";C:\\nodejs;C:\\Yarn\\bin"
+[Environment]::SetEnvironmentVariable(
+    "Path", \$env:Path, [System.EnvironmentVariableTarget]::Machine)
+
+cmd /C "c:\\Users\\User\\Downloads\\python-3.8.9-amd64.exe InstallAllUsers=1 TargetDir=c:\\Python38 /passive"
+cmd /C "c:\\Users\\User\\Downloads\\node-v14.16.1-x64.msi INSTALLDIR=C:\\nodejs /passive"
+cmd /C "c:\\Users\\User\\Downloads\\yarn.msi INSTALLDIR=c:\\Yarn /passive"
+
+cmd /C "c:\\Users\\User\\Downloads\\msys2-x86_64-20210228.exe install -c --root c:\\msys64"
+cmd.exe /C "pacman -Syu --noconfirm"
+cmd.exe /C "pacman -Syu --noconfirm base-devel git mingw-w64-x86_64-toolchain socat"
+EOF
+    mkisofs -J -l -R -V "init" -iso-level 4 -o $INIT_ISO_PATH $TMP_PATH
+    rm -rf $TMP_PATH
+fi
+
+if [ ! -z $SAVE ]; then
+    TMP_IMG_PATH=$WIN10_IMG_PATH
+else
+    TMP_IMG_PATH=$WIN10_IMG_PATH.tmp
+    rm -f $TMP_IMG_PATH
+    qemu-img create -q -F qcow2 -f qcow2 -b $WIN10_IMG_PATH $TMP_IMG_PATH
+fi
+
+exec qemu-system-x86_64 \
+    -enable-kvm -cpu host \
+    -hda $TMP_IMG_PATH \
+    -cdrom $INIT_ISO_PATH \
+    -m 4G \
+    -device e1000,netdev=net0 \
+    -netdev user,id=net0 \
+    -usb \
+    -device usb-tablet \
+    -rtc base=localtime

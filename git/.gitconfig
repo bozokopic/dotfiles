@@ -23,3 +23,5 @@
     gpgsign = true
 [status]
     submodulesummary = 1
+[init]
+	defaultBranch = master
