@@ -102,6 +102,10 @@ symlink ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.
 mkdir -p ~/.config/ranger
 symlink ~/.dotfiles/ranger/rc.conf ~/.config/ranger/rc.conf
 
+# rofi
+mkdir -p ~/.config/rofi
+symlink ~/.dotfiles/rofi/config.rasi ~/.config/rofi/config.rasi
+
 # shell
 symlink ~/.dotfiles/shell/.profile ~/.profile
 

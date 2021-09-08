@@ -1,6 +1,2 @@
 Xcursor.theme: Neutral
 Xcursor.size:  32
-rofi.font: Inter Medium 12
-rofi.modi: drun,run,window
-rofi.show-icons: true
-rofi.theme: Monokai

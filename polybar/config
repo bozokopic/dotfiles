@@ -4,7 +4,7 @@ monitor-exact = true
 override-redirect = false
 bottom = false
 height = 30
-padding = 2
+padding = 1
 background = #000000
 foreground = #ffffff
 font-0 = "RobotoMono Nerd Font:size=12"
@@ -12,9 +12,9 @@ font-1 = "Inter Medium:size=12"
 module-margin = 1
 separator = |
 separator-foreground = #919191
-modules-left = bspwm title
-modules-center =
-modules-right = wlan0 eth0 pulseaudio battery date
+modules-left = bspwm
+modules-center = title
+modules-right = wireless wired pulseaudio battery date
 
 [bar/bar1]
 inherit = bar/base
@@ -32,17 +32,17 @@ type = internal/bspwm
 pin-workspaces = true
 format = <label-state>
 label-dimmed-focused-background = ${bar/base.background}
-label-focused = [ %name% ]
+label-focused = " %name% "
 label-focused-foreground = ${bar/base.foreground}
 label-focused-background = #3f3f3f
-label-occupied = %name%
-label-urgent = %name%
+label-occupied = " %name% "
+label-urgent = " %name% "
 label-urgent-foreground = ${bar/base.foreground}
 label-urgent-background = #bd2c40
-label-empty = %name%
+label-empty = " %name% "
 label-empty-foreground = #555555
-label-separator = |
-label-separator-padding = 2
+label-separator =
+label-separator-padding =
 label-separator-foreground = ${bar/base.separator-foreground}
 
 [module/title]
@@ -50,19 +50,19 @@ type = internal/xwindow
 label = %{T2}%title%
 label-maxlen = 75
 
-[module/wlan0]
+[module/wireless]
 type = internal/network
-interface = wlan0
-label-connected = 直 %essid% %local_ip%
+interface-type = wireless
+label-connected = 直
 label-connected-foreground = ${bar/base.foreground}
 label-disconnected = 睊
 label-disconnected-foreground = #66ffffff
 click-right = connman-gtk &
 
-[module/eth0]
+[module/wired]
 type = internal/network
-interface = eth0
-label-connected = ﯱ %local_ip%
+interface-type = wired
+label-connected = ﯱ
 label-connected-foreground = ${bar/base.foreground}
 label-disconnected = 
 label-disconnected-foreground = #66ffffff
@@ -72,7 +72,7 @@ click-left = connman-gtk &
 type = internal/pulseaudio
 use-ui-max = false
 format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage:3%%
+label-volume = %percentage:3%
 label-muted = 婢 muted
 label-muted-foreground = #666
 ramp-volume-0 = 奄

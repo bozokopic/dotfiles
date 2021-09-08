@@ -77,7 +77,7 @@ autocmd FileType make set tabstop=4 shiftwidth=8 softtabstop=0 noexpandtab
 
 " gui settings
 set linespace=4
-set guifont=Droid\ Sans\ Mono-20
+set guifont=Droid\ Sans\ Mono:h14
 "if exists('g:GuiLoaded')
     "GuiTabline 0
 "endif
@@ -153,7 +153,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "let g:ycm_show_diagnostics_ui = 0
 
 " completion options
-set completeopt=menuone
+set completeopt=menuone,preview,noinsert
 set omnifunc=ale#completion#OmniFunc
 
 " use ack.vim with ag
