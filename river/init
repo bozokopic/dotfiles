@@ -1,0 +1,31 @@
+#!/bin/sh
+
+mod=Mod4
+
+# riverctl map normal None F12 spawn ~/.config/river/terminal.sh
+# riverctl map normal None Print spawn spectacle
+
+riverctl map-pointer normal $mod BTN_LEFT move-view
+riverctl map-pointer normal $mod BTN_RIGHT resize-view
+
+riverctl map normal $mod Return spawn alacritty
+riverctl map normal $mod Space spawn 'wofi --show drun'
+
+riverctl map normal $mod+Shift E exit
+riverctl map normal $mod+Shift Q close
+
+riverctl map normal $mod+Shift Return toggle-fullscreen
+riverctl map normal $mod+Shift Space toggle-float
+
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal $mod $i set-focused-tags $tags
+    riverctl map normal $mod+Shift $i set-view-tags $tags
+done
+
+riverctl focus-follows-cursor normal
+riverctl set-cursor-wrap on-output-change
+riverctl default-layout rivertile
+
+exec rivertile

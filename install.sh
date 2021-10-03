@@ -45,6 +45,8 @@ install_python() {
 mkdir -p ~/bin
 mkdir -p ~/opt
 mkdir -p ~/repos
+mkdir -p ~/.local/share/applications
+mkdir -p ~/.local/share/icons/hicolor/128x128/apps
 symlink $(cd $(dirname "$0"); pwd -P) ~/.dotfiles
 yay --save --sudo doas
 install_packages ~/.dotfiles/packages.txt
@@ -54,6 +56,12 @@ symlink ~/.dotfiles/alacritty ~/.config/alacritty
 
 # bspwm
 symlink ~/.dotfiles/bspwm ~/.config/bspwm
+
+# chromium
+symlink ~/.dotfiles/chromium/chromium ~/bin/chromium
+cp /usr/share/applications/chromium.desktop ~/.local/share/applications
+sed -i "s/^Exec=\\/usr/Exec=$(cd; pwd | sed 's/\//\\\//g')/g" \
+    ~/.local/share/applications/chromium.desktop
 
 # cudatext
 mkdir -p ~/.config/cudatext/settings
@@ -79,6 +87,11 @@ fi
 # lein
 symlink ~/.dotfiles/lein/lein ~/bin/lein
 
+# lock
+symlink ~/.dotfiles/lock/lock ~/bin/lock
+symlink ~/.dotfiles/lock/lock.desktop \
+        ~/.local/share/applications/lock.desktop
+
 # neomutt
 symlink ~/.dotfiles/neomutt ~/.config/neomutt
 
@@ -102,9 +115,15 @@ symlink ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.
 mkdir -p ~/.config/ranger
 symlink ~/.dotfiles/ranger/rc.conf ~/.config/ranger/rc.conf
 
+# river
+symlink ~/.dotfiles/river ~/.config/river
+
 # rofi
 mkdir -p ~/.config/rofi
 symlink ~/.dotfiles/rofi/config.rasi ~/.config/rofi/config.rasi
+
+# setkbmap
+symlink ~/.dotfiles/setkbmap/setkbmap ~/bin/setkbmap
 
 # shell
 symlink ~/.dotfiles/shell/.profile ~/.profile
@@ -119,6 +138,12 @@ symlink ~/.dotfiles/shell/fish ~/.config/fish
 # shell - zsh
 symlink ~/.dotfiles/shell/zsh/.zshrc ~/.zshrc
 symlink ~/.profile ~/.zprofile
+
+# sublime-music
+symlink ~/.dotfiles/sublime-music/sublime-music.desktop \
+        ~/.local/share/applications/sublime-music.desktop
+symlink ~/.dotfiles/pictures/icons/sublime-music.png \
+        ~/.local/share/icons/hicolor/128x128/apps/sublime-music.png
 
 # sublimetext
 mkdir -p ~/.config/sublime-text/Packages/User
@@ -150,9 +175,11 @@ symlink ~/.vim ~/.config/nvim
 # win10
 symlink ~/.dotfiles/vm/vm-win10 ~/bin/vm-win10
 
+# waybar
+symlink ~/.dotfiles/waybar ~/.config/waybar
+
 # xorg
 symlink ~/.dotfiles/xorg/.xinitrc ~/.xinitrc
 symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
 symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
-symlink ~/.dotfiles/xorg/lock ~/bin/lock
 symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper
