@@ -3,5 +3,5 @@
 if [ -n "$WAYLAND_DISPLAY" ]; then
     swaylock -i ~/.pictures/lock.png
 else
-    i3lock -i ~/.pictures/lock.png
+    i3lock -t -i ~/.pictures/lock.png
 fi

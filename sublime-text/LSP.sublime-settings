@@ -1,0 +1,10 @@
+{
+    "show_diagnostics_panel_on_save": 0,
+	"clients": {
+		"pylsp": {
+            "command": ["pylsp"],
+			"selector": "source.python",
+			"enabled": false,
+		},
+	},
+}

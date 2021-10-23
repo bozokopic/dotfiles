@@ -145,7 +145,7 @@ symlink ~/.dotfiles/sublime-music/sublime-music.desktop \
 symlink ~/.dotfiles/pictures/icons/sublime-music.png \
         ~/.local/share/icons/hicolor/128x128/apps/sublime-music.png
 
-# sublimetext
+# sublime-text
 mkdir -p ~/.config/sublime-text/Packages/User
 for i in Adaptive.sublime-theme \
          LSP.sublime-settings \
@@ -155,7 +155,7 @@ for i in Adaptive.sublime-theme \
          PythonImproved.sublime-settings \
          SublimeLinter.sublime-settings
 do
-    symlink ~/.dotfiles/sublimetext/"$i" ~/.config/sublime-text/Packages/User/"$i"
+    symlink ~/.dotfiles/sublime-text/"$i" ~/.config/sublime-text/Packages/User/"$i"
 done
 
 # sway

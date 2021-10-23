@@ -10,6 +10,7 @@ WIN10_ZIP_PATH=$ROOT_PATH/win10.zip
 WIN10_IMG_PATH=$ROOT_PATH/win10.qcow2
 TMP_PATH=$ROOT_PATH/tmp
 INIT_ISO_PATH=$ROOT_PATH/init.iso
+SHARE_PATH=$ROOT_PATH/share                  # \\10.0.2.4\qemu
 
 
 SAVE=
@@ -21,7 +22,7 @@ while getopts s flag; do
 done
 
 
-mkdir -p $ROOT_PATH
+mkdir -p $ROOT_PATH $SHARE_PATH
 
 if [ ! -f $WIN10_ZIP_PATH ]; then
     wget --show-progress -q -c -O $WIN10_ZIP_PATH $WIN10_ZIP_URL
@@ -88,7 +89,7 @@ exec qemu-system-x86_64 \
     -cdrom $INIT_ISO_PATH \
     -m 4G \
     -device e1000,netdev=net0 \
-    -netdev user,id=net0 \
+    -netdev user,id=net0,smb=$SHARE_PATH \
     -usb \
     -device usb-tablet \
     -rtc base=localtime
