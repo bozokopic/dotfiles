@@ -63,6 +63,9 @@ cp /usr/share/applications/chromium.desktop ~/.local/share/applications
 sed -i "s/^Exec=\\/usr/Exec=$(cd; pwd | sed 's/\//\\\//g')/g" \
     ~/.local/share/applications/chromium.desktop
 
+# claws
+symlink ~/.dotfiles/claws/claws-mail ~/bin/claws-mail
+
 # cudatext
 mkdir -p ~/.config/cudatext/settings
 symlink ~/.dotfiles/cudatext/user.json ~/.config/cudatext/settings/user.json

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+sed -i \
+    "s/^mainwin_maximised=.*$/mainwin_maximised=0/g" \
+    "s/^main_messagewin_x=.*$/main_messagewin_x=256/g" \
+    "s/^main_messagewin_y=.*$/main_messagewin_y=210/g" \
+    "s/^messageview_width=.*$/messageview_width=971/g" \
+    "s/^messageview_height=.*$/messageview_height=513/g" \
+    "s/^mainview_width=.*$/mainview_width=971/g" \
+    "s/^mainview_height=.*$/mainview_height=909/g" \
+    "s/^mainwin_width=.*$/mainwin_width=1291/g" \
+    "s/^mainwin_height=.*$/mainwin_height=909/g" \
+    ~/.claws-mail/clawsrc
+
+exec /usr/bin/claws-mail "$@"

@@ -27,3 +27,12 @@ swaymsg assign "[app_id=\"^tmux_term\$\"]" 9:term
 # export GDK_DPI_SCALE=0.95
 gsettings set org.gnome.desktop.interface scaling-factor 1
 gsettings set org.gnome.desktop.interface text-scaling-factor 1
+
+export QT_QPA_PLATFORM=wayland
+systemctl --user import-environment \
+    QT_QPA_PLATFORM \
+    SWAYSOCK \
+    WAYLAND_DISPLAY \
+    XDG_SESSION_TYPE
+
+systemctl --user restart plasma-kactivitymanagerd.service

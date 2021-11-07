@@ -6,6 +6,7 @@
 # export QT_QPA_PLATFORM=wayland
 # export QT_WAYLAND_FORCE_DPI=120
 # export SDL_VIDEODRIVER=wayland
+# export SWEETHOME3D_JAVA3D=1.6
 # export WLR_DRM_NO_MODIFIERS=1
 export PATH=~/bin:~/opt/python39/bin:~/opt/janet/bin:$PATH
 export QT_QPA_PLATFORMTHEME=qt5ct
