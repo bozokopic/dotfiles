@@ -51,6 +51,8 @@ Set-Service -Name wuauserv -StartupType Disabled
 \$wc = New-Object System.Net.WebClient
 \$wc.DownloadFile("https://www.python.org/ftp/python/3.8.9/python-3.8.9-amd64.exe",
                   "c:\\\\Users\\\\User\\\\Downloads\\\\python-3.8.9-amd64.exe")
+\$wc.DownloadFile("https://www.python.org/ftp/python/3.9.8/python-3.9.8-amd64.exe",
+                  "c:\\\\Users\\\\User\\\\Downloads\\\\python-3.9.8-amd64.exe")
 \$wc.DownloadFile("https://repo.msys2.org/distrib/x86_64/msys2-x86_64-20210228.exe",
                   "c:\\\\Users\\\\User\\\\Downloads\\\\msys2-x86_64-20210228.exe")
 \$wc.DownloadFile("https://nodejs.org/dist/v14.16.1/node-v14.16.1-x64.msi",
@@ -58,16 +60,18 @@ Set-Service -Name wuauserv -StartupType Disabled
 \$wc.DownloadFile("https://yarnpkg.com/latest.msi",
                   "c:\\\\Users\\\\User\\\\Downloads\\\\yarn.msi")
 
-\$env:Path = "C:\\Python38;C:\\Python38\\Scripts;C:\\msys64\\mingw64\\bin;C:\\msys64\\usr\\bin;" + \$env:Path
+\$env:Path = "C:\\Python39;C:\\Python39\\Scripts;C:\\msys64\\mingw64\\bin;C:\\msys64\\usr\\bin;" + \$env:Path
 \$env:Path += ";C:\\nodejs;C:\\Yarn\\bin"
 [Environment]::SetEnvironmentVariable(
     "Path", \$env:Path, [System.EnvironmentVariableTarget]::Machine)
 
 cmd /C "c:\\Users\\User\\Downloads\\python-3.8.9-amd64.exe InstallAllUsers=1 TargetDir=c:\\Python38 /passive"
+cmd /C "c:\\Users\\User\\Downloads\\python-3.9.8-amd64.exe InstallAllUsers=1 TargetDir=c:\\Python39 /passive"
 cmd /C "c:\\Users\\User\\Downloads\\node-v14.16.1-x64.msi INSTALLDIR=C:\\nodejs /passive"
 cmd /C "c:\\Users\\User\\Downloads\\yarn.msi INSTALLDIR=c:\\Yarn /passive"
 
 cmd /C "c:\\Users\\User\\Downloads\\msys2-x86_64-20210228.exe install -c --root c:\\msys64"
+cmd.exe /C "pacman -Syu --noconfirm"
 cmd.exe /C "pacman -Syu --noconfirm"
 cmd.exe /C "pacman -Syu --noconfirm base-devel git mingw-w64-x86_64-toolchain socat"
 EOF
