@@ -2,5 +2,6 @@ configuration {
     modi: "drun,run,window";
     font: "Inter Medium 12";
     show-icons: true;
-    theme: "Monokai";
 }
+
+@theme "Monokai"
