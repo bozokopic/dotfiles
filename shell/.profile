@@ -1,3 +1,13 @@
+
+prepend_path () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="$1${PATH:+:$PATH}"
+    esac
+}
+
 # export ATOM_NODE_URL=http://gh-contractor-zcbenz.s3.amazonaws.com/atom-shell/dist
 # export CHICKEN_REPOSITORY=~/programs/chicken_repository
 # export GDK_BACKEND=wayland
@@ -8,6 +18,11 @@
 # export SDL_VIDEODRIVER=wayland
 # export SWEETHOME3D_JAVA3D=1.6
 # export WLR_DRM_NO_MODIFIERS=1
-export PATH=~/bin:~/opt/python39/bin:~/opt/janet/bin:$PATH
+export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
 export VISUAL=nvim
+
+prepend_path ~/opt/janet/bin
+prepend_path ~/opt/python310/bin
+prepend_path ~/bin
+export PATH

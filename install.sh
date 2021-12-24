@@ -107,7 +107,8 @@ symlink ~/.dotfiles/polybar ~/.config/polybar
 # python
 install_python 3.8
 install_python 3.9
-symlink ~/bin/python3.9 ~/bin/python3
+install_python 3.10
+symlink ~/bin/python3.10 ~/bin/python3
 symlink ~/bin/python3 ~/bin/python
 
 # qutebrowser

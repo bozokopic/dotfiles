@@ -1,0 +1,5 @@
+doit
+pip
+python-language-server
+sublime-music
+ydiff
