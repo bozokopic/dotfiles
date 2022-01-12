@@ -71,4 +71,5 @@
 	"trim_trailing_white_space_on_save": true,
 	"update_check": false,
     "sublime_merge_path": null,
+    "show_panel_on_build": false,
 }

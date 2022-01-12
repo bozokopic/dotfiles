@@ -1,10 +1,20 @@
 {
     "show_diagnostics_panel_on_save": 0,
 	"clients": {
-		"pylsp": {
-            "command": ["pylsp"],
+		"jedi": {
+            "command": ["jedi-language-server"],
 			"selector": "source.python",
-			"enabled": false,
+			"enabled": true,
 		},
+        "bash-language-server": {
+            "command": ["bash-language-server", "start"],
+            "selector": "source.shell.bash",
+            "enabled": true,
+        },
+        "clangd": {
+            "command": ["clangd", "--header-insertion=never"],
+            "selector": "source.c | source.c++",
+            "enabled": true,
+        },
 	},
 }
