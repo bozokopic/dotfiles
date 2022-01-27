@@ -25,9 +25,9 @@ mod4 + shift + e
 mod4 + shift + q
     bspc node -c
 mod4 + shift + space
-    bspc node -t ~floating
+    bspc node -t "~floating"
 mod4 + shift + Return
-    bspc node -t ~fullscreen
+    bspc node -t "~fullscreen"
 
 mod4 + {h, Left}
     bspc node -f west
