@@ -1,5 +1,5 @@
 doit
+jedi-language-server
 pip
-python-language-server
 sublime-music
 ydiff

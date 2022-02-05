@@ -6,13 +6,6 @@ symlink () {
     ln -sfT "$@"
 }
 
-install_packages() {
-    yay -S --needed --noconfirm \
-        $(cat $1 | \
-          xargs -I{} sh -c \
-            "(pacman -Q {} &> /dev/null) || echo {}")
-}
-
 install_python() {
     LONG=$1
     SHORT=${LONG//\./}
@@ -48,8 +41,6 @@ mkdir -p ~/repos
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons/hicolor/128x128/apps
 symlink $(cd $(dirname "$0"); pwd -P) ~/.dotfiles
-yay --save --sudo doas
-install_packages ~/.dotfiles/packages.txt
 
 # alacritty
 symlink ~/.dotfiles/alacritty ~/.config/alacritty
@@ -187,3 +178,6 @@ symlink ~/.dotfiles/xorg/.xinitrc ~/.xinitrc
 symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
 symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
 symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper
+
+# yay
+yay --save --sudo doas
