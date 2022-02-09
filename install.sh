@@ -11,7 +11,7 @@ install_python_venv() {
     SHORT=${LONG//\./}
 
     PYTHON_BIN=$(command -v "python$LONG" || true)
-    if [ -n $PYTHON_BIN ]; then
+    if [ -n "$PYTHON_BIN" ]; then
 
         PYTHON_DIR=~/opt/python$SHORT
         PIP_BIN=$PYTHON_DIR/bin/pip$LONG
