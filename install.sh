@@ -51,10 +51,12 @@ symlink ~/.dotfiles/alacritty ~/.config/alacritty
 symlink ~/.dotfiles/bspwm ~/.config/bspwm
 
 # chromium
-symlink ~/.dotfiles/chromium/chromium ~/bin/chromium
-cp /usr/share/applications/chromium.desktop ~/.local/share/applications
-sed -i "s/^Exec=\\/usr/Exec=$(cd; pwd | sed 's/\//\\\//g')/g" \
-    ~/.local/share/applications/chromium.desktop
+if [ -f /usr/share/applications/chromium.desktop ]; then
+    symlink ~/.dotfiles/chromium/chromium ~/bin/chromium
+    cp /usr/share/applications/chromium.desktop ~/.local/share/applications
+    sed -i "s/^Exec=\\/usr/Exec=$(cd; pwd | sed 's/\//\\\//g')/g" \
+        ~/.local/share/applications/chromium.desktop
+fi
 
 # claws
 symlink ~/.dotfiles/claws/claws-mail ~/bin/claws-mail
