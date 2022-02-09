@@ -6,7 +6,7 @@ symlink () {
     ln -sfT "$@"
 }
 
-install_python() {
+install_python_venv() {
     LONG=$1
     SHORT=${LONG//\./}
 
@@ -31,6 +31,8 @@ install_python() {
 
         symlink $PIP_BIN $LOCAL_PIP_BIN
         symlink $PYTHON_DIR/bin/doit $LOCAL_DOIT_BIN
+
+        symlink ~/bin/python$LONG ~/bin/python3
 
     fi
 }
@@ -96,10 +98,9 @@ symlink ~/.dotfiles/pictures ~/.pictures
 symlink ~/.dotfiles/polybar ~/.config/polybar
 
 # python
-install_python 3.8
-install_python 3.9
-install_python 3.10
-symlink ~/bin/python3.10 ~/bin/python3
+install_python_venv 3.8
+install_python_venv 3.9
+install_python_venv 3.10
 symlink ~/bin/python3 ~/bin/python
 
 # qutebrowser
