@@ -75,12 +75,12 @@ symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
 symlink ~/.dotfiles/i3 ~/.config/i3
 
 # janet
-if [ ! -d ~/repos/janet ]; then
-    (cd ~/repos; git clone https://github.com/janet-lang/janet.git)
-fi
-if [ ! -d ~/opt/janet ]; then
-    (cd ~/repos/janet; make install PREFIX=$(cd ~/opt; pwd -P)/janet)
-fi
+# if [ ! -d ~/repos/janet ]; then
+#     (cd ~/repos; git clone https://github.com/janet-lang/janet.git)
+# fi
+# if [ ! -d ~/opt/janet ]; then
+#     (cd ~/repos/janet; make install PREFIX=$(cd ~/opt; pwd -P)/janet)
+# fi
 
 # lein
 symlink ~/.dotfiles/lein/lein ~/bin/lein
