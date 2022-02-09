@@ -1,5 +1,3 @@
 doit
 jedi-language-server
 pip
-sublime-music
-ydiff
