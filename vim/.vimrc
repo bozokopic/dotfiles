@@ -56,7 +56,7 @@ let g:indent_guides_guide_size = 1
 
 " show line numbers
 set number
-set relativenumber
+"set relativenumber
 
 " 80 character line length highlight
 set colorcolumn=80
@@ -77,7 +77,10 @@ autocmd FileType make set tabstop=4 shiftwidth=8 softtabstop=0 noexpandtab
 
 " gui settings
 set linespace=4
-set guifont=Droid\ Sans\ Mono:h14
+set guifont=Droid\ Sans\ Mono:h12
+let g:neovide_cursor_animation_length = 0.01
+let g:neovide_cursor_trail_length = 0.01
+let g:neovide_cursor_vfx_mode = "sonicboom"
 "if exists('g:GuiLoaded')
     "GuiTabline 0
 "endif

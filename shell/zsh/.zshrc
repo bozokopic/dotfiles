@@ -6,6 +6,7 @@ export GPG_TTY=$(tty)
 
 bindkey -v
 
+fpath=(~/.dotfiles/shell/zsh/tabcompletion $fpath)
 autoload -Uz compinit
 compinit
 

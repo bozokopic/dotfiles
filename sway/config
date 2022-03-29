@@ -2,6 +2,7 @@ set $mod Mod4
 
 xwayland disable
 bar swaybar_command waybar
+seat seat0 xcursor_theme default 32
 
 exec_always ~/.config/sway/init.sh
 

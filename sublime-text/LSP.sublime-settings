@@ -4,7 +4,7 @@
 		"jedi": {
             "command": ["jedi-language-server"],
 			"selector": "source.python",
-			"enabled": true,
+			"enabled": false,
 		},
         "bash-language-server": {
             "command": ["bash-language-server", "start"],

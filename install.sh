@@ -7,34 +7,40 @@ symlink () {
 }
 
 install_python_venv() {
-    LONG=$1
-    SHORT=${LONG//\./}
+    PYTHON_CMD=$(command -v "$1" || true)
+    [ -z "$PYTHON_CMD" ] && return 0;
 
-    PYTHON_BIN=$(command -v "python$LONG" || true)
-    if [ -n "$PYTHON_BIN" ]; then
+    PYTHON=$PYTHON_CMD
+    PYTHON=${PYTHON%%[0-9]*}
+    PYTHON=${PYTHON##*/}
+    MAJOR=$($PYTHON_CMD -c "import sys; print(sys.version_info.major)")
+    MINOR=$($PYTHON_CMD -c "import sys; print(sys.version_info.minor)")
+    REQUIREMENTS=~/.dotfiles/python/requirements.pip$MAJOR$MINOR.txt
 
-        PYTHON_DIR=~/opt/python$SHORT
-        PIP_BIN=$PYTHON_DIR/bin/pip$LONG
-        REQUIREMENTS=~/.dotfiles/python/requirements.pip$SHORT.txt
-        LOCAL_PYTHON_BIN=~/bin/python$LONG
-        LOCAL_PIP_BIN=~/bin/pip$LONG
-        LOCAL_DOIT_BIN=~/bin/doit$LONG
+    VENV_DIR=$(cd ~/opt; pwd)/$PYTHON$MAJOR$MINOR
+    VENV_PYTHON=$VENV_DIR/bin/$PYTHON
+    VENV_PIP=$VENV_DIR/bin/pip
+    VENV_DOIT=$VENV_DIR/bin/doit
 
-        [ ! -d $PYTHON_DIR ] && \
-            $PYTHON_BIN -m venv --system-site-packages $PYTHON_DIR
+    BIN_DIR=$(cd ~/bin; pwd)
+    BIN_PYTHON=$BIN_DIR/$PYTHON$MAJOR.$MINOR
+    BIN_PIP=$BIN_DIR/pip-$PYTHON$MAJOR.$MINOR
+    BIN_DOIT=$BIN_DIR/doit-$PYTHON$MAJOR.$MINOR
 
-        $PIP_BIN -q install -U -r $REQUIREMENTS
+    $PYTHON_CMD -m venv --system-site-packages $VENV_DIR
+    $VENV_PIP -q install -U -r $REQUIREMENTS
 
-        echo "#!/bin/sh" > $LOCAL_PYTHON_BIN
-        echo "exec $(cd $PYTHON_DIR; pwd)/bin/python$LONG \"\$@\"" >> $LOCAL_PYTHON_BIN
-        chmod +x $LOCAL_PYTHON_BIN
+    echo -e "#!/bin/sh\\nexec $VENV_PYTHON \"\$@\"" > $BIN_PYTHON
+    chmod +x $BIN_PYTHON
+    symlink $BIN_PYTHON $BIN_DIR/$PYTHON$MAJOR
+    symlink $BIN_DIR/$PYTHON$MAJOR $BIN_DIR/$PYTHON
 
-        symlink $PIP_BIN $LOCAL_PIP_BIN
-        symlink $PYTHON_DIR/bin/doit $LOCAL_DOIT_BIN
+    symlink $VENV_PIP $BIN_PIP
+    symlink $BIN_PIP $BIN_DIR/pip$MAJOR
+    symlink $BIN_DIR/pip$MAJOR $BIN_DIR/pip
 
-        symlink ~/bin/python$LONG ~/bin/python3
-
-    fi
+    symlink $VENV_DOIT $BIN_DOIT
+    symlink $BIN_DOIT $BIN_DIR/doit
 }
 
 mkdir -p ~/bin
@@ -100,10 +106,10 @@ symlink ~/.dotfiles/pictures ~/.pictures
 symlink ~/.dotfiles/polybar ~/.config/polybar
 
 # python
-install_python_venv 3.8
-install_python_venv 3.9
-install_python_venv 3.10
-symlink ~/bin/python3 ~/bin/python
+install_python_venv pypy3
+install_python_venv python3.8
+install_python_venv python3.9
+install_python_venv python3.10
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser
