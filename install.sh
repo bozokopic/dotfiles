@@ -111,9 +111,16 @@ install_python_venv python3.8
 install_python_venv python3.9
 install_python_venv python3.10
 
+# qt-designer
+symlink ~/.dotfiles/qt-designer/qt-designer.desktop \
+        ~/.local/share/applications/qt-designer.desktop
+
 # qutebrowser
 mkdir -p ~/.config/qutebrowser
 symlink ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.yml
+
+# radio
+symlink ~/.dotfiles/radio/student ~/bin/radio-student
 
 # ranger
 mkdir -p ~/.config/ranger

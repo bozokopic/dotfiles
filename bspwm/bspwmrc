@@ -21,3 +21,6 @@ bspc config gapless_monocle          true
 
 bspc rule -a *:tmux_term desktop=term
 
+
+dbus-update-activation-environment --systemd --all
+systemctl --user restart plasma-kactivitymanagerd.service

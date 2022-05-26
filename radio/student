@@ -1,0 +1,5 @@
+#!/bin/sh
+
+URL=http://161.53.122.184:8000/AAC128.aac
+
+mplayer -ao pulse -quiet $URL | ts '[%Y-%m-%d %H:%M:%S]'

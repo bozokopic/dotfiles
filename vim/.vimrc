@@ -39,6 +39,8 @@ Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-misc'
 Plug 'vim-scripts/paredit.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+Plug 'https://git.sr.ht/~sircmpwn/hare.vim'
 
 "Plug 'tpope/vim-fugitive.git'
 "Plug 'severin-lemaignan/vim-minimap'
