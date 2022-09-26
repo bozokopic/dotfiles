@@ -3,12 +3,14 @@
 set -e
 
 
-WIN10_ZIP_URL="https://aka.ms/windev_VM_virtualbox"
+WIN11_ZIP_URL="https://aka.ms/windev_VM_virtualbox"
 
-ROOT_PATH=$(cd; pwd)/vm/win10
-WIN10_ZIP_PATH=$ROOT_PATH/win10.zip
-WIN10_IMG_PATH=$ROOT_PATH/win10.qcow2
+ROOT_PATH=$(cd; pwd)/vm/win11
+WIN11_ZIP_PATH=$ROOT_PATH/win11.zip
+WIN11_IMG_PATH=$ROOT_PATH/win11.qcow2
 TMP_PATH=$ROOT_PATH/tmp
+OVMF_PATH=$ROOT_PATH/OVMF.fd
+TPM_PATH=$ROOT_PATH/tpm
 INIT_ISO_PATH=$ROOT_PATH/init.iso
 SHARE_PATH=$ROOT_PATH/share                  # \\10.0.2.4\qemu
 
@@ -24,17 +26,20 @@ done
 
 mkdir -p $ROOT_PATH $SHARE_PATH
 
-if [ ! -f $WIN10_ZIP_PATH ]; then
-    wget --show-progress -q -c -O $WIN10_ZIP_PATH $WIN10_ZIP_URL
+if [ ! -f $WIN11_ZIP_PATH ]; then
+    wget --show-progress -q -c -O $WIN11_ZIP_PATH $WIN11_ZIP_URL
 fi
 
-if [ ! -f $WIN10_IMG_PATH ]; then
+if [ ! -f $WIN11_IMG_PATH ]; then
     rm -rf $TMP_PATH
     mkdir -p $TMP_PATH
-    unzip -d $TMP_PATH $WIN10_ZIP_PATH
-    tar -x -f $TMP_PATH/*.ova -C $TMP_PATH
-    qemu-img convert -p -c -f vmdk -O qcow2 $TMP_PATH/*.vmdk $WIN10_IMG_PATH
+    unzip -p $WIN11_ZIP_PATH *.ova | tar -x -C $TMP_PATH
+    qemu-img convert -p -c -f vmdk -O qcow2 $TMP_PATH/*.vmdk $WIN11_IMG_PATH
     rm -rf $TMP_PATH
+fi
+
+if [ ! -f $OVMF_PATH ]; then
+    cp /usr/share/edk2-ovmf/x64/OVMF.fd $OVMF_PATH
 fi
 
 if [ ! -f $INIT_ISO_PATH ]; then
@@ -80,17 +85,28 @@ EOF
 fi
 
 if [ ! -z $SAVE ]; then
-    TMP_IMG_PATH=$WIN10_IMG_PATH
+    TMP_IMG_PATH=$WIN11_IMG_PATH
 else
-    TMP_IMG_PATH=$WIN10_IMG_PATH.tmp
+    TMP_IMG_PATH=$WIN11_IMG_PATH.tmp
     rm -f $TMP_IMG_PATH
-    qemu-img create -q -F qcow2 -f qcow2 -b $WIN10_IMG_PATH $TMP_IMG_PATH
+    qemu-img create -q -F qcow2 -f qcow2 -b $WIN11_IMG_PATH $TMP_IMG_PATH
 fi
 
+mkdir -p $TPM_PATH
+swtpm socket \
+    --tpm2 \
+    --tpmstate dir=$TPM_PATH \
+    --ctrl type=unixio,path=$TPM_PATH/socket &
 exec qemu-system-x86_64 \
-    -enable-kvm -cpu host \
-    -hda $TMP_IMG_PATH \
-    -cdrom $INIT_ISO_PATH \
+    -enable-kvm \
+    -machine q35 \
+    -device intel-iommu \
+    -drive file=$OVMF_PATH,if=pflash,format=raw \
+    -drive file=$TMP_IMG_PATH,media=disk \
+    -drive file=$INIT_ISO_PATH,media=cdrom \
+    -chardev socket,id=chrtpm,path=$TPM_PATH/socket \
+    -tpmdev emulator,id=tpm0,chardev=chrtpm \
+    -device tpm-tis,tpmdev=tpm0 \
     -m 4G \
     -device e1000,netdev=net0 \
     -netdev user,id=net0,smb=$SHARE_PATH \

@@ -32,6 +32,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fireplace'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -146,12 +147,15 @@ set mouse=a
 
 " ale configuration
 let g:ale_linters = {
-\   'python': ['flake8']
+\   'python': ['flake8'],
+\   'c': ['clangd']
 \ }
+let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_c_clangd_options = '--header-insertion=never'
 
 " YouCompleteMe configuration
 "let g:ycm_auto_trigger = 0

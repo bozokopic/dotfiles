@@ -183,8 +183,8 @@ symlink ~/.dotfiles/vim/plug.vim ~/.vim/autoload/plug.vim
 symlink ~/.vimrc ~/.vim/init.vim
 symlink ~/.vim ~/.config/nvim
 
-# win10
-symlink ~/.dotfiles/vm/vm-win10 ~/bin/vm-win10
+# win11
+symlink ~/.dotfiles/vm/vm-win11 ~/bin/vm-win11
 
 # waybar
 symlink ~/.dotfiles/waybar ~/.config/waybar
