@@ -3,4 +3,4 @@
 URL=http://161.53.122.184:8000/AAC128.aac
 
 # mplayer -ao pulse -quiet $URL | ts '[%Y-%m-%d %H:%M:%S]'
-exec mplayer -ao pulse -quiet $URL
+exec ffmpeg -i $URL -f pulse -name ffmpeg "radio student"

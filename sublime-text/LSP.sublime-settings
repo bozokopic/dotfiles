@@ -16,5 +16,10 @@
             "selector": "source.c | source.c++",
             "enabled": true,
         },
+        "typescript-language-server": {
+            "command": ["typescript-language-server", "--stdio"],
+            "selector": "source.ts",
+            "enabled": true,
+        },
 	},
 }

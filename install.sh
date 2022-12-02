@@ -121,6 +121,7 @@ symlink ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.
 
 # radio
 symlink ~/.dotfiles/radio/student ~/bin/radio-student
+symlink ~/.dotfiles/radio/sljeme ~/bin/radio-sljeme
 
 # ranger
 mkdir -p ~/.config/ranger
@@ -175,13 +176,10 @@ symlink ~/.dotfiles/sway ~/.config/sway
 # tmux
 symlink ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
-# vim / nvim
-mkdir -p ~/.vim/autoload
-mkdir -p ~/.config
-symlink ~/.dotfiles/vim/.vimrc ~/.vimrc
-symlink ~/.dotfiles/vim/plug.vim ~/.vim/autoload/plug.vim
-symlink ~/.vimrc ~/.vim/init.vim
-symlink ~/.vim ~/.config/nvim
+# nvim
+mkdir -p ~/.config/nvim/autoload
+symlink ~/.dotfiles/nvim/init.lua ~/.config/nvim/init.lua
+symlink ~/.dotfiles/nvim/plug.vim ~/.config/nvim/autoload/plug.vim
 
 # win11
 symlink ~/.dotfiles/vm/vm-win11 ~/bin/vm-win11
@@ -194,6 +192,3 @@ symlink ~/.dotfiles/xorg/.xinitrc ~/.xinitrc
 symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
 symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
 symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper
-
-# yay
-yay --save --sudo doas

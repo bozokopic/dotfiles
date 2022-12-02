@@ -20,6 +20,7 @@ prepend_path () {
 # export WLR_DRM_NO_MODIFIERS=1
 export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export VISUAL=nvim
 
 
@@ -27,3 +28,9 @@ prepend_path ~/opt/janet/bin
 prepend_path ~/opt/python310/bin
 prepend_path ~/bin
 export PATH
+
+
+nix_profile_sh=~/.nix-profile/etc/profile.d/nix.sh
+[ -e $nix_profile_sh ] && . $nix_profile_sh
+export LOCALE_ARCHIVE=~/.nix-profile/lib/locale/locale-archive
+
