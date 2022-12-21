@@ -24,7 +24,7 @@ tray-position = right
 [bar/bar2]
 inherit = bar/base
 monitor = DP1-2
-monitor-fallback = DP3
+monitor-fallback = DP1-1
 tray-position = none
 
 [module/bspwm]

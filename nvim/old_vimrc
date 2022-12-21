@@ -37,10 +37,6 @@ Plug 'https://git.sr.ht/~sircmpwn/hare.vim'
 call plug#end()
 
 
-
-
-
-
 " enable spell check
 "autocmd FileType rst set spell
 

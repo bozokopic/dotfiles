@@ -7,7 +7,7 @@ symlink () {
 }
 
 install_python_venv() {
-    PYTHON_CMD=$(command -v "$1" || true)
+    PYTHON_CMD="$(which -a $1 | grep -m 1 -v "^$(cd; pwd)")"
     [ -z "$PYTHON_CMD" ] && return 0;
 
     PYTHON=$PYTHON_CMD
@@ -177,9 +177,8 @@ symlink ~/.dotfiles/sway ~/.config/sway
 symlink ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
 # nvim
-mkdir -p ~/.config/nvim/autoload
+mkdir -p ~/.config/nvim
 symlink ~/.dotfiles/nvim/init.lua ~/.config/nvim/init.lua
-symlink ~/.dotfiles/nvim/plug.vim ~/.config/nvim/autoload/plug.vim
 
 # win11
 symlink ~/.dotfiles/vm/vm-win11 ~/bin/vm-win11

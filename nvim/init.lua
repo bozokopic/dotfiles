@@ -56,6 +56,32 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4 
 vim.o.expandtab = true
 
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set colours
+vim.opt.termguicolors = true
+
+-- use system clipboard
+vim.o.clipboard = ''
+vim.keymap.set('n', '""y', '""y')
+vim.keymap.set('n', '""yy', '""yy')
+vim.keymap.set('n', '""p', '""p')
+vim.keymap.set('n', '""P', '""P')
+vim.keymap.set('n', 'y', function() return (vim.v.register == '"' and '"+' or '') .. 'y' end, { expr = true })
+vim.keymap.set('n', 'yy', function() return (vim.v.register == '"' and '"+' or '') .. 'yy' end, { expr = true })
+vim.keymap.set('n', 'p', function() return (vim.v.register == '"' and '"+' or '') .. 'p' end, { expr = true })
+vim.keymap.set('n', 'P', function() return (vim.v.register == '"' and '"+' or '') .. 'P' end, { expr = true })
+
+-- copy/paste
+vim.keymap.set('n', '<C-x>', '"+dd')
+vim.keymap.set('v', '<C-x>', '"+d')
+vim.keymap.set('n', '<C-c>', '"+yy')
+vim.keymap.set('v', '<C-c>', '"+y')
+vim.keymap.set({'n', 'v'}, '<C-v>', '"+p')
+vim.keymap.set('i', '<C-v>', '<C-r>+')
+
 -- make files use regular tabs
 vim.api.nvim_create_autocmd({"FileType"}, {
     pattern = "make",
@@ -67,18 +93,23 @@ vim.api.nvim_create_augroup("reload_vimrc", {})
 vim.api.nvim_create_autocmd({"BufWritePost"}, {
     group = "reload_vimrc",
     pattern = vim.env.MYVIMRC,
-    command = "source $MYVIMRC"
+    callback = function()
+        vim.cmd "source $MYVIMRC"
+        require('packer').sync()
+        -- require('packer').compile()
+    end
 })
 
 -- gui settings
 vim.o.linespace = 4
-vim.o.guifont = "Droid\\ Sans\\ Mono:h12"
+vim.o.guifont = "Roboto_Mono:h12"
 
 -- neovide settings
 if vim.g.neovide then
     vim.g.neovide_cursor_animation_length = 0.01
     vim.g.neovide_cursor_trail_length = 0.01
-    vim.g.neovide_cursor_vfx_mode = "sonicboom"
+    vim.g.neovide_cursor_vfx_mode = ""
+    vim.g.neovide_remember_window_size = true
     vim.g.neovide_scale_factor = 1.0
     vim.keymap.set('n', '<C-=>', function()
         vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
@@ -88,61 +119,229 @@ if vim.g.neovide then
     end)
 end
 
--- plugin manager
-vim.fn['plug#begin']()
-vim.cmd.Plug('"airblade/vim-gitgutter"')
-vim.cmd.Plug('"christoomey/vim-tmux-navigator"')
-vim.cmd.Plug('"jiangmiao/auto-pairs"')
-vim.cmd.Plug('"majutsushi/tagbar"')
-vim.cmd.Plug('"mg979/vim-visual-multi"')
-vim.cmd.Plug('"nvim-tree/nvim-tree.lua"')
-vim.cmd.Plug('"nvim-tree/nvim-web-devicons"')
-vim.cmd.Plug('"romgrk/barbar.nvim"')
-vim.cmd.Plug('"tanvirtin/monokai.nvim"')
-vim.cmd.Plug('"thaerkh/vim-indentguides"')
-vim.fn['plug#end']()
-
--- monokai
-require('monokai').setup({})
-
--- indentguides
-vim.g.indent_guides_enable_on_vim_startup = 1
-vim.g.indent_guides_start_level = 2
-vim.g.indent_guides_guide_size = 1
-
--- nvim-tree
-require("nvim-tree").setup()
-vim.opt.termguicolors = true
-
--- barbar
-require('bufferline').setup({
-    auto_hide = false
-})
-local _ = (function(y)
-    local nvim_tree_events = require('nvim-tree.events')
-    local bufferline_api = require('bufferline.api')
-
-    local function get_tree_size()
-        return require'nvim-tree.view'.View.width
+-- bootstrap packer
+local bootstrap_packer = (function()
+    local packer_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
+        vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path})
+        vim.cmd('packadd packer.nvim')
+        return true
     end
-
-    nvim_tree_events.subscribe('TreeOpen', function()
-        bufferline_api.set_offset(get_tree_size())
-    end)
-
-    nvim_tree_events.subscribe('Resize', function()
-        bufferline_api.set_offset(get_tree_size())
-    end)
-
-    nvim_tree_events.subscribe('TreeClose', function()
-        bufferline_api.set_offset(0)
-    end)
+    return false
 end)()
 
--- gitgutter 
-vim.g.gitgutter_realtime = 1
+-- plugins
+require('packer').startup {
+    function(use)
 
--- function keys map
-vim.keymap.set('', '<F5>', vim.cmd.NvimTreeToggle)
-vim.keymap.set('', '<F6>', vim.cmd.TagbarToggle)
+        use 'wbthomason/packer.nvim'
+
+        use {
+            'tanvirtin/monokai.nvim',
+            config = function()
+                require('monokai').setup({})
+            end
+        }
+        
+        use 'christoomey/vim-tmux-navigator'
+
+        -- use 'jiangmiao/auto-pairs'
+
+        use {
+            'majutsushi/tagbar',
+            config = function()
+                vim.keymap.set('', '<F6>', vim.cmd.TagbarToggle)
+            end
+        }
+
+        use 'mg979/vim-visual-multi'
+        
+        use {
+            'nvim-tree/nvim-web-devicons',
+            config = function()
+                require('nvim-web-devicons').setup {
+                    color_icons = true
+                }
+            end
+        }
+
+        use {
+            'nvim-tree/nvim-tree.lua',
+            requires = {
+                'nvim-lua/plenary.nvim'
+            },
+            after = {
+                'nvim-web-devicons' 
+            },
+            config = function()
+                require("nvim-tree").setup {
+                    filters = {
+                        dotfiles = true
+                    },
+                    update_focused_file = {
+                        enable = true
+                    },
+                    renderer = {
+                        icons = {
+                            webdev_colors = true,
+                            git_placement = 'signcolumn'
+                        },
+                        highlight_opened_files = 'icon'
+                    },
+                    view = {
+                        signcolumn = 'yes'
+                    },
+                    actions = {
+                        change_dir = {
+                            global = true
+                        }
+                    },
+                    live_filter = {
+                        always_show_folders = false
+                    }
+                }
+                vim.keymap.set('', '<F5>', vim.cmd.NvimTreeToggle)
+            end
+        }
+
+        use {
+            'romgrk/barbar.nvim',
+            after = { 
+                'nvim-tree.lua',
+                'nvim-web-devicons'
+            },
+            config = function()
+                require('bufferline').setup {
+                    auto_hide = false
+                }
+
+                local tree_events = require('nvim-tree.events')
+                local bufferline_api = require('bufferline.api')
+
+                local function get_tree_size()
+                    return require('nvim-tree.view').View.width
+                end
+
+                tree_events.subscribe('TreeOpen', function()
+                    bufferline_api.set_offset(get_tree_size())
+                end)
+
+                tree_events.subscribe('Resize', function()
+                    bufferline_api.set_offset(get_tree_size())
+                end)
+
+                tree_events.subscribe('TreeClose', function()
+                    bufferline_api.set_offset(0)
+                end)
+            end
+        }
+
+        use {
+            'nvim-lualine/lualine.nvim',
+            after = {
+                'monokai.nvim'
+            },
+            config = function()
+                require('lualine').setup()
+            end
+        }
+
+        use {
+            'thaerkh/vim-indentguides',
+            config = function()
+                vim.g.indent_guides_enable_on_vim_startup = 1
+                vim.g.indent_guides_start_level = 2
+                vim.g.indent_guides_guide_size = 1
+            end
+        }
+
+        use {
+            'nvim-telescope/telescope.nvim',
+            requires = { 
+                'BurntSushi/ripgrep',
+                'nvim-lua/plenary.nvim',
+                'cljoly/telescope-repo.nvim'
+            },
+            config = function()
+                local telescope = require('telescope')
+                local builtin = require('telescope.builtin')
+                telescope.setup {
+                    extensions = {
+                        repo = {
+                            list = {
+                                search_dirs = { '~/repos' }
+                            }
+                        }
+                    }
+                }
+                telescope.load_extension("repo")
+                vim.keymap.set('', '<F8>', builtin.builtin)
+                vim.keymap.set('', '<leader>ff', builtin.find_files)
+                vim.keymap.set('', '<leader>fg', builtin.live_grep)
+                vim.keymap.set('', '<leader>fb', builtin.buffers)
+                vim.keymap.set('', '<leader>fh', builtin.help_tags)
+                vim.keymap.set('', '<leader>fr', telescope.extensions.repo.list)
+            end
+        }
+
+        use {
+            'mbbill/undotree',
+            config = function()
+                vim.g.undotree_WindowLayout = 4
+                vim.keymap.set('', '<F7>', vim.cmd.UndotreeToggle)
+            end
+        }
+
+        use {
+            'lewis6991/gitsigns.nvim',
+            config = function()
+                require('gitsigns').setup()
+            end
+        }
+
+        use {
+            'wfxr/minimap.vim',
+            after = {
+                'monokai.nvim'
+            },
+            config = function()
+                vim.minimap_git_colors = 1
+                vim.keymap.set('', '<F4>', vim.cmd.MinimapToggle)
+            end
+        }
+
+        use {
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
+        }
+
+        use 'rafamadriz/neon'
+
+        use {
+            'nvim-treesitter/nvim-treesitter',
+            run = ':TSUpdate',
+            config = function()
+                require('nvim-treesitter.configs').setup {
+                    ensure_installed = {
+                        'python', 'bash', 'lua', 'javascript', 'c', 'json', 'html'
+                    },
+                    highlight = {
+                        enable = true
+                    }
+                }
+            end
+        }
+
+        if bootstrap_packer then
+            require('packer').sync()
+        end
+
+    end,
+    config = {
+        compile_on_sync = true,
+        auto_reload_compiled = true
+    }
+}
 
