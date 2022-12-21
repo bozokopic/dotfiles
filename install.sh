@@ -7,7 +7,7 @@ symlink () {
 }
 
 install_python_venv() {
-    PYTHON_CMD="$(which -a $1 2> /dev/null | grep -m 1 -v "^$(cd; pwd)")"
+    PYTHON_CMD="$((which -a $1 2> /dev/null || true) | grep -m 1 -v "^$(cd; pwd)")"
     [ -z "$PYTHON_CMD" ] && return 0;
 
     PYTHON=$PYTHON_CMD
