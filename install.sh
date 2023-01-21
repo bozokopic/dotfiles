@@ -20,12 +20,9 @@ install_python_venv() {
     VENV_DIR=$(cd ~/opt; pwd)/$PYTHON$MAJOR$MINOR
     VENV_PYTHON=$VENV_DIR/bin/$PYTHON
     VENV_PIP=$VENV_DIR/bin/pip
-    VENV_DOIT=$VENV_DIR/bin/doit
 
     BIN_DIR=$(cd ~/bin; pwd)
     BIN_PYTHON=$BIN_DIR/$PYTHON$MAJOR.$MINOR
-    BIN_PIP=$BIN_DIR/pip-$PYTHON$MAJOR.$MINOR
-    BIN_DOIT=$BIN_DIR/doit-$PYTHON$MAJOR.$MINOR
 
     $PYTHON_CMD -m venv --system-site-packages $VENV_DIR
     $VENV_PIP -q install -U -r $REQUIREMENTS
@@ -35,17 +32,14 @@ install_python_venv() {
     symlink $BIN_PYTHON $BIN_DIR/$PYTHON$MAJOR
     symlink $BIN_DIR/$PYTHON$MAJOR $BIN_DIR/$PYTHON
 
-    symlink $VENV_PIP $BIN_PIP
-    symlink $BIN_PIP $BIN_DIR/pip$MAJOR
-    symlink $BIN_DIR/pip$MAJOR $BIN_DIR/pip
-
-    symlink $VENV_DOIT $BIN_DOIT
-    symlink $BIN_DOIT $BIN_DIR/doit
+    symlink $VENV_PIP $BIN_DIR/pip
+    echo -e "#!/bin/sh\\nexec $VENV_PYTHON -m doit \"\$@\"" > $BIN_DIR/doit
 }
 
 mkdir -p ~/bin
 mkdir -p ~/opt
 mkdir -p ~/repos
+mkdir -p ~/.config
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons/hicolor/128x128/apps
 symlink $(cd $(dirname "$0"); pwd -P) ~/.dotfiles
@@ -79,14 +73,6 @@ symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
 
 # i3
 symlink ~/.dotfiles/i3 ~/.config/i3
-
-# janet
-# if [ ! -d ~/repos/janet ]; then
-#     (cd ~/repos; git clone https://github.com/janet-lang/janet.git)
-# fi
-# if [ ! -d ~/opt/janet ]; then
-#     (cd ~/repos/janet; make install PREFIX=$(cd ~/opt; pwd -P)/janet)
-# fi
 
 # lein
 symlink ~/.dotfiles/lein/lein ~/bin/lein
@@ -191,3 +177,6 @@ symlink ~/.dotfiles/xorg/.xinitrc ~/.xinitrc
 symlink ~/.dotfiles/xorg/.Xresources ~/.Xresources
 symlink ~/.dotfiles/xorg/loadxresources ~/bin/loadxresources
 symlink ~/.dotfiles/xorg/setwallpaper ~/bin/setwallpaper
+
+# yay
+symlink ~/.dotfiles/yay/yay ~/bin/yay

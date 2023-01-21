@@ -18,6 +18,8 @@ swaymsg workspace 6:s output ${secondary:-$primary}
 swaymsg workspace 7:d output ${secondary:-$primary}
 swaymsg workspace 8:f output ${secondary:-$primary}
 
+swaymsg input type:touchpad tap enable
+
 swaymsg font "pango:Inter Medium 12"
 swaymsg floating_modifier $mod
 swaymsg default_border pixel 4
