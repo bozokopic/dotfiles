@@ -162,12 +162,21 @@ symlink ~/.dotfiles/sway ~/.config/sway
 # tmux
 symlink ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
+# vm
+mkdir -p ~/vm/alpine
+mkdir -p ~/vm/archlinux/armv7
+mkdir -p ~/vm/debian/armv7
+mkdir -p ~/vm/openbsd
+mkdir -p ~/vm/win11
+symlink ~/.dotfiles/vm/alpine/run.sh ~/vm/alpine/run.sh
+symlink ~/.dotfiles/vm/archlinux/armv7/run.sh ~/vm/archlinux/armv7/run.sh
+symlink ~/.dotfiles/vm/debian/armv7/run.sh ~/vm/debian/armv7/run.sh
+symlink ~/.dotfiles/vm/openbsd/run.sh ~/vm/openbsd/run.sh
+symlink ~/.dotfiles/vm/win11/run.sh ~/vm/win11/run.sh
+
 # nvim
 mkdir -p ~/.config/nvim
 symlink ~/.dotfiles/nvim/init.lua ~/.config/nvim/init.lua
-
-# win11
-symlink ~/.dotfiles/vm/vm-win11 ~/bin/vm-win11
 
 # waybar
 symlink ~/.dotfiles/waybar ~/.config/waybar
