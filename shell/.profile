@@ -24,7 +24,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export VISUAL=nvim
 
-prepend_path ~/opt/python310/bin
+prepend_path ~/opt/python311/bin
 prepend_path ~/opt/river/bin
 prepend_path ~/bin
 export PATH

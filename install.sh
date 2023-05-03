@@ -108,8 +108,8 @@ symlink ~/.dotfiles/polybar ~/.config/polybar
 install_python_venv pypy3
 install_python_venv python3.8
 install_python_venv python3.9
-install_python_venv python3.11
 install_python_venv python3.10
+install_python_venv python3.11
 
 # qt-designer
 symlink ~/.dotfiles/qt-designer/qt-designer.desktop \
