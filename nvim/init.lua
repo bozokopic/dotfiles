@@ -334,6 +334,19 @@ require('packer').startup {
             end
         }
 
+        use {
+            'neovim/nvim-lspconfig',
+            config = function()
+                local lspconfig = require('lspconfig')
+                -- lspconfig.jedi_language_server.setup {}
+                -- lspconfig.bashls.setup {}
+                -- lspconfig.clangd.setup {
+                --     cmd = {'clangd', '--header-insertion=never'}
+                -- }
+                -- lspconfig.tsserver.setup {}
+            end
+        }
+
         if bootstrap_packer then
             require('packer').sync()
         end

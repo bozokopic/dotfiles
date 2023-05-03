@@ -33,4 +33,4 @@ settings:
       right: 5
       top: 5
   zoom.default:
-    global: 125%
+    global: 100%

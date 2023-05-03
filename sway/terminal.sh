@@ -1,28 +1,26 @@
 #!/bin/sh
 
-DESKTOP=term
-INSTANCE=tmux_term
+term_workspace="9:term"
+term_app_id=tmux_term
 
-TERM_WORKSPACE="9:term"
-TERM_APP_ID=tmux_term
+focused_output=$(swaymsg -t get_outputs -r |
+                 jq -r '.[] | select(.focused == true) | .name')
+focused_workspace=$(swaymsg -t get_workspaces -r |
+                    jq -r '.[] | select(.focused == true) | .name')
 
-FOCUSED_OUTPUT=$(swaymsg -t get_outputs -r |
-                 jq '.[] | select(.focused == true) | .name' |
-                 tr -d '"')
-FOCUSED_WORKSPACE=$(swaymsg -t get_workspaces -r |
-                    jq '.[] | select(.focused == true) | .name' |
-                    tr -d '"')
-
-if [ "$FOCUSED_WORKSPACE" = "$TERM_WORKSPACE" ]; then
+if [ "$focused_workspace" = "$term_workspace" ]; then
     swaymsg workspace back_and_forth
+
 else
-    swaymsg workspace $TERM_WORKSPACE
-    swaymsg move workspace to $FOCUSED_OUTPUT
-    swaymsg workspace $TERM_WORKSPACE
+    swaymsg workspace $term_workspace
+    swaymsg move workspace to $focused_output
+    swaymsg workspace $term_workspace
 
     if ! (swaymsg -t get_tree -r |
-          jq -e "recurse(.nodes[]) | select(.app_id == \"$TERM_APP_ID\")" > /dev/null); then
-        exec alacritty --class $TERM_APP_ID -e \
+          jq -e "recurse(.nodes[]) | select(.app_id == \"$term_app_id\")" > /dev/null); then
+        exec alacritty --class $term_app_id -e \
             tmux new-session -A -s default
+        # exec foot --app-id $term_app_id \
+        #     tmux new-session -A -s default
     fi
 fi

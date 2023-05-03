@@ -19,12 +19,13 @@ prepend_path () {
 # export SWEETHOME3D_JAVA3D=1.6
 # export WLR_DRM_NO_MODIFIERS=1
 export EDITOR=nvim
-export LIBGL_ALWAYS_SOFTWARE=1
+# export LIBGL_ALWAYS_SOFTWARE=1
 export QT_QPA_PLATFORMTHEME=qt5ct
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export VISUAL=nvim
 
 prepend_path ~/opt/python310/bin
+prepend_path ~/opt/river/bin
 prepend_path ~/bin
 export PATH
 

@@ -25,7 +25,9 @@ install_python_venv() {
     BIN_PYTHON=$BIN_DIR/$PYTHON$MAJOR.$MINOR
 
     $PYTHON_CMD -m venv --system-site-packages $VENV_DIR
-    $VENV_PIP -q install -U -r $REQUIREMENTS
+    if [ -f "$REQUIREMENTS" ]; then
+        $VENV_PIP -q install -U -r $REQUIREMENTS
+    fi
 
     echo -e "#!/bin/sh\\nexec $VENV_PYTHON \"\$@\"" > $BIN_PYTHON
     chmod +x $BIN_PYTHON
@@ -65,6 +67,14 @@ symlink ~/.dotfiles/claws/claws-mail ~/bin/claws-mail
 mkdir -p ~/.config/cudatext/settings
 symlink ~/.dotfiles/cudatext/user.json ~/.config/cudatext/settings/user.json
 
+# drawio
+if [ -f /usr/share/applications/drawio.desktop ]; then
+    symlink ~/.dotfiles/drawio/drawio ~/bin/drawio
+    cp /usr/share/applications/drawio.desktop ~/.local/share/applications
+    sed -i "s/^Exec=\\S*/Exec=$(cd; pwd | sed 's/\//\\\//g')\\/bin\\/drawio/g" \
+        ~/.local/share/applications/drawio.desktop
+fi
+
 # dunst
 symlink ~/.dotfiles/dunst ~/.config/dunst
 
@@ -73,6 +83,9 @@ symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
 
 # i3
 symlink ~/.dotfiles/i3 ~/.config/i3
+
+# kanshi
+symlink ~/.dotfiles/kanshi ~/.config/kanshi
 
 # lein
 symlink ~/.dotfiles/lein/lein ~/bin/lein
@@ -95,6 +108,7 @@ symlink ~/.dotfiles/polybar ~/.config/polybar
 install_python_venv pypy3
 install_python_venv python3.8
 install_python_venv python3.9
+install_python_venv python3.11
 install_python_venv python3.10
 
 # qt-designer

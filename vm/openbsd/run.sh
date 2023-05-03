@@ -5,7 +5,7 @@ set -e
 cd $(dirname -- "$0")
 
 if [ ! -f openbsd.iso ]; then
-    curl -L -o openbsd.iso https://cdn.openbsd.org/pub/OpenBSD/6.9/i386/cd69.iso
+    curl -L -o openbsd.iso https://cdn.openbsd.org/pub/OpenBSD/7.3/i386/cd73.iso
 fi
 
 if [ ! -f openbsd.qcow2 ]; then
@@ -22,4 +22,5 @@ exec qemu-system-x86_64 \
     -netdev user,id=net0 \
     -usb \
     -device usb-tablet \
+    -nographic \
     "$@"

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# TODO edit /usr/lib/draw.io/drawio/src/main/webapp/electron.js
+# let argv = process.argv;
+# argv = argv.filter(i => !i.startsWith('--enable-features=') && !i.startsWith('--ozone-platform='));
+
+exec electron21 \
+    $([ -n "$WAYLAND_DISPLAY" ] && \
+      echo "--enable-features=UseOzonePlatform --ozone-platform=wayland") \
+    /usr/lib/draw.io "$@"
