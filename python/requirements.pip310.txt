@@ -1,3 +1,2 @@
 doit
-jedi-language-server
 pip

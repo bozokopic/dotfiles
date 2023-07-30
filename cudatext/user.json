@@ -1,7 +1,7 @@
 {
-  "font_name__linux" : "Roboto Mono",
+  "font_name__linux" : "monospace",
   "font_size__linux" : 12,
-  "ui_font_name__linux" : "Inter",
+  "ui_font_name__linux" : "sans-serif",
   "ui_font_size__linux" : 12,
   "ui_font_output_size__linux" : 12,
   "show_cur_line" : true,

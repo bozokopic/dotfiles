@@ -1,5 +1,5 @@
 * {
-    font-family: Inter Regular;
+    font-family: sans-serif;
     font-size: 12pt;
     color: white;
 }
@@ -42,5 +42,5 @@ window#waybar {
 #tray {
     padding: 0 15px;
     border-left: 2px solid rgba(255, 255, 255, 0.2);
-    font-family: "RobotoMono Nerd Font";
+    font-family: monospace;
 }

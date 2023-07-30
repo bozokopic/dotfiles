@@ -9,18 +9,18 @@ focused_workspace=$(swaymsg -t get_workspaces -r |
                     jq -r '.[] | select(.focused == true) | .name')
 
 if [ "$focused_workspace" = "$term_workspace" ]; then
-    swaymsg workspace back_and_forth
+    swaymsg -q workspace back_and_forth
 
 else
-    swaymsg workspace $term_workspace
-    swaymsg move workspace to $focused_output
-    swaymsg workspace $term_workspace
+    swaymsg -q workspace $term_workspace
+    swaymsg -q move workspace to $focused_output
+    swaymsg -q workspace $term_workspace
 
     if ! (swaymsg -t get_tree -r |
           jq -e "recurse(.nodes[]) | select(.app_id == \"$term_app_id\")" > /dev/null); then
-        # exec alacritty --class $term_app_id -e \
-        #     tmux new-session -A -s default
-        exec foot --app-id $term_app_id \
-            tmux new-session -A -s default
+        exec alacritty --class $term_app_id -e \
+             tmux new-session -A -s default
+        # exec foot --app-id $term_app_id \
+        #    tmux new-session -A -s default
     fi
 fi

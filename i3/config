@@ -18,7 +18,7 @@ workspace $ws7 output DP1-3
 workspace $ws8 output DP1-3
 
 set $mod Mod4
-font pango:Inter Medium 12
+font pango:sans-serif 12
 floating_modifier $mod
 default_border pixel 4
 

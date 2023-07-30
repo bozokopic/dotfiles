@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd({"BufWritePost"}, {
 
 -- gui settings
 vim.o.linespace = 4
-vim.o.guifont = "Roboto_Mono:h12"
+vim.o.guifont = "monospace:h12"
 
 -- neovide settings
 if vim.g.neovide then

@@ -78,6 +78,9 @@ fi
 # dunst
 symlink ~/.dotfiles/dunst ~/.config/dunst
 
+# fontconfig
+symlink ~/.dotfiles/fontconfig ~/.config/fontconfig
+
 # foot
 symlink ~/.dotfiles/foot ~/.config/foot
 
@@ -120,22 +123,21 @@ symlink ~/.dotfiles/qt-designer/qt-designer.desktop \
 
 # qutebrowser
 mkdir -p ~/.config/qutebrowser
-symlink ~/.dotfiles/qutebrowser/autoconfig.yml ~/.config/qutebrowser/autoconfig.yml
+symlink ~/.dotfiles/qutebrowser/autoconfig.yml \
+        ~/.config/qutebrowser/autoconfig.yml
 
 # radio
 symlink ~/.dotfiles/radio/student ~/bin/radio-student
 symlink ~/.dotfiles/radio/sljeme ~/bin/radio-sljeme
 
 # ranger
-mkdir -p ~/.config/ranger
-symlink ~/.dotfiles/ranger/rc.conf ~/.config/ranger/rc.conf
+symlink ~/.dotfiles/ranger ~/.config/ranger
 
 # river
 symlink ~/.dotfiles/river ~/.config/river
 
 # rofi
-mkdir -p ~/.config/rofi
-symlink ~/.dotfiles/rofi/config.rasi ~/.config/rofi/config.rasi
+symlink ~/.dotfiles/rofi ~/.config/rofi
 
 # setkbmap
 symlink ~/.dotfiles/setkbmap/setkbmap ~/bin/setkbmap
@@ -177,7 +179,7 @@ done
 symlink ~/.dotfiles/sway ~/.config/sway
 
 # tmux
-symlink ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+symlink ~/.dotfiles/tmux ~/.config/tmux
 
 # vm
 mkdir -p ~/vm/alpine

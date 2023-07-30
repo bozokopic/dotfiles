@@ -6,7 +6,7 @@ seat seat0 xcursor_theme default 32
 
 input type:touchpad tap enable
 
-font "pango:Inter Medium 12"
+font "pango:sans-serif 12"
 floating_modifier $mod
 default_border pixel 4
 
