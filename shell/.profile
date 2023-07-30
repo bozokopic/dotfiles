@@ -26,6 +26,7 @@ export VISUAL=nvim
 
 prepend_path ~/opt/python311/bin
 prepend_path ~/opt/river/bin
+prepend_path ~/opt/janet/bin
 prepend_path ~/bin
 export PATH
 

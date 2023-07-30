@@ -51,9 +51,9 @@ vim.o.colorcolumn = "80"
 vim.o.cursorline = true
 
 -- set tab width and use spaces for tabs
-vim.o.tabstop = 4 
-vim.o.shiftwidth = 4 
-vim.o.softtabstop = 4 
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
 vim.o.expandtab = true
 
 -- disable netrw
@@ -87,6 +87,9 @@ vim.api.nvim_create_autocmd({"FileType"}, {
     pattern = "make",
     command = "set tabstop=4 shiftwidth=8 softtabstop=0 noexpandtab"
 })
+
+-- trim whitespace
+vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
 
 -- reload vimrc on change
 vim.api.nvim_create_augroup("reload_vimrc", {})
@@ -139,10 +142,10 @@ require('packer').startup {
         use {
             'tanvirtin/monokai.nvim',
             config = function()
-                require('monokai').setup({})
+                require('monokai').setup {}
             end
         }
-        
+
         use 'christoomey/vim-tmux-navigator'
 
         -- use 'jiangmiao/auto-pairs'
@@ -155,7 +158,7 @@ require('packer').startup {
         }
 
         use 'mg979/vim-visual-multi'
-        
+
         use {
             'nvim-tree/nvim-web-devicons',
             config = function()
@@ -171,7 +174,7 @@ require('packer').startup {
                 'nvim-lua/plenary.nvim'
             },
             after = {
-                'nvim-web-devicons' 
+                'nvim-web-devicons'
             },
             config = function()
                 require("nvim-tree").setup {
@@ -206,7 +209,7 @@ require('packer').startup {
 
         use {
             'romgrk/barbar.nvim',
-            after = { 
+            after = {
                 'nvim-tree.lua',
                 'nvim-web-devicons'
             },
@@ -257,7 +260,7 @@ require('packer').startup {
 
         use {
             'nvim-telescope/telescope.nvim',
-            requires = { 
+            requires = {
                 'BurntSushi/ripgrep',
                 'nvim-lua/plenary.nvim',
                 'cljoly/telescope-repo.nvim'
@@ -344,6 +347,35 @@ require('packer').startup {
                 --     cmd = {'clangd', '--header-insertion=never'}
                 -- }
                 -- lspconfig.tsserver.setup {}
+            end
+        }
+
+        use {
+            'hrsh7th/nvim-cmp',
+            requires = {
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-vsnip',
+                'hrsh7th/vim-vsnip'
+            },
+            config = function()
+                local cmp = require('cmp')
+                cmp.setup {
+                    snippet = {
+                        expand = function (args)
+                            vim.fn["vsnip#anonymous"](args.body)
+                        end
+                    },
+                    mapping = cmp.mapping.preset.insert({
+                        ['<C-Space>'] = cmp.mapping.complete(),
+                        ['<C-e>'] = cmp.mapping.abort(),
+                        ['<CR>'] = cmp.mapping.confirm({ select = true })
+                    }),
+                    sources = cmp.config.sources({
+                        { name = 'nvim_lsp' },
+                        { name = 'buffer' }
+                    })
+                }
             end
         }
 

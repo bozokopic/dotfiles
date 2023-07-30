@@ -6,7 +6,7 @@ profile single {
 
 profile dual {
     output eDP-1
-    output DP-6
+    output *
     exec ~/.config/kanshi/dual.sh
 }
 

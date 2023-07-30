@@ -78,6 +78,9 @@ fi
 # dunst
 symlink ~/.dotfiles/dunst ~/.config/dunst
 
+# foot
+symlink ~/.dotfiles/foot ~/.config/foot
+
 # git
 symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
 
