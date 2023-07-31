@@ -6,12 +6,20 @@ export GPG_TTY=$(tty)
 
 bindkey -v
 
-fpath=(~/.dotfiles/shell/zsh/tabcompletion $fpath)
+fpath=(~/.dotfiles/shell/zsh/tabcompletion
+       $fpath)
 autoload -Uz compinit
 compinit
 
-. ~/.dotfiles/shell/zsh/zsh-git-prompt/zshrc.sh
-PROMPT='[%F{green}%n%f@%m %F{green}%~%f $(git_super_status)]$ '
+setopt PROMPT_SUBST
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM=auto
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_STATESEPARATOR='|'
+. ~/.dotfiles/shell/git-prompt.sh
+PROMPT='[%F{green}%n%f@%m %F{green}%~%f$(__git_ps1 " (%s)")]$ '
 
 [ -n "$(command -v fzf)" ] && . ~/.dotfiles/shell/zsh/fzf/key-bindings.zsh
 
