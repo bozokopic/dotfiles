@@ -177,6 +177,7 @@ done
 
 # sway
 symlink ~/.dotfiles/sway ~/.config/sway
+symlink ~/.dotfiles/sway/run-sway.sh ~/bin/run-sway
 
 # tmux
 symlink ~/.dotfiles/tmux ~/.config/tmux
