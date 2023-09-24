@@ -1,0 +1,6 @@
+#!/bin/sh
+
+URL=https://uk1.streamingpulse.com/ssl/RadioJaska
+
+# mplayer -ao pulse -quiet $URL | ts '[%Y-%m-%d %H:%M:%S]'
+exec ffmpeg -i $URL -f pulse -name ffmpeg "radio jaska"

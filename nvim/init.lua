@@ -308,7 +308,8 @@ require('packer').startup {
                 'monokai.nvim'
             },
             config = function()
-                vim.minimap_git_colors = 1
+                vim.g.minimap_highlight_range = 1
+                vim.g.minimap_git_colors = 1
                 vim.keymap.set('', '<F4>', vim.cmd.MinimapToggle)
             end
         }
@@ -361,13 +362,22 @@ require('packer').startup {
             config = function()
                 local cmp = require('cmp')
                 cmp.setup {
+                    completion = {
+                        autocomplete = false
+                    },
                     snippet = {
                         expand = function (args)
                             vim.fn["vsnip#anonymous"](args.body)
                         end
                     },
                     mapping = cmp.mapping.preset.insert({
-                        ['<C-Space>'] = cmp.mapping.complete(),
+                        ['<C-Space>'] = function()
+                            if cmp.visible() then
+                                cmp.close()
+                            else
+                                cmp.complete()
+                            end
+                        end,
                         ['<C-e>'] = cmp.mapping.abort(),
                         ['<CR>'] = cmp.mapping.confirm({ select = true })
                     }),

@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Qt6 Designer
-Exec=/home/bozo/opt/python310/lib/python3.10/site-packages/PySide6/designer
-Terminal=false
-Categories=Development;

@@ -24,11 +24,13 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export VISUAL=nvim
 
-prepend_path ~/opt/python311/bin
 prepend_path ~/opt/river/bin
 prepend_path ~/opt/janet/bin
+prepend_path ~/opt/pkgsrc/bin
 prepend_path ~/bin
 export PATH
+
+[ -n "$(command -v luarocks)" ] && eval "$(luarocks path)"
 
 
 # nix_profile_sh=~/.nix-profile/etc/profile.d/nix.sh

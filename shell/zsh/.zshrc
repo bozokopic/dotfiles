@@ -25,6 +25,8 @@ PROMPT='[%F{green}%n%f@%m %F{green}%~%f$(__git_ps1 " (%s)")]$ '
 
 [ -n "$(command -v broot)" ] && . ~/.dotfiles/shell/zsh/broot.zsh
 
+[ -n "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
+
 SYSTEM_PLUGINS=(/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
                 /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
                 /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh)
