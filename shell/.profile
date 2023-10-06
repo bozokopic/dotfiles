@@ -8,6 +8,13 @@ prepend_path () {
     esac
 }
 
+if [ -z "${XDG_RUNTIME_DIR}" ]; then 
+    export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir 
+    if [ ! -d "${XDG_RUNTIME_DIR}" ]; then 
+        mkdir "${XDG_RUNTIME_DIR}" 
+        chmod 0700 "${XDG_RUNTIME_DIR}" 
+    fi 
+fi
 
 # export CHICKEN_REPOSITORY=~/programs/chicken_repository
 # export GDK_BACKEND=wayland
@@ -24,10 +31,11 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export VISUAL=nvim
 
-prepend_path ~/opt/river/bin
-prepend_path ~/opt/janet/bin
-prepend_path ~/opt/pkgsrc/bin
-prepend_path ~/bin
+prepend_path ~/.local/opt/river/bin
+prepend_path ~/.local/opt/janet/bin
+prepend_path ~/.local/opt/pkgsrc/bin
+prepend_path ~/.local/opt/nnn/bin
+prepend_path ~/.local/bin
 export PATH
 
 [ -n "$(command -v luarocks)" ] && eval "$(luarocks path)"
@@ -37,10 +45,3 @@ export PATH
 # [ -e $nix_profile_sh ] && . $nix_profile_sh
 # export LOCALE_ARCHIVE=~/.nix-profile/lib/locale/locale-archive
 
-if [ -z "${XDG_RUNTIME_DIR}" ]; then 
-    export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir 
-    if [ ! -d "${XDG_RUNTIME_DIR}" ]; then 
-        mkdir "${XDG_RUNTIME_DIR}" 
-        chmod 0700 "${XDG_RUNTIME_DIR}" 
-    fi 
-fi
