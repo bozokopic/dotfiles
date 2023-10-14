@@ -37,7 +37,7 @@ symlink $DOTFILES_DIR/bspwm $CONFIG_DIR/bspwm
 if [ -f /usr/share/applications/chromium.desktop ]; then
     symlink $DOTFILES_DIR/chromium/chromium $BIN_DIR/chromium
     cp /usr/share/applications/chromium.desktop $APP_DIR
-    sed -i "s/^Exec=\\/usr/Exec=$(cd; pwd | sed 's/\//\\\//g')/g" \
+    sed -i "s/^Exec=\\/usr/Exec=$(cd $LOCAL_DIR; pwd | sed 's/\//\\\//g')/g" \
         $APP_DIR/chromium.desktop
 fi
 
@@ -52,7 +52,7 @@ symlink $DOTFILES_DIR/cudatext/user.json $CONFIG_DIR/cudatext/settings/user.json
 if [ -f /usr/share/applications/drawio.desktop ]; then
     symlink $DOTFILES_DIR/drawio/drawio $BIN_DIR/drawio
     cp /usr/share/applications/drawio.desktop $APP_DIR
-    sed -i "s/^Exec=\\S*/Exec=$(cd; pwd | sed 's/\//\\\//g')\\/bin\\/drawio/g" \
+    sed -i "s/^Exec=\\S*/Exec=$(cd $LOCAL_DIR; pwd | sed 's/\//\\\//g')\\/bin\\/drawio/g" \
         $APP_DIR/drawio.desktop
 fi
 
@@ -158,13 +158,15 @@ symlink $DOTFILES_DIR/sway/run-sway.sh $BIN_DIR/run-sway
 symlink $DOTFILES_DIR/tmux $CONFIG_DIR/tmux
 
 # vm
-mkdir -p $VM_DIR/alpine
+mkdir -p $VM_DIR/alpine/armv7
+mkdir -p $VM_DIR/alpine/x86_64
 mkdir -p $VM_DIR/archlinux/armv7
 mkdir -p $VM_DIR/debian/armv7
 mkdir -p $VM_DIR/netbsd
 mkdir -p $VM_DIR/openbsd
 mkdir -p $VM_DIR/win11
-symlink $DOTFILES_DIR/vm/alpine/run.sh $VM_DIR/alpine/run.sh
+symlink $DOTFILES_DIR/vm/alpine/x86_64/run.sh $VM_DIR/alpine/x86_64/run.sh
+symlink $DOTFILES_DIR/vm/alpine/armv7/run.sh $VM_DIR/alpine/armv7/run.sh
 symlink $DOTFILES_DIR/vm/archlinux/armv7/run.sh $VM_DIR/archlinux/armv7/run.sh
 symlink $DOTFILES_DIR/vm/debian/armv7/run.sh $VM_DIR/debian/armv7/run.sh
 symlink $DOTFILES_DIR/vm/netbsd/run.sh $VM_DIR/netbsd/run.sh

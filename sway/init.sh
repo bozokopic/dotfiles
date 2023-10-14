@@ -1,23 +1,29 @@
 #!/bin/sh
 
 # export GDK_DPI_SCALE=0.95
-gsettings set org.gnome.desktop.interface scaling-factor 1
-gsettings set org.gnome.desktop.interface text-scaling-factor 1
-gsettings set org.gnome.desktop.interface cursor-size 32
+if command -v gsettings > /dev/null; then
+    gsettings set org.gnome.desktop.interface scaling-factor 1
+    gsettings set org.gnome.desktop.interface text-scaling-factor 1
+    gsettings set org.gnome.desktop.interface cursor-size 32
+fi
 
 export QT_QPA_PLATFORM=wayland
-systemctl --user import-environment \
-    QT_QPA_PLATFORM \
-    SWAYSOCK \
-    WAYLAND_DISPLAY \
-    XDG_SESSION_TYPE \
-    XDG_CURRENT_DESKTOP
-dbus-update-activation-environment --systemd --all
+export XDG_CURRENT_DESKTOP=sway
 
-systemctl --user restart plasma-kactivitymanagerd.service
+if command -v systemctl > /dev/null; then
+    systemctl --user import-environment \
+        QT_QPA_PLATFORM \
+        SWAYSOCK \
+        WAYLAND_DISPLAY \
+        XDG_SESSION_TYPE \
+        XDG_CURRENT_DESKTOP
+    dbus-update-activation-environment --systemd --all
+
+    systemctl --user restart xdg-desktop-portal
+    systemctl --user restart xdg-desktop-portal-wlr
+    systemctl --user restart plasma-kactivitymanagerd
+fi
 
 ~/.config/sway/swayidle.sh &
-
 kanshi &
-
 waybar -c ~/.config/waybar/sway.conf &
