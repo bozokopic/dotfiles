@@ -8,13 +8,15 @@ prepend_path () {
     esac
 }
 
-if [ -z "${XDG_RUNTIME_DIR}" ]; then 
+[ -z "$XDG_RUNTIME_DIR" ] && \
     export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir 
-    if [ ! -d "${XDG_RUNTIME_DIR}" ]; then 
-        mkdir "${XDG_RUNTIME_DIR}" 
-        chmod 0700 "${XDG_RUNTIME_DIR}" 
-    fi 
-fi
+
+[ ! -d "$XDG_RUNTIME_DIR" ] && \
+    mkdir "$XDG_RUNTIME_DIR" && \
+    chmod 0700 "$XDG_RUNTIME_DIR"
+
+[ -z "$SSH_AUTH_SOCK" ] && \
+    export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 # export CHICKEN_REPOSITORY=~/programs/chicken_repository
 # export GDK_BACKEND=wayland
@@ -25,10 +27,9 @@ fi
 # export SDL_VIDEODRIVER=wayland
 # export SWEETHOME3D_JAVA3D=1.6
 # export WLR_DRM_NO_MODIFIERS=1
-export EDITOR=nvim
 # export LIBGL_ALWAYS_SOFTWARE=1
+export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export VISUAL=nvim
 
 prepend_path ~/.local/opt/river/bin
@@ -38,7 +39,8 @@ prepend_path ~/.local/opt/nnn/bin
 prepend_path ~/.local/bin
 export PATH
 
-[ -n "$(command -v luarocks)" ] && eval "$(luarocks path)"
+[ -n "$(command -v luarocks)" ] && \
+    eval "$(luarocks path)"
 
 
 # nix_profile_sh=~/.nix-profile/etc/profile.d/nix.sh
