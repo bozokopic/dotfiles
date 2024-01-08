@@ -26,3 +26,8 @@
     submodulesummary = 1
 [init]
 	defaultBranch = master
+[sendemail]
+    smtpserver = echo.mxrouting.net
+    smtpuser = bozo@kopic.xyz
+    smtpencryption = ssl
+    smtpserverport = 465

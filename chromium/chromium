@@ -1,6 +1,9 @@
 #!/bin/sh
 
-exec /usr/bin/chromium \
-    $([ -n "$WAYLAND_DISPLAY" ] && \
-      echo "--enable-features=UseOzonePlatform --ozone-platform=wayland") \
-    "$@"
+if [ -n "$WAYLAND_DISPLAY" ]; then
+    args="--enable-features=UseOzonePlatform --ozone-platform=wayland"
+else
+    args=""
+fi
+
+exec /usr/bin/chromium $args "$@"

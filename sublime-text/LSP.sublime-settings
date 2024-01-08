@@ -5,21 +5,25 @@
             "command": ["jedi-language-server"],
 			"selector": "source.python",
 			"enabled": false,
+            "diagnostics_mode": "open_files"
 		},
         "bash-language-server": {
             "command": ["bash-language-server", "start"],
             "selector": "source.shell.bash",
             "enabled": true,
+            "diagnostics_mode": "open_files"
         },
         "clangd": {
             "command": ["clangd", "--header-insertion=never"],
             "selector": "source.c | source.c++",
             "enabled": true,
+            "diagnostics_mode": "open_files"
         },
         "typescript-language-server": {
             "command": ["typescript-language-server", "--stdio"],
             "selector": "source.ts",
             "enabled": true,
+            "diagnostics_mode": "open_files"
         },
 	},
 }

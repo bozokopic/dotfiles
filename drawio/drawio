@@ -4,7 +4,10 @@
 # let argv = process.argv;
 # argv = argv.filter(i => !i.startsWith('--enable-features=') && !i.startsWith('--ozone-platform='));
 
-exec electron25 \
-    $([ -n "$WAYLAND_DISPLAY" ] && \
-      echo "--enable-features=UseOzonePlatform --ozone-platform=wayland") \
-    /usr/lib/draw.io "$@"
+if [ -n "$WAYLAND_DISPLAY" ]; then
+    args="--enable-features=UseOzonePlatform --ozone-platform=wayland"
+else
+    args=""
+fi
+
+exec electron25 $args /usr/lib/draw.io "$@"

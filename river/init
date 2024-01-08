@@ -2,6 +2,9 @@
 
 mod=Mod4
 
+# displays="$(wlr-randr | grep -e '^[[:alnum:]]' | cut -d ' ' -f 1)"
+# primary=eDP-1
+
 # riverctl map normal None F12 spawn ~/.config/river/terminal.sh
 # riverctl map normal None Print spawn spectacle
 
@@ -17,10 +20,22 @@ riverctl map normal $mod+Shift Q close
 riverctl map normal $mod+Shift Return toggle-fullscreen
 riverctl map normal $mod+Shift Space toggle-float
 
-for i in $(seq 1 9); do
-    tags=$((1 << ($i - 1)))
-    riverctl map normal $mod $i set-focused-tags $tags
-    riverctl map normal $mod+Shift $i set-view-tags $tags
+riverctl map normal $mod h focus-view left
+riverctl map normal $mod j focus-view down
+riverctl map normal $mod k focus-view up
+riverctl map normal $mod l focus-view right
+
+riverctl map normal $mod+Shift H swap left
+riverctl map normal $mod+Shift J swap down
+riverctl map normal $mod+Shift K swap up
+riverctl map normal $mod+Shift L swap right
+
+for i in 1:1 2:2 3:3 4:4 5:a 6:s 7:d 8:f; do
+    index=${i%:*}
+    key=${i#*:}
+    tags=$((1 << ($index - 1)))
+    riverctl map normal $mod $key set-focused-tags $tags
+    riverctl map normal $mod+Shift $key set-view-tags $tags
 done
 
 riverctl focus-follows-cursor normal
@@ -30,19 +45,28 @@ riverctl xcursor-theme default 32
 riverctl default-layout rivertile
 
 # export GDK_DPI_SCALE=0.95
-gsettings set org.gnome.desktop.interface scaling-factor 1
-gsettings set org.gnome.desktop.interface text-scaling-factor 1
-gsettings set org.gnome.desktop.interface cursor-size 32
+if command -v gsettings > /dev/null; then
+    gsettings set org.gnome.desktop.interface scaling-factor 1
+    gsettings set org.gnome.desktop.interface text-scaling-factor 1
+    gsettings set org.gnome.desktop.interface cursor-size 32
+fi
 
 export QT_QPA_PLATFORM=wayland
-systemctl --user import-environment \
-    QT_QPA_PLATFORM \
-    WAYLAND_DISPLAY \
-    XDG_SESSION_TYPE \
-    XDG_CURRENT_DESKTOP
-dbus-update-activation-environment --systemd --all
+export XDG_CURRENT_DESKTOP=river
 
-systemctl --user restart plasma-kactivitymanagerd.service
+if command -v systemctl > /dev/null; then
+    systemctl --user import-environment \
+        QT_QPA_PLATFORM \
+        SWAYSOCK \
+        WAYLAND_DISPLAY \
+        XDG_SESSION_TYPE \
+        XDG_CURRENT_DESKTOP
+    dbus-update-activation-environment --systemd --all
+
+    systemctl --user restart xdg-desktop-portal
+    systemctl --user restart xdg-desktop-portal-wlr
+    systemctl --user restart plasma-kactivitymanagerd
+fi
 
 waybar -c ~/.config/waybar/river.conf &
 

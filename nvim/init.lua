@@ -206,36 +206,12 @@ require('packer').startup {
                 vim.keymap.set('', '<F5>', vim.cmd.NvimTreeToggle)
             end
         }
-
+        
         use {
-            'romgrk/barbar.nvim',
-            after = {
-                'nvim-tree.lua',
-                'nvim-web-devicons'
-            },
+            'akinsho/bufferline.nvim',
+            requires = 'nvim-tree/nvim-web-devicons',
             config = function()
-                require('bufferline').setup {
-                    auto_hide = false
-                }
-
-                local tree_events = require('nvim-tree.events')
-                local bufferline_api = require('bufferline.api')
-
-                local function get_tree_size()
-                    return require('nvim-tree.view').View.width
-                end
-
-                tree_events.subscribe('TreeOpen', function()
-                    bufferline_api.set_offset(get_tree_size())
-                end)
-
-                tree_events.subscribe('Resize', function()
-                    bufferline_api.set_offset(get_tree_size())
-                end)
-
-                tree_events.subscribe('TreeClose', function()
-                    bufferline_api.set_offset(0)
-                end)
+                require("bufferline").setup()
             end
         }
 

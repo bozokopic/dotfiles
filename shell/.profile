@@ -8,6 +8,11 @@ prepend_path () {
     esac
 }
 
+append_lua_path() {
+    LUA_PATH="${LUA_PATH:+$LUA_PATH;}$1/?.lua;$1/?/init.lua"
+    LUA_CPATH="${LUA_CPATH:+$LUA_CPATH;}$1/?.so"
+}
+
 [ -z "$XDG_RUNTIME_DIR" ] && \
     export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir 
 
@@ -34,7 +39,6 @@ export VISUAL=nvim
 
 prepend_path ~/.local/opt/river/bin
 prepend_path ~/.local/opt/janet/bin
-prepend_path ~/.local/opt/pkgsrc/bin
 prepend_path ~/.local/opt/nnn/bin
 prepend_path ~/.local/bin
 export PATH
@@ -42,6 +46,9 @@ export PATH
 [ -n "$(command -v luarocks)" ] && \
     eval "$(luarocks path)"
 
+append_lua_path ~/repos/private/bk-lua/src_lua
+export LUA_PATH
+export LUA_CPATH
 
 # nix_profile_sh=~/.nix-profile/etc/profile.d/nix.sh
 # [ -e $nix_profile_sh ] && . $nix_profile_sh

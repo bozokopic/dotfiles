@@ -1,18 +1,14 @@
-#!/bin/sh
-
-set -e
-
-cd $(dirname -- "$0")
+: ${VM_CACHE:?} ${VM_DATA:?}
 
 ISO_URL=https://cdimage.debian.org/debian-cd/current/armhf/iso-cd/debian-11.6.0-armhf-netinst.iso
 KERNEL_URL=http://ftp.us.debian.org/debian/dists/stable/main/installer-armhf/current/images/cdrom/vmlinuz
 INITRD_URL=http://ftp.us.debian.org/debian/dists/stable/main/installer-armhf/current/images/cdrom/initrd.gz
 
-ISO_PATH=$(basename $ISO_URL)
-KERNEL_PATH=$(basename $KERNEL_URL)
-INITRD_PATH=$(basename $INITRD_URL)
+ISO_PATH=$VM_CACHE/$(basename $ISO_URL)
+KERNEL_PATH=$VM_CACHE/$(basename $KERNEL_URL)
+INITRD_PATH=$VM_CACHE/$(basename $INITRD_URL)
 
-IMG_PATH=debian.qcow2
+IMG_PATH=$VM_DATA/debian.qcow2
 
 if [ ! -f $ISO_PATH ]; then
     curl -L -o $ISO_PATH $ISO_URL

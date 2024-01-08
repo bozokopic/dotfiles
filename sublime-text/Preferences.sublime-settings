@@ -51,6 +51,8 @@
 	[
 		"AutoWrap",
 		"Compare Side-By-Side",
+		"Material Theme",
+		"Package Control",
 		"PackageResourceViewer",
 		"Python",
 		"SublimeLinter-eslint",
@@ -72,4 +74,5 @@
 	"update_check": false,
     "sublime_merge_path": null,
     "show_panel_on_build": false,
+	"index_files": true,
 }

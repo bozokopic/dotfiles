@@ -1,18 +1,14 @@
-#!/bin/sh
-
-set -e
-
+: ${VM_CACHE:?} ${VM_DATA:?} ${VM_TMP:?}
 
 WIN11_ZIP_URL="https://aka.ms/windev_VM_virtualbox"
 
-ROOT_PATH=$(cd; pwd)/vm/win11
-WIN11_ZIP_PATH=$ROOT_PATH/win11.zip
-WIN11_IMG_PATH=$ROOT_PATH/win11.qcow2
-TMP_PATH=$ROOT_PATH/tmp
-OVMF_PATH=$ROOT_PATH/OVMF.fd
-TPM_PATH=$ROOT_PATH/tpm
-INIT_ISO_PATH=$ROOT_PATH/init.iso
-SHARE_PATH=$ROOT_PATH/share                  # \\10.0.2.4\qemu
+WIN11_ZIP_PATH=$VM_CACHE/win11.zip
+OVMF_PATH=$VM_CACHE/OVMF.fd
+INIT_ISO_PATH=$VM_CACHE/init.iso
+
+WIN11_IMG_PATH=$VM_DATA/win11.qcow2
+TPM_PATH=$VM_DATA/tpm
+SHARE_PATH=$VM_DATA/share                  # \\10.0.2.4\qemu
 
 
 SAVE=
@@ -24,18 +20,17 @@ while getopts s flag; do
 done
 
 
-mkdir -p $ROOT_PATH $SHARE_PATH
+mkdir -p $SHARE_PATH
 
 if [ ! -f $WIN11_ZIP_PATH ]; then
     wget --show-progress -q -c -O $WIN11_ZIP_PATH $WIN11_ZIP_URL
 fi
 
 if [ ! -f $WIN11_IMG_PATH ]; then
-    rm -rf $TMP_PATH
-    mkdir -p $TMP_PATH
-    unzip -p $WIN11_ZIP_PATH *.ova | tar -x -C $TMP_PATH
-    qemu-img convert -p -c -f vmdk -O qcow2 $TMP_PATH/*.vmdk $WIN11_IMG_PATH
-    rm -rf $TMP_PATH
+    mkdir -p $VM_TMP/img
+    unzip -p $WIN11_ZIP_PATH *.ova | tar -x -C $VM_TMP/img
+    qemu-img convert -p -c -f vmdk -O qcow2 $VM_TMP/img/*.vmdk $WIN11_IMG_PATH
+    rm -rf $VM_TMP/img
 fi
 
 if [ ! -f $OVMF_PATH ]; then
@@ -43,12 +38,11 @@ if [ ! -f $OVMF_PATH ]; then
 fi
 
 if [ ! -f $INIT_ISO_PATH ]; then
-    rm -rf $TMP_PATH
-    mkdir -p $TMP_PATH
-    cat > $TMP_PATH/init.bat << EOF
+    mkdir -p $VM_TMP/iso
+    cat > $VM_TMP/iso/init.bat << EOF
 powershell -executionpolicy bypass d:\\_init.ps1
 EOF
-    cat > $TMP_PATH/_init.ps1 << EOF
+    cat > $VM_TMP/iso/_init.ps1 << EOF
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Set-MpPreference -DisableRealtimeMonitoring \$true
 Set-Service -Name wuauserv -StartupType Disabled
@@ -80,8 +74,8 @@ cmd.exe /C "pacman -Syu --noconfirm"
 cmd.exe /C "pacman -Syu --noconfirm"
 cmd.exe /C "pacman -Syu --noconfirm base-devel git mingw-w64-x86_64-toolchain socat"
 EOF
-    mkisofs -J -l -R -V "init" -iso-level 4 -o $INIT_ISO_PATH $TMP_PATH
-    rm -rf $TMP_PATH
+    mkisofs -J -l -R -V "init" -iso-level 4 -o $INIT_ISO_PATH $VM_TMP/iso
+    rm -rf $VM_TMP/iso
 fi
 
 if [ ! -z $SAVE ]; then
