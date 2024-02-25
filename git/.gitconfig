@@ -1,7 +1,7 @@
 [user]
     name = bozo.kopic
     email = bozo@kopic.xyz
-    signingkey = CC79457AF7EEDD5558E3D8303BFE72132DE3F554
+    signingkey = 1E5A7C9229CE0BEE9488499B61E770F9ED93DF2A
 [http]
     sslVerify = false
 [branch]

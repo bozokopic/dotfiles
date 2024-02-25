@@ -54,3 +54,4 @@ export LUA_CPATH
 # [ -e $nix_profile_sh ] && . $nix_profile_sh
 # export LOCALE_ARCHIVE=~/.nix-profile/lib/locale/locale-archive
 
+export NUMEN_MODEL=~/.local/share/vosk-models/small-en-us

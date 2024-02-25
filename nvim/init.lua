@@ -40,6 +40,11 @@ vim.o.fileformats = "unix,dos"
 vim.g.vim_json_conceal = 0
 vim.g.markdown_syntax_conceal = 0
 -- autocmd FileType json set conceallevel=0
+vim.o.conceallevel = 0
+vim.api.nvim_create_autocmd({"FileType"}, {
+    pattern = "json",
+    command = "set conceallevel=0"
+})
 
 -- show line numbers
 vim.o.number = true
@@ -278,17 +283,17 @@ require('packer').startup {
             end
         }
 
-        use {
-            'wfxr/minimap.vim',
-            after = {
-                'monokai.nvim'
-            },
-            config = function()
-                vim.g.minimap_highlight_range = 1
-                vim.g.minimap_git_colors = 1
-                vim.keymap.set('', '<F4>', vim.cmd.MinimapToggle)
-            end
-        }
+        -- use {
+        --     'wfxr/minimap.vim',
+        --     after = {
+        --         'monokai.nvim'
+        --     },
+        --     config = function()
+        --         vim.g.minimap_highlight_range = 1
+        --         vim.g.minimap_git_colors = 1
+        --         vim.keymap.set('', '<F4>', vim.cmd.MinimapToggle)
+        --     end
+        -- }
 
         use {
             'numToStr/Comment.nvim',
@@ -299,20 +304,20 @@ require('packer').startup {
 
         use 'rafamadriz/neon'
 
-        use {
-            'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate',
-            config = function()
-                require('nvim-treesitter.configs').setup {
-                    ensure_installed = {
-                        'python', 'bash', 'lua', 'javascript', 'c', 'json', 'html'
-                    },
-                    highlight = {
-                        enable = true
-                    }
-                }
-            end
-        }
+        -- use {
+        --     'nvim-treesitter/nvim-treesitter',
+        --     run = ':TSUpdate',
+        --     config = function()
+        --         require('nvim-treesitter.configs').setup {
+        --             ensure_installed = {
+        --                 'python', 'bash', 'lua', 'javascript', 'c', 'json', 'html'
+        --             },
+        --             highlight = {
+        --                 enable = true
+        --             }
+        --         }
+        --     end
+        -- }
 
         use {
             'neovim/nvim-lspconfig',

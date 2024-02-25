@@ -22,6 +22,12 @@ if command -v systemctl > /dev/null; then
     systemctl --user restart xdg-desktop-portal
     systemctl --user restart xdg-desktop-portal-wlr
     systemctl --user restart plasma-kactivitymanagerd
+else
+    dbus-update-activation-environment WAYLAND_DISPLAY \
+                                       XDG_CURRENT_DESKTOP
+
+    /usr/libexec/pipewire-launcher &
+    /usr/libexec/xdg-desktop-portal-wlr &
 fi
 
 ~/.config/sway/swayidle.sh &

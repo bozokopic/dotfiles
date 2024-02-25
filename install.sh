@@ -6,10 +6,7 @@ symlink () {
     ln -sfT "$@"
 }
 
-if [ ! -d "$HOME" ]; then
-    echo "invalid \$HOME"
-    exit 1
-fi
+: ${HOME:?}
 
 DOTFILES_DIR=$HOME/.dotfiles
 CONFIG_DIR=$HOME/.config
@@ -103,6 +100,9 @@ symlink $DOTFILES_DIR/lock/lock.desktop $APP_DIR/lock.desktop
 
 # neomutt
 symlink $DOTFILES_DIR/neomutt $CONFIG_DIR/neomutt
+
+# numen
+symlink $DOTFILES_DIR/numen $CONFIG_DIR/numen
 
 # pictures
 symlink $DOTFILES_DIR/pictures $PICTURES_DIR

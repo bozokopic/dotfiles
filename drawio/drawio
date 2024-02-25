@@ -10,4 +10,4 @@ else
     args=""
 fi
 
-exec electron25 $args /usr/lib/draw.io "$@"
+exec ~/.local/opt/drawio.AppImage $args "$@"

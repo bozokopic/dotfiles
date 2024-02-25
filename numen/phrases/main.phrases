@@ -1,0 +1,15 @@
+
+lisa exit please: run killall numen
+
+lisa desk stand please: run ~/.local/opt/venvs/python311/bin/idasen stand
+lisa desk sit please: run ~/.local/opt/venvs/python311/bin/idasen sit
+
+lisa volume mute please: run pulsemixer --mute
+lisa volume un mute please: run pulsemixer --unmute
+lisa volume up please: run pulsemixer --change-volume +10
+lisa volume down please: run pulsemixer --change-volume -10
+lisa volume thirty please: run pulsemixer --set-volume 30
+
+lisa turn on radio peak please: run ~/.config/numen/scripts/radio.sh sljeme &
+lisa turn on radio student please: run ~/.config/numen/scripts/radio.sh student &
+lisa turn off radio please: run ~/.config/numen/scripts/radio.sh &

@@ -6,10 +6,10 @@ export GPG_TTY=$(tty)
 
 bindkey -v
 
-fpath=(~/.dotfiles/shell/zsh/tabcompletion
-       $fpath)
-autoload -Uz compinit
-compinit
+# fpath=(~/.dotfiles/shell/zsh/tabcompletion
+#        $fpath)
+# autoload -Uz compinit
+# compinit
 
 setopt PROMPT_SUBST
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -27,20 +27,23 @@ PROMPT='[%F{green}%n%f@%m %F{green}%~%f$(__git_ps1 " (%s)")]$ '
 
 [ -n "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 
-SYSTEM_PLUGINS=(/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-                /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-                /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh)
+SYSTEM_PLUGINS=(zsh-autosuggestions
+                zsh-syntax-highlighting
+                zsh-history-substring-search)
+SYSTEM_PLUGINS_DIR=/usr/share/zsh/plugins
 for plugin in $SYSTEM_PLUGINS; do
-    [ -e "$plugin" ] && . $plugin
+    [ -e "$SYSTEM_PLUGINS_DIR/$plugin/$plugin.zsh" ] && \
+        . $SYSTEM_PLUGINS_DIR/$plugin/$plugin.zsh
 done
 
 bindkey '\e[1~'       beginning-of-line                 # Home
 bindkey '\e[4~'       end-of-line                       # End
 bindkey '\e[3~'       delete-char                       # Delete
-[ -n "$(command -v history-substring-search-up)" ] && \
+
+if [ -f $SYSTEM_PLUGINS_DIR/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
     bindkey '^[[A'    history-substring-search-up       # Up
-[ -n "$(command -v history-substring-search-down)" ] && \
     bindkey '^[[B'    history-substring-search-down     # Down
+fi
 
 bindkey '^[[1;5D' backward-word                     # Ctrl+Left
 bindkey '^[[1;5C' forward-word                      # Ctrl+Right
