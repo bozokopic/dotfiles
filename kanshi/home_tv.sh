@@ -1,33 +1,30 @@
 #!/bin/sh
 
-display1=eDP-1
-display3=$(swaymsg -t get_outputs -r |
-           jq -r '.[] | select(.model == "LG TV") | .name')
-display2=$(swaymsg -t get_outputs -r |
-           jq -r ".[] | .name | select(. != \"$display1\" and . != \"$display3\")")
+. $(dirname "$(realpath "$0")")/env.sh
+
+tv=$(display_names '.model == "LG TV"')
+secondary=$(display_names ".name != \"$primary\" and .name != \"$tv\"")
+secondary_width=$(display_widths ".name == \"$secondary\"")
 
 swaymsg -q reload
 
-swaymsg -q output $display1 pos 0 0 \
-                            res 1920x1080 \
-                            bg ~/.pictures/bg1.jpg stretch
-swaymsg -q output $display2 pos 1920 0 \
-                            bg ~/.pictures/bg2.jpg stretch
+swaymsg -q output $primary pos 0 0 \
+                           res $primary_res \
+                           bg $bg1 stretch
+swaymsg -q output $secondary pos $primary_width 0 \
+                             bg $bg2 stretch
 
-display2_width=$(swaymsg -t get_outputs -r |
-                 jq -r ".[] | select(.name == \"$display2\") | .current_mode.width")
+swaymsg -q output $tv pos $(($primary_width + $secondary_width)) 0 \
+                      bg $bg1 stretch
 
-swaymsg -q output $display3 pos $((1920 + $display2_width)) 0 \
-                            bg ~/.pictures/bg1.jpg stretch
-
-for workspace in 1:1 3:3 4:4; do
-    swaymsg -q workspace $workspace output $display1
+for workspace in 1:1 2:2 3:3; do
+    swaymsg -q workspace $workspace output $primary
 done
 
 for workspace in 5:a 6:s 7:d 8:f; do
-    swaymsg -q workspace $workspace output $display2
+    swaymsg -q workspace $workspace output $secondary
 done
 
-for workspace in 2:2; do
-    swaymsg -q workspace $workspace output $display3
+for workspace in 4:4; do
+    swaymsg -q workspace $workspace output $tv
 done

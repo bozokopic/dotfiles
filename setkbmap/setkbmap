@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -n "$SWAYSOCK" ]; then
-    swaymsg input '*' xkb_layout "$@"
+    exec swaymsg input '*' xkb_layout "$@"
 else
-    setxkbmap "$@"
+    exec setxkbmap "$@"
 fi

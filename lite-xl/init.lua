@@ -7,21 +7,29 @@ config.ignore_files = {
   "^%.git/"
 }
 
-
-
-
+config.indent_size = 4
 
 
 
 local fontconfig = require "plugins.fontconfig"
 fontconfig.use {
-    font = { name = 'sans-serif', size = 12 * SCALE },
-    code_font = { name = 'monospace', size = 12 * SCALE },
+    font = { name = 'sans-serif', size = 14 * SCALE },
+    code_font = { name = 'monospace', size = 14 * SCALE },
 }
 
 
-config.plugins.nerdicons.use_default_dir_icons = true
-config.plugins.spellcheck.enabled = false
+config.plugins.nerdicons = {
+  use_default_dir_icons = true
+}
+
+config.plugins.spellcheck = {
+  enabled = false
+}
+
+config.plugins.lineguide = {
+  enabled = true,
+  rulers = { 80 }
+}
 
 ------------------------------ Themes ----------------------------------------
 

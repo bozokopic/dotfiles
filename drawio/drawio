@@ -10,4 +10,5 @@ else
     args=""
 fi
 
-exec ~/.local/opt/drawio.AppImage $args "$@"
+# exec ~/.local/opt/drawio.AppImage $args "$@"
+exec /usr/bin/drawio $args "$@"

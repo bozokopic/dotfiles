@@ -49,13 +49,7 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"AutoWrap",
-		"Compare Side-By-Side",
-		"Material Theme",
-		"Package Control",
-		"PackageResourceViewer",
-		"Python",
-		"SublimeLinter-eslint",
+		"Sass",
 		"Vintage",
 	],
 	"line_padding_bottom": 1,
@@ -75,5 +69,5 @@
 	"update_check": false,
     "sublime_merge_path": null,
     "show_panel_on_build": false,
-	"index_files": true,
+	"index_files": false,
 }

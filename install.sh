@@ -33,12 +33,6 @@ mkdir -p $CONFIG_DIR/aerc
 symlink $DOTFILES_DIR/aerc/aerc.conf $CONFIG_DIR/aerc/aerc.conf
 symlink $DOTFILES_DIR/aerc/binds.conf $CONFIG_DIR/aerc/binds.conf
 
-# alacritty
-symlink $DOTFILES_DIR/alacritty $CONFIG_DIR/alacritty
-
-# bspwm
-symlink $DOTFILES_DIR/bspwm $CONFIG_DIR/bspwm
-
 # chromium
 if [ -f /usr/share/applications/chromium.desktop ]; then
     symlink $DOTFILES_DIR/chromium/chromium $BIN_DIR/chromium
@@ -46,9 +40,6 @@ if [ -f /usr/share/applications/chromium.desktop ]; then
     sed -i "s/^Exec=\\/usr/Exec=$(cd $LOCAL_DIR; pwd | sed 's/\//\\\//g')/g" \
         $APP_DIR/chromium.desktop
 fi
-
-# claws
-symlink $DOTFILES_DIR/claws/claws-mail $BIN_DIR/claws-mail
 
 # cudatext
 mkdir -p $CONFIG_DIR/cudatext/settings
@@ -71,11 +62,11 @@ symlink $DOTFILES_DIR/fontconfig $CONFIG_DIR/fontconfig
 # foot
 symlink $DOTFILES_DIR/foot $CONFIG_DIR/foot
 
+# gdb
+symlink $DOTFILES_DIR/gdb/.gdbinit $HOME/.gdbinit
+
 # git
 symlink $DOTFILES_DIR/git/.gitconfig $HOME/.gitconfig
-
-# i3
-symlink $DOTFILES_DIR/i3 $CONFIG_DIR/i3
 
 # idasen
 symlink $DOTFILES_DIR/idasen $CONFIG_DIR/idasen
@@ -100,6 +91,9 @@ symlink $DOTFILES_DIR/lock/lock.desktop $APP_DIR/lock.desktop
 
 # neomutt
 symlink $DOTFILES_DIR/neomutt $CONFIG_DIR/neomutt
+
+# neovide
+symlink $DOTFILES_DIR/neovide $CONFIG_DIR/neovide
 
 # numen
 symlink $DOTFILES_DIR/numen $CONFIG_DIR/numen
@@ -146,6 +140,10 @@ symlink $DOTFILES_DIR/shell/fish $CONFIG_DIR/fish
 # shell - zsh
 symlink $DOTFILES_DIR/shell/zsh/.zshrc $HOME/.zshrc
 symlink $HOME/.profile $HOME/.zprofile
+
+# sublime-music
+symlink $OPT_DIR/venvs/python312/bin/sublime-music $BIN_DIR/sublime-music
+symlink $DOTFILES_DIR/sublime-music/sublime-music.desktop $APP_DIR/sublime-music.desktop
 
 # sublime-text
 mkdir -p $CONFIG_DIR/sublime-text/Packages/User

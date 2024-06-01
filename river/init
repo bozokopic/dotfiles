@@ -11,7 +11,7 @@ mod=Mod4
 riverctl map-pointer normal $mod BTN_LEFT move-view
 riverctl map-pointer normal $mod BTN_RIGHT resize-view
 
-riverctl map normal $mod Return spawn alacritty
+riverctl map normal $mod Return spawn foot
 riverctl map normal $mod Space spawn ~/.dotfiles/wofi/run.sh
 
 riverctl map normal $mod+Shift E exit
@@ -65,6 +65,7 @@ if command -v systemctl > /dev/null; then
 
     systemctl --user restart xdg-desktop-portal
     systemctl --user restart xdg-desktop-portal-wlr
+    systemctl --user restart xdg-desktop-portal-gtk
     systemctl --user restart plasma-kactivitymanagerd
 fi
 

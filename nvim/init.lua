@@ -110,7 +110,7 @@ vim.api.nvim_create_autocmd({"BufWritePost"}, {
 
 -- gui settings
 vim.o.linespace = 4
-vim.o.guifont = "monospace:h12"
+-- vim.o.guifont = "monospace:h12"
 
 -- neovide settings
 if vim.g.neovide then
@@ -229,13 +229,18 @@ require('packer').startup {
                 require('lualine').setup()
             end
         }
-
+        
         use {
-            'thaerkh/vim-indentguides',
+            "lukas-reineke/indent-blankline.nvim",
             config = function()
-                vim.g.indent_guides_enable_on_vim_startup = 1
-                vim.g.indent_guides_start_level = 2
-                vim.g.indent_guides_guide_size = 1
+                require("ibl").setup {
+                    indent = {
+                        char = '┊'
+                    },
+                    scope = {
+                        enabled = false
+                    }
+                }
             end
         }
 
@@ -265,6 +270,26 @@ require('packer').startup {
                 vim.keymap.set('', '<leader>fb', builtin.buffers)
                 vim.keymap.set('', '<leader>fh', builtin.help_tags)
                 vim.keymap.set('', '<leader>fr', telescope.extensions.repo.list)
+            end
+        }
+        
+        use {
+            "folke/which-key.nvim",
+            config = function()
+                vim.o.timeout = true
+                vim.o.timeoutlen = 500
+                require("which-key").setup {
+                }
+            end
+        }
+
+        use {
+            'mrjones2014/legendary.nvim',
+            requires = { "stevearc/dressing.nvim" },
+            config = function()
+                vim.keymap.set('', '<F9>', vim.cmd.Legendary)
+                require('legendary').setup {
+                }
             end
         }
 

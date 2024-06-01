@@ -21,6 +21,7 @@ if command -v systemctl > /dev/null; then
 
     systemctl --user restart xdg-desktop-portal
     systemctl --user restart xdg-desktop-portal-wlr
+    systemctl --user restart xdg-desktop-portal-gtk
     systemctl --user restart plasma-kactivitymanagerd
 else
     dbus-update-activation-environment WAYLAND_DISPLAY \

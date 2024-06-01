@@ -12,14 +12,14 @@ profile dual {
 
 profile work {
     output eDP-1
-    output 'Dell Inc. DELL U2722DE HFMKDH3'  # DP-5
-    output 'Dell Inc. DELL U2722D 3ZS8XN3'   # DP-6
+    output 'Dell Inc. DELL U2722DE HFMKDH3'
+    output 'Dell Inc. DELL U2722D 3ZS8XN3'
     exec ~/.config/kanshi/work.sh
 }
 
 profile home_tv {
     output eDP-1
-    output 'AOC Q2770 FSUE7HA007776'          # DP-6
-    output 'LG Electronics LG TV 0x00000101'  # DP-5
+    output 'AOC Q2770 FSUE7HA007776'
+    output 'LG Electronics LG TV 0x01010101'
     exec ~/.config/kanshi/home_tv.sh
 }

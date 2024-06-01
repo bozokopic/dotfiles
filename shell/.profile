@@ -23,7 +23,7 @@ append_lua_path() {
 [ -z "$SSH_AUTH_SOCK" ] && \
     export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
-# export CHICKEN_REPOSITORY=~/programs/chicken_repository
+# export CHICKEN_INSTALL_REPOSITORY=~/.local/opt/chicken
 # export GDK_BACKEND=wayland
 # export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # export QT_ENABLE_HIGHDPI_SCALING=1
@@ -39,6 +39,9 @@ export VISUAL=nvim
 
 prepend_path ~/.local/opt/river/bin
 prepend_path ~/.local/opt/janet/bin
+prepend_path ~/.local/opt/chibi/bin
+prepend_path ~/.local/opt/gambit/bin
+prepend_path ~/.local/opt/chicken/bin
 prepend_path ~/.local/opt/nnn/bin
 prepend_path ~/.local/bin
 export PATH

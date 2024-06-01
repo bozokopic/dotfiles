@@ -15,7 +15,7 @@ assign [app_id="^tmux_term$"] 9:term
 exec ~/.config/sway/init.sh
 
 bindsym {
-    $mod+Return exec alacritty
+    $mod+Return exec foot
     $mod+space exec ~/.dotfiles/wofi/run.sh
     $mod+Tab layout toggle
 
