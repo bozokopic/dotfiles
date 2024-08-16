@@ -31,6 +31,7 @@ config.plugins.lineguide = {
   rulers = { 80 }
 }
 
+
 ------------------------------ Themes ----------------------------------------
 
 -- light theme:

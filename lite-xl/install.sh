@@ -37,6 +37,9 @@ curl -L -o plugins/language_diff.lua https://raw.githubusercontent.com/lite-xl/l
 # ephemeral_tabs
 curl -L -o plugins/ephemeral_tabs.lua https://raw.githubusercontent.com/lite-xl/lite-xl-plugins/master/plugins/ephemeral_tabs.lua
 
+# eval
+curl -L -o plugins/eval.lua https://raw.githubusercontent.com/lite-xl/lite-xl-plugins/master/plugins/eval.lua
+
 # fontconfig
 curl -L -o plugins/fontconfig.lua https://raw.githubusercontent.com/lite-xl/lite-xl-plugins/master/plugins/fontconfig.lua
 

@@ -182,6 +182,7 @@ require('packer').startup {
                 'nvim-web-devicons'
             },
             config = function()
+
                 require("nvim-tree").setup {
                     filters = {
                         dotfiles = true
@@ -211,7 +212,7 @@ require('packer').startup {
                 vim.keymap.set('', '<F5>', vim.cmd.NvimTreeToggle)
             end
         }
-        
+
         use {
             'akinsho/bufferline.nvim',
             requires = 'nvim-tree/nvim-web-devicons',
@@ -229,7 +230,7 @@ require('packer').startup {
                 require('lualine').setup()
             end
         }
-        
+
         use {
             "lukas-reineke/indent-blankline.nvim",
             config = function()
@@ -272,7 +273,7 @@ require('packer').startup {
                 vim.keymap.set('', '<leader>fr', telescope.extensions.repo.list)
             end
         }
-        
+
         use {
             "folke/which-key.nvim",
             config = function()

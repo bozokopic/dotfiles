@@ -1,8 +1,23 @@
 #!/bin/sh
 
-# TODO edit /usr/lib/draw.io/src/main/electron.js
-# let argv = process.argv;
-# argv = argv.filter(i => !i.startsWith('--enable-features=') && !i.startsWith('--ozone-platform='));
+file=/usr/lib/draw.io/src/main/electron.js
+pattern='^\s*let argv = process\.argv$'
+if grep -q "$pattern" $file; then
+    tmpfile=$(mktemp)
+    awk -f - $file >"$tmpfile" <<EOF
+/$pattern/ {
+    printf "%s%s\n", \$0, ".filter(i => !i.startsWith('--enable-features=') && !i.startsWith('--ozone-platform='))"
+    next
+}
+{ print }
+EOF
+    doas install -m 644 -T "$tmpfile" $file
+    rm "$tmpfile"
+fi
+
+# doas sed -i \
+#          -e 's/^\(\s*let argv = process\.argv\)$/\1.filter(i => !i.startsWith("--enable-features=") \&\& !i.startsWith("--ozone-platform="))/' \
+#          /usr/lib/draw.io/src/main/electron.js
 
 if [ -n "$WAYLAND_DISPLAY" ]; then
     args="--enable-features=UseOzonePlatform --ozone-platform=wayland"
