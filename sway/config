@@ -16,7 +16,7 @@ exec ~/.config/sway/init.sh
 
 bindsym {
     $mod+Return exec foot
-    $mod+space exec ~/.dotfiles/wofi/run.sh
+    $mod+space exec wofi
     $mod+Tab layout toggle
 
     $mod+Shift+q kill

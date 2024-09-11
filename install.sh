@@ -175,6 +175,9 @@ symlink $DOTFILES_DIR/nvim/init.lua $CONFIG_DIR/nvim/init.lua
 # waybar
 symlink $DOTFILES_DIR/waybar $CONFIG_DIR/waybar
 
+# wofi
+symlink $DOTFILES_DIR/wofi $CONFIG_DIR/wofi
+
 # xorg
 symlink $DOTFILES_DIR/xorg/.xinitrc $HOME/.xinitrc
 symlink $DOTFILES_DIR/xorg/.Xresources $HOME/.Xresources

@@ -1,0 +1,15 @@
+window {
+    background: rgba(50, 50, 50, 0.9);
+}
+
+#img {
+    margin: 0 0.5rem;
+}
+
+#entry > .entry {
+    margin-left: 1rem;
+}
+
+#entry > expander > .entry {
+    margin-left: 0rem;
+}

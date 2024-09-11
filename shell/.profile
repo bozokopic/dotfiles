@@ -25,14 +25,15 @@ append_lua_path() {
 
 # export CHICKEN_INSTALL_REPOSITORY=~/.local/opt/chicken
 # export GDK_BACKEND=wayland
+# export LIBGL_ALWAYS_SOFTWARE=1
 # export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # export QT_ENABLE_HIGHDPI_SCALING=1
 # export QT_QPA_PLATFORM=wayland
+# export QT_QPA_PLATFORMTHEME=kde
 # export QT_WAYLAND_FORCE_DPI=120
 # export SDL_VIDEODRIVER=wayland
 # export SWEETHOME3D_JAVA3D=1.6
 # export WLR_DRM_NO_MODIFIERS=1
-# export LIBGL_ALWAYS_SOFTWARE=1
 export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
 export VISUAL=nvim

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # export GDK_DPI_SCALE=0.95
-if command -v gsettings > /dev/null; then
+if command -v gsettings >/dev/null; then
     gsettings set org.gnome.desktop.interface scaling-factor 1
     gsettings set org.gnome.desktop.interface text-scaling-factor 1
     gsettings set org.gnome.desktop.interface cursor-size 32
@@ -10,7 +10,9 @@ fi
 export QT_QPA_PLATFORM=wayland
 export XDG_CURRENT_DESKTOP=sway
 
-if command -v systemctl > /dev/null; then
+os_id=$(. /etc/os-release && echo $ID)
+
+if command -v systemctl >/dev/null; then
     systemctl --user import-environment \
         QT_QPA_PLATFORM \
         SWAYSOCK \
@@ -23,12 +25,18 @@ if command -v systemctl > /dev/null; then
     systemctl --user restart xdg-desktop-portal-wlr
     systemctl --user restart xdg-desktop-portal-gtk
     systemctl --user restart plasma-kactivitymanagerd
+
 else
     dbus-update-activation-environment WAYLAND_DISPLAY \
                                        XDG_CURRENT_DESKTOP
 
-    /usr/libexec/pipewire-launcher &
-    /usr/libexec/xdg-desktop-portal-wlr &
+    if [ "$os_id" = "alpine" ]; then
+        /usr/libexec/pipewire-launcher &
+        /usr/libexec/xdg-desktop-portal-wlr &
+
+    elif [ "$os_id" = "void" ]; then
+        pipewire &
+    fi
 fi
 
 ~/.config/sway/swayidle.sh &
