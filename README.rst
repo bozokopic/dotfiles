@@ -1,6 +1,4 @@
 Dotfiles repository
 ===================
 
-.. todo::
-
-    ...
+Configurations files and utility scripts
