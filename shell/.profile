@@ -35,7 +35,7 @@ append_lua_path() {
 # export SWEETHOME3D_JAVA3D=1.6
 # export WLR_DRM_NO_MODIFIERS=1
 export EDITOR=nvim
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt6ct
 export VISUAL=nvim
 
 prepend_path ~/.local/opt/river/bin

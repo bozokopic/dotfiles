@@ -10,13 +10,32 @@ config.ignore_files = {
 config.indent_size = 4
 
 
+config.plugins.miq.plugins = {
+    'ephemeral_tabs',
+    'eval',
+    'fontconfig',
+    'gitstatus',
+    'indentguide',
+    'minimap',
+    'scalestatus',
+    'search_ui',
+    'select_colorscheme',
+    'selectionhighlight',
+    'sort',
+    'spellcheck',
+    {'lite-xl-scm', name = 'scm'},
+    {'vincens2005/lite-xl-gitdiff-highlight', name = 'gitdiff_highlight'},
+    'liquidev/lintplus',
+    'lite-xl/lite-xl-lsp',
+}
+
+
 
 local fontconfig = require "plugins.fontconfig"
 fontconfig.use {
     font = { name = 'sans-serif', size = 14 * SCALE },
     code_font = { name = 'monospace', size = 14 * SCALE },
 }
-
 
 config.plugins.nerdicons = {
   use_default_dir_icons = true

@@ -26,5 +26,11 @@
             "enabled": true,
             "diagnostics_mode": "open_files"
         },
+        "gopls": {
+            "command": ["gopls"],
+            "selector": "source.go",
+            "enabled": true,
+            "diagnostics_mode": "open_files"
+        },
 	},
 }

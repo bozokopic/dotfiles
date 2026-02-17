@@ -46,12 +46,12 @@ mkdir -p $CONFIG_DIR/cudatext/settings
 symlink $DOTFILES_DIR/cudatext/user.json $CONFIG_DIR/cudatext/settings/user.json
 
 # drawio
-if [ -f /usr/share/applications/draw.io.desktop ]; then
-    symlink $DOTFILES_DIR/drawio/drawio $BIN_DIR/drawio
-    cp /usr/share/applications/draw.io.desktop $APP_DIR
-    sed -i "s/^Exec=\\S*/Exec=$(cd $LOCAL_DIR; pwd | sed 's/\//\\\//g')\\/bin\\/drawio/g" \
-        $APP_DIR/draw.io.desktop
-fi
+# if [ -f /usr/share/applications/draw.io.desktop ]; then
+#     symlink $DOTFILES_DIR/drawio/drawio $BIN_DIR/drawio
+#     cp /usr/share/applications/draw.io.desktop $APP_DIR
+#     sed -i "s/^Exec=\\S*/Exec=$(cd $LOCAL_DIR; pwd | sed 's/\//\\\//g')\\/bin\\/drawio/g" \
+#         $APP_DIR/draw.io.desktop
+# fi
 
 # dunst
 symlink $DOTFILES_DIR/dunst $CONFIG_DIR/dunst
@@ -98,6 +98,9 @@ symlink $DOTFILES_DIR/neovide $CONFIG_DIR/neovide
 # numen
 symlink $DOTFILES_DIR/numen $CONFIG_DIR/numen
 
+# nvim
+symlink $DOTFILES_DIR/nvim $CONFIG_DIR/nvim
+
 # pictures
 symlink $DOTFILES_DIR/pictures $PICTURES_DIR
 
@@ -142,8 +145,8 @@ symlink $DOTFILES_DIR/shell/zsh/.zshrc $HOME/.zshrc
 symlink $HOME/.profile $HOME/.zprofile
 
 # sublime-music
-symlink $OPT_DIR/venvs/python312/bin/sublime-music $BIN_DIR/sublime-music
-symlink $DOTFILES_DIR/sublime-music/sublime-music.desktop $APP_DIR/sublime-music.desktop
+# symlink $LOCAL_DIR/venvs/python312/bin/sublime-music $BIN_DIR/sublime-music
+# symlink $DOTFILES_DIR/sublime-music/sublime-music.desktop $APP_DIR/sublime-music.desktop
 
 # sublime-text
 mkdir -p $CONFIG_DIR/sublime-text/Packages/User
@@ -167,10 +170,6 @@ symlink $DOTFILES_DIR/tmux $CONFIG_DIR/tmux
 
 # vm
 symlink $DOTFILES_DIR/vm/run.sh $BIN_DIR/vm
-
-# nvim
-mkdir -p $CONFIG_DIR/nvim
-symlink $DOTFILES_DIR/nvim/init.lua $CONFIG_DIR/nvim/init.lua
 
 # waybar
 symlink $DOTFILES_DIR/waybar $CONFIG_DIR/waybar

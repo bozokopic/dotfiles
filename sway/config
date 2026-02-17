@@ -1,6 +1,7 @@
 set $mod Mod4
 
-xwayland disable
+#xwayland disable
+xwayland enable
 
 seat seat0 xcursor_theme default 32
 
@@ -15,6 +16,9 @@ assign [app_id="^tmux_term$"] 9:term
 exec ~/.config/sway/init.sh
 
 bindsym {
+    XF86MonBrightnessUp exec brightnessctl set +5%
+    XF86MonBrightnessDown exec brightnessctl set 5%-
+
     $mod+Return exec foot
     $mod+space exec wofi
     $mod+Tab layout toggle

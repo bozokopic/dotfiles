@@ -65,7 +65,8 @@
 	"theme": "Adaptive.sublime-theme",
     /*"tab_size": 4,*/
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true,
+	"trim_trailing_white_space_on_save": "all",
+    "trim_only_modified_white_space": false,
 	"update_check": false,
     "sublime_merge_path": null,
     "show_panel_on_build": false,

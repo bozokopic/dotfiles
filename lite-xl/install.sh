@@ -54,6 +54,7 @@ curl -L -o plugins/minimap.lua https://raw.githubusercontent.com/lite-xl/lite-xl
 
 # nerdicons
 curl -L -o plugins/nerdicons.lua https://raw.githubusercontent.com/lite-xl/lite-xl-plugins/master/plugins/nerdicons.lua
+curl -L -o libraries/font_symbols_nerdfont_mono_regular.lua https://raw.githubusercontent.com/lite-xl/lite-xl-plugins/master/plugins/font_symbols_nerdfont_mono_regular.lua
 
 # scalestatus
 curl -L -o plugins/scalestatus.lua https://raw.githubusercontent.com/lite-xl/lite-xl-plugins/master/plugins/scalestatus.lua
