@@ -27,4 +27,5 @@ exec qemu-system-x86_64 \
     -device usb-tablet \
     -vga std \
     -virtfs local,path=$VM_TMP,mount_tag=shared,security_model=none \
+    -display spice-app \
     "$@"

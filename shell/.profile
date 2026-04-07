@@ -14,7 +14,7 @@ append_lua_path() {
 }
 
 [ -z "$XDG_RUNTIME_DIR" ] && \
-    export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir 
+    export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir
 
 [ ! -d "$XDG_RUNTIME_DIR" ] && \
     mkdir "$XDG_RUNTIME_DIR" && \
@@ -47,12 +47,17 @@ prepend_path ~/.local/opt/nnn/bin
 prepend_path ~/.local/bin
 export PATH
 
-[ -n "$(command -v luarocks)" ] && \
+if command -v luarocks >/dev/null 2>&1; then
     eval "$(luarocks path)"
+fi
 
 append_lua_path ~/repos/private/bk-lua/src_lua
 export LUA_PATH
 export LUA_CPATH
+
+if command -v opam >/dev/null 2>&1; then
+    eval "$(opam env 2>/dev/null | grep -v ^MANPATH=)"
+fi
 
 # nix_profile_sh=~/.nix-profile/etc/profile.d/nix.sh
 # [ -e $nix_profile_sh ] && . $nix_profile_sh
