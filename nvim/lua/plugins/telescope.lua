@@ -2,7 +2,6 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         dependencies = {
-            'BurntSushi/ripgrep',
             'nvim-lua/plenary.nvim',
             'cljoly/telescope-repo.nvim'
         },

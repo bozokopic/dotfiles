@@ -160,7 +160,6 @@ binds {
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+C            { center-column; }
     Mod+M            { maximize-window-to-edges; }
-    Mod+W            { toggle-column-tabbed-display; }
 
     Mod+O repeat=false { toggle-overview; }
 
@@ -175,5 +174,5 @@ binds {
     Mod+WheelScrollDown      { focus-column-left; }
 
     Mod+Shift+WheelScrollUp    { move-column-right; }
-    Mod+Shift+WheelScrollLeft  { move-column-left; }
+    Mod+Shift+WheelScrollDown  { move-column-left; }
 }
