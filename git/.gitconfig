@@ -3,7 +3,7 @@
     email = bozo@kopic.xyz
     signingkey = 1E5A7C9229CE0BEE9488499B61E770F9ED93DF2A
 [http]
-    sslVerify = false
+    sslVerify = true
 [branch]
     autosetuprebase = always
 [core]

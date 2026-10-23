@@ -2,12 +2,17 @@
 
 . $(dirname "$(realpath "$0")")/env.sh
 
-swaymsg -q reload
+killall swaybg
+swaybg -o $primary -i $bg1 &
 
-swaymsg -q output $primary pos 0 0 \
-                           res $primary_res \
-                           bg $bg1 stretch
+if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
+    for workspace in 1:1 2:2 3:3 4:4 5:a 6:s 7:d 8:f; do
+        swaymsg -q workspace $workspace output $primary
+    done
 
-for workspace in 1:1 2:2 3:3 4:4 5:a 6:s 7:d 8:f; do
-    swaymsg -q workspace $workspace output $primary
-done
+elif [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
+    for workspace in 1 2 3 4 a s d f; do
+        niri msg action move-workspace-to-monitor --reference $workspace $primary
+    done
+fi
+

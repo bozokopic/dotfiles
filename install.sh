@@ -95,6 +95,10 @@ symlink $DOTFILES_DIR/neomutt $CONFIG_DIR/neomutt
 # neovide
 symlink $DOTFILES_DIR/neovide $CONFIG_DIR/neovide
 
+# niri
+symlink $DOTFILES_DIR/niri $CONFIG_DIR/niri
+symlink $DOTFILES_DIR/niri/run-niri.sh $BIN_DIR/run-niri
+
 # numen
 symlink $DOTFILES_DIR/numen $CONFIG_DIR/numen
 

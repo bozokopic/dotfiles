@@ -7,9 +7,6 @@ if command -v gsettings >/dev/null; then
     gsettings set org.gnome.desktop.interface cursor-size 32
 fi
 
-export QT_QPA_PLATFORM=wayland
-export XDG_CURRENT_DESKTOP=sway
-
 os_id=$(. /etc/os-release && echo $ID)
 
 if command -v systemctl >/dev/null; then
