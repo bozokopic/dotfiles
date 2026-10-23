@@ -5,7 +5,6 @@ input {
 
     touchpad {
         tap
-        natural-scroll
     }
 
     warp-mouse-to-focus

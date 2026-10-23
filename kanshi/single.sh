@@ -2,7 +2,7 @@
 
 . $(dirname "$(realpath "$0")")/env.sh
 
-killall swaybg
+killall swaybg >/dev/null
 swaybg -o $primary -i $bg1 &
 
 if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
@@ -11,7 +11,7 @@ if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
     done
 
 elif [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
-    for workspace in 1 2 3 4 a s d f; do
+    for workspace in 1:1 2:2 3:3 4:4 5:a 6:s 7:d 8:f; do
         niri msg action move-workspace-to-monitor --reference $workspace $primary
     done
 fi
