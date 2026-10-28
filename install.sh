@@ -62,6 +62,9 @@ symlink $DOTFILES_DIR/fontconfig $CONFIG_DIR/fontconfig
 # foot
 symlink $DOTFILES_DIR/foot $CONFIG_DIR/foot
 
+# fuzzel
+symlink $DOTFILES_DIR/fuzzel $CONFIG_DIR/fuzzel
+
 # gdb
 symlink $DOTFILES_DIR/gdb/.gdbinit $HOME/.gdbinit
 

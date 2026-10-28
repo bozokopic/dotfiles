@@ -20,8 +20,8 @@ bindsym {
     XF86MonBrightnessDown exec brightnessctl set 5%-
 
     $mod+Return exec foot
-    $mod+space exec wofi
-    $mod+Tab layout toggle
+    $mod+space exec fuzzel
+    $mod+Tab layout toggle all
 
     $mod+Shift+q kill
     $mod+Shift+r reload

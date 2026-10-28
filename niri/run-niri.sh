@@ -4,10 +4,10 @@ exec >~/.niri.log 2>&1
 
 export QT_QPA_PLATFORM=wayland
 
-if ( command -v systemctl && systemctl --user is-system-running ) >/dev/null; then
+if [ "$(ps -p 1 -o comm=)" = "systemd" ]; then
     exec niri-session
 
-elif pgrep -U $(id -u) dbus-daemon >/dev/null; then
+elif [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
     exec niri --session
 
 else

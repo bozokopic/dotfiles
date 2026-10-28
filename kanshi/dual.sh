@@ -7,7 +7,7 @@ secondary=$(display_names ".name != \"$primary\"")
 wlr-randr --output $primary --pos 0,0
 wlr-randr --output $secondary --right-of $primary
 
-killall swaybg >/dev/null
+pkill -x swaybg >/dev/null
 swaybg -o $primary -i $bg1 \
        -o $secondary -i $bg2 &
 

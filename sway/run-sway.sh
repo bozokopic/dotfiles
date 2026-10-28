@@ -5,8 +5,7 @@ exec >~/.sway.log 2>&1
 export QT_QPA_PLATFORM=wayland
 export XDG_CURRENT_DESKTOP=sway
 
-if ( ( command -v systemctl && systemctl --user is-system-running ) ||
-     pgrep -U $(id -u) dbus-daemon ) >/dev/null; then
+if [ "$(ps -p 1 -o comm=)" = "systemd" ] || [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
     exec sway
 
 else

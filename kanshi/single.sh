@@ -2,7 +2,7 @@
 
 . $(dirname "$(realpath "$0")")/env.sh
 
-killall swaybg >/dev/null
+pkill -x swaybg >/dev/null
 swaybg -o $primary -i $bg1 &
 
 if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
