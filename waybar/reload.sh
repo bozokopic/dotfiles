@@ -1,3 +1,3 @@
 #!/bin/sh
 
-killall -SIGUSR2 waybar
+pkill -x -SIGUSR2 waybar
