@@ -77,9 +77,6 @@ symlink $DOTFILES_DIR/idasen $CONFIG_DIR/idasen
 # kanshi
 symlink $DOTFILES_DIR/kanshi $CONFIG_DIR/kanshi
 
-# lein
-symlink $DOTFILES_DIR/lein/lein $BIN_DIR/lein
-
 # lf
 symlink $DOTFILES_DIR/lf $CONFIG_DIR/lf
 
@@ -144,16 +141,9 @@ symlink $DOTFILES_DIR/shell/.profile $HOME/.profile
 symlink $DOTFILES_DIR/shell/bash/.bashrc $HOME/.bashrc
 symlink $HOME/.profile $HOME/.bash_profile
 
-# shell - fish
-symlink $DOTFILES_DIR/shell/fish $CONFIG_DIR/fish
-
 # shell - zsh
 symlink $DOTFILES_DIR/shell/zsh/.zshrc $HOME/.zshrc
 symlink $HOME/.profile $HOME/.zprofile
-
-# sublime-music
-# symlink $LOCAL_DIR/venvs/python312/bin/sublime-music $BIN_DIR/sublime-music
-# symlink $DOTFILES_DIR/sublime-music/sublime-music.desktop $APP_DIR/sublime-music.desktop
 
 # sublime-text
 mkdir -p $CONFIG_DIR/sublime-text/Packages/User
@@ -180,9 +170,6 @@ symlink $DOTFILES_DIR/vm/run.sh $BIN_DIR/vm
 
 # waybar
 symlink $DOTFILES_DIR/waybar $CONFIG_DIR/waybar
-
-# wofi
-symlink $DOTFILES_DIR/wofi $CONFIG_DIR/wofi
 
 # xorg
 symlink $DOTFILES_DIR/xorg/.xinitrc $HOME/.xinitrc
